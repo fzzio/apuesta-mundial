@@ -8,8 +8,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <meta name="description" content="NEAR">
-        <meta name="author" content="CAJANEGRA S.A.">
+        <meta name="description" content="<?php echo PROYECTO_NOMBRE; ?>">
+        <meta name="author" content="<?php echo PROYECTO_DESARROLLADOR; ?>">
 
         <?php /*
         <link rel="icon" type="image/png" href="<?php echo base_url('assets/apuestamundial/img/favicon-32x32.png'); ?>" />
@@ -73,7 +73,7 @@
                 return urlTmp;
             }
         </script>
-        <title>NEAR:: <?php echo $titlePage ?></title>
+        <title><?php echo PROYECTO_NOMBRE; ?>:: <?php echo $titlePage ?></title>
     </head>
     <?php $claseBody = ($this->router->method == 'login') ? 'login' : 'nav-md' ; ?>
     <body class="<?php echo($claseBody); ?>">
