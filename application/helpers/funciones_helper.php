@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-if ( ! function_exists('estaLogueadoSuperAdmin')){
+if ( ! function_exists('estaLogueadoCasa')){
 	function estaLogueadoCasa() {
 		$instanciaCI =& get_instance();
 		if ( $instanciaCI->session->userdata('rol') == ROL_CASA ) {
@@ -10,7 +10,7 @@ if ( ! function_exists('estaLogueadoSuperAdmin')){
 		}
 	}
 }
-if ( ! function_exists('estaLogueadoAdmin')){
+if ( ! function_exists('estaLogueadoApostador')){
 	function estaLogueadoApostador() {
 		$instanciaCI =& get_instance();
 		if ( $instanciaCI->session->userdata('rol') == ROL_APOSTADOR ) {
