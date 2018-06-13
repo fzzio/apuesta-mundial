@@ -97,6 +97,15 @@ defined('PAIS_INACTIVO')		OR define('PAIS_INACTIVO', 0);
 defined('PAIS_ACTIVO')			OR define('PAIS_ACTIVO', 1);
 defined('PAIS_ELIMINADO')		OR define('PAIS_ELIMINADO', 2);
 
+defined('FASE_INACTIVO')		OR define('FASE_INACTIVO', 0);
+defined('FASE_GRUPOS')			OR define('FASE_GRUPOS', 1);
+defined('FASE_OCTAVOS')			OR define('FASE_OCTAVOS', 2);
+defined('FASE_CUARTOS')			OR define('FASE_CUARTOS', 3);
+defined('FASE_SEMIFINAL')		OR define('FASE_SEMIFINAL', 4);
+defined('FASE_FINAL')			OR define('FASE_FINAL', 5);
+defined('FASE_TERCERO')			OR define('FASE_TERCERO', 6);
+
+
 // Roles
 defined('ROL_CASA')				OR define('ROL_CASA', 1);
 defined('ROL_APOSTADOR')		OR define('ROL_APOSTADOR', 2);
