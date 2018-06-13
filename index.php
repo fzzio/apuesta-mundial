@@ -35,6 +35,9 @@
  * @since	Version 1.0.0
  * @filesource
  */
+	
+	// Seteo de Fecha del server
+	date_default_timezone_set("America/Guayaquil");
 
 /*
  *---------------------------------------------------------------

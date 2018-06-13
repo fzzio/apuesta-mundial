@@ -1,0 +1,26 @@
+{
+  "name": "apuestamundial",
+  "authors": [
+    "Fabricio Orrala <fabricio@cajanegra.com.ec>"
+  ],
+  "description": "Proyecto para visualización de resultados del mundial",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^1.12.4",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "fontawesome#^4.6.1",
+    "gentelella": "^1.4.0"
+  },
+  "resolutions": {
+    "jquery": "^2.2.3"
+  }
+}

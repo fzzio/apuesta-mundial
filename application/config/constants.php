@@ -83,3 +83,22 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+// Constantes del Proyecto
+defined('PROYECTO_NOMBRE')			OR define('PROYECTO_NOMBRE', 'Apuesta Mundial'); // Nombre
+defined('PROYECTO_AUTOR')			OR define('PROYECTO_AUTOR', 'Fabricio Orrala'); // Autor
+defined('PROYECTO_DESARROLLADOR')	OR define('PROYECTO_DESARROLLADOR', 'CAJANEGRA S.A.'); // Desarrollador
+
+// Manejo de estados
+defined('ESTADO_INACTIVO')		OR define('ESTADO_INACTIVO', 0);
+defined('ESTADO_ACTIVO')		OR define('ESTADO_ACTIVO', 1);
+
+defined('EQUIPO_INACTIVO')		OR define('EQUIPO_INACTIVO', 0);
+defined('EQUIPO_COMPITIENDO')	OR define('EQUIPO_COMPITIENDO', 1);
+defined('EQUIPO_ELIMINADO')		OR define('EQUIPO_ELIMINADO', 2);
+
+// Roles
+defined('ROL_CASA')				OR define('ROL_CASA', 1);
+defined('ROL_APOSTADOR')		OR define('ROL_APOSTADOR', 2);
+
+defined('FECHA_HOY')			OR define('FECHA_HOY', date('Y-m-d H:i:s', time()));
