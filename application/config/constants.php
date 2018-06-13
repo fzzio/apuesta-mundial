@@ -93,9 +93,9 @@ defined('PROYECTO_DESARROLLADOR')	OR define('PROYECTO_DESARROLLADOR', 'CAJANEGRA
 defined('ESTADO_INACTIVO')		OR define('ESTADO_INACTIVO', 0);
 defined('ESTADO_ACTIVO')		OR define('ESTADO_ACTIVO', 1);
 
-defined('EQUIPO_INACTIVO')		OR define('EQUIPO_INACTIVO', 0);
-defined('EQUIPO_COMPITIENDO')	OR define('EQUIPO_COMPITIENDO', 1);
-defined('EQUIPO_ELIMINADO')		OR define('EQUIPO_ELIMINADO', 2);
+defined('PAIS_INACTIVO')		OR define('PAIS_INACTIVO', 0);
+defined('PAIS_ACTIVO')			OR define('PAIS_ACTIVO', 1);
+defined('PAIS_ELIMINADO')		OR define('PAIS_ELIMINADO', 2);
 
 // Roles
 defined('ROL_CASA')				OR define('ROL_CASA', 1);

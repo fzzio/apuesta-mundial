@@ -21,6 +21,7 @@ class Superadmin extends CI_Controller {
         $this->load->model(
             array(
                 'Super_administrador_model',
+                'Pais_model',
             )
         );
 	}
@@ -28,7 +29,7 @@ class Superadmin extends CI_Controller {
 	public function index(){
 		if ( estaLogueadoCasa() ) {
 			$dataHeader['titlePage'] = "Dashboard";
-			$dataContent = array();
+			$dataContent['paisesObj'] = Pais_model::getTodos();
 			$dataFooter = array();
 			$dataMenu = array();
 
