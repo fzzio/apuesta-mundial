@@ -76,7 +76,7 @@
 
 
         <!-- Script NEAR -->
-        <script type="text/javascript" src="<?php echo base_url('assets/apuestamundial/js/script.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/apuestamundial/js/script-cancha.js'); ?>"></script>
 
     </body>
 </html>

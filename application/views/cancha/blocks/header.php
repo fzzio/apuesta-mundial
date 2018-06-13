@@ -11,9 +11,7 @@
         <meta name="description" content="<?php echo PROYECTO_NOMBRE; ?>">
         <meta name="author" content="<?php echo PROYECTO_DESARROLLADOR; ?>">
 
-        <?php /*
-        <link rel="icon" type="image/png" href="<?php echo base_url('assets/apuestamundial/img/favicon-32x32.png'); ?>" />
-        */ ?>
+        <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/apuestamundial/img/favicon.ico'); ?>" />
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/bootstrap/dist/css/bootstrap.min.css'); ?>">
@@ -51,15 +49,17 @@
         
         <!-- Gentelella -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/build/css/custom.min.css'); ?>">
+        
+        <!-- Flag Icon -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/flag-icon-css/css/flag-icon.min.css'); ?>">
-        <?php /*
+        
         <!-- Google Fonts -->
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
-        */ ?>
+
 
         <!-- Estilo NEAR -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/apuestamundial/css/custom-bootstrap-margin-padding.css'); ?>">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/apuestamundial/css/estilo.css'); ?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/apuestamundial/css/estilo-cancha.css'); ?>">
 
         <script type="text/javascript">
             var base_url = '<?php echo base_url(); ?>';

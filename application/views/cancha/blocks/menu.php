@@ -1,8 +1,8 @@
 <div class="col-md-3 left_col menu_fixed">
   <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
-      <a href="<?php echo site_url('superadmin/index'); ?>" class="site_title">
-        <i class="fa fa-user-circle"></i> <span><?php echo PROYECTO_NOMBRE; ?></span>
+      <a href="<?php echo site_url('cancha/index'); ?>" class="site_title">
+        <i class="fa fa-soccer-ball-o"></i> <span><?php echo PROYECTO_NOMBRE; ?></span>
       </a>
     </div>
 
@@ -32,168 +32,31 @@
         <ul class="nav side-menu">
           <li>
             <a>
-              <i class="fa fa-briefcase"></i> Clientes<span class="fa fa-chevron-down"></span>
+              <i class="fa fa-briefcase"></i> Cancha <span class="fa fa-chevron-down"></span>
             </a>
             <ul class="nav child_menu">
               <li>
-                <a href="<?php echo site_url('entidad/listar'); ?>">
-                  <i class="fa fa-building" aria-hidden="true"></i> Entidades
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo site_url('administrador/listar'); ?>">
-                  <i class="fa fa-user" aria-hidden="true"></i> Administradores
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a>
-              <i class="fa fa-users"></i> Personal <span class="fa fa-chevron-down"></span>
-            </a>
-            <ul class="nav child_menu">
-              <li>
-                <a href="<?php echo site_url('supervisor/listar'); ?>">
-                  <i class="fa fa-check-square-o" aria-hidden="true"></i> Supervisores
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo site_url('auxiliar/listar'); ?>">
-                  <i class="fa fa-archive" aria-hidden="true"></i> Auxiliares
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo site_url('chip/acciones'); ?>">
-                  <i class="fa fa-address-card" aria-hidden="true"></i> Miembros
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="menu_section">
-        <h3>Sistema</h3>
-        <ul class="nav side-menu">
-          <li>
-            <a>
-              <i class="fa fa-shield"></i> Accesos <span class="fa fa-chevron-down"></span>
-            </a>
-            <ul class="nav child_menu">
-              <li>
-                <a href="<?php echo site_url('superadmin/listar'); ?>">
-                  <i class="fa fa-user-secret" aria-hidden="true"></i> Super Admins
+                <a href="<?php echo site_url('cancha/index'); ?>">
+                  Dashboard
                 </a>
               </li>
               <?php /*
               <li>
-                <a href="<?php echo site_url('tipotag/listar'); ?>">
-                  <i class="fa fa-tags" aria-hidden="true"></i> Tipos de Tag
+                <a href="<?php echo site_url('cancha/historial'); ?>">
+                  Historial
                 </a>
               </li>
               */ ?>
-              <li>
-                <a href="<?php echo site_url('asistencia/listar'); ?>">
-                  <i class="fa fa-history" aria-hidden="true"></i> Asistencias
-                </a>
-              </li>
             </ul>
           </li>
         </ul>
       </div>
-      <?php 
-      /*
-      <div class="menu_section">
-        <h3>General</h3>
-        <ul class="nav side-menu">
-          <li>
-            <a>
-              <i class="fa fa-briefcase"></i> Entidad <span class="fa fa-chevron-down"></span>
-            </a>
-            <ul class="nav child_menu">
-              <li>
-                <a href="<?php echo site_url('entidad/ver'); ?>">Ver</a>
-              </li>
-              <li>
-                <a href="<?php echo site_url('entidad/agregar'); ?>">Añadir</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a>
-              <i class="fa fa-users"></i> Personal <span class="fa fa-chevron-down"></span>
-            </a>
-            <ul class="nav child_menu">
-              <li>
-                <a href="#">Ver</a>
-              </li>
-              <li>
-                <a href="#">Añadir</a>
-              </li>
-              <li>
-                <a href="#">Subir CSV</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a>
-              <i class="fa fa-user-secret"></i> Supervisores <span class="fa fa-chevron-down"></span>
-            </a>
-            <ul class="nav child_menu">
-              <li>
-                <a href="#">Ver</a>
-              </li>
-              <li>
-                <a href="#">Añadir</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a>
-              <i class="fa fa-archive"></i> Auxiliares <span class="fa fa-chevron-down"></span>
-            </a>
-            <ul class="nav child_menu">
-              <li>
-                <a href="#">Ver</a>
-              </li>
-              <li>
-                <a href="#">Añadir</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="menu_section">
-        <h3>Sistema</h3>
-        <ul class="nav side-menu">
-          <li>
-            <a>
-              <i class="fa fa-cube"></i> Administrador <span class="fa fa-chevron-down"></span>
-            </a>
-            <ul class="nav child_menu">
-              <li>
-                <a href="#">Ver</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a>
-              <i class="fa fa-tags"></i> Tags <span class="fa fa-chevron-down"></span>
-            </a>
-            <ul class="nav child_menu">
-              <li>
-                <a href="#">Ver</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      */ ?>
     </div>
     <!-- /sidebar menu -->
 
     <!-- /menu footer buttons -->
     <div class="sidebar-footer hidden-small">
-      <a data-toggle="tooltip" data-placement="top" title="Inicio" href="<?php echo site_url('superadmin/index'); ?>">
+      <a data-toggle="tooltip" data-placement="top" title="Inicio" href="<?php echo site_url('cancha/index'); ?>">
         <span class="fa fa-home" aria-hidden="true"></span>
       </a>
       <a data-toggle="tooltip" data-placement="top" title="Refrescar" href="<?php echo site_url($this->uri->uri_string()); ?>">
@@ -202,7 +65,7 @@
       <a data-toggle="tooltip" data-placement="top" title="Logs" href="<?php echo site_url('log/listar'); ?>">
         <span class="fa fa-file-text" aria-hidden="true"></span>
       </a>
-      <a data-toggle="tooltip" data-placement="top" title="Salir" href="<?php echo site_url('superadmin/logout'); ?>">
+      <a data-toggle="tooltip" data-placement="top" title="Salir" href="<?php echo site_url('cancha/logout'); ?>">
         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
       </a>
     </div>
@@ -234,7 +97,7 @@
             </li>
             */ ?>
             <li>
-              <a href="<?php echo site_url('superadmin/logout'); ?>">
+              <a href="<?php echo site_url('cancha/logout'); ?>">
                 <i class="fa fa-sign-out pull-right"></i> Salir
               </a>
             </li>

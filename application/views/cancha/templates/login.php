@@ -7,7 +7,7 @@
 				<section class="login_content">
 					<?php echo form_open('cancha/login' , array('class' => '', 'id' => 'frm-login')); ?>
 						<h1 class="mt-0 mb-20">
-							Cancha
+							Acceder
 						</h1>
 						<p class="mt-0 mb-5 text-justify texto-sin-sombra">
 							Ingrese sus datos para saltar a la cancha
@@ -46,7 +46,7 @@
 						<div class="separator">
 							<div>
 								<h1>
-									<i class="fa fa-user-secret"></i> <?php echo PROYECTO_NOMBRE; ?>
+									<i class="fa fa-soccer-ball-o"></i> <?php echo PROYECTO_NOMBRE; ?>
 								</h1>
 								<p>
 									<?php echo PROYECTO_AUTOR; ?> &copy; <?php echo date("Y"); ?>. Todos los derechos reservados.
