@@ -32,12 +32,12 @@
 								'maxlength' => 30
 							));?>
 						</div>
-						<div>
+						<div class="text-center">
 							<?php 
                                 echo form_submit(array(
                                     'name' => 'acceder',
                                     'value' => 'Iniciar sesión',
-                                    'class' => 'btn btn-azul submit btn-azul-oscuro-hover'
+                                    'class' => 'btn btn-amarillo submit btn-negro-hover'
                             ));?>
 						</div>
 
@@ -48,6 +48,7 @@
 								<h1>
 									<i class="fa fa-soccer-ball-o"></i> <?php echo PROYECTO_NOMBRE; ?>
 								</h1>
+								<?php /*
 								<p>
 									<?php echo PROYECTO_AUTOR; ?> &copy; <?php echo date("Y"); ?>. Todos los derechos reservados.
 									<br />
@@ -55,6 +56,7 @@
 										 Desarrollado por <a href="http://www.cajanegra.com.ec" target="_blank"><?php echo PROYECTO_DESARROLLADOR; ?></a>
 									</small>
 								</p>
+								*/ ?>
 							</div>
 						</div>
 					<?php echo form_close(); ?>

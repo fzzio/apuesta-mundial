@@ -10,6 +10,7 @@
             password,
             nombre,
             email,
+            celular,
             monto_inicial,
             fecha,
             estado,
@@ -22,6 +23,7 @@
         private $password;
         private $nombre;
         private $email;
+        private $celular;
         private $montoInicial;
         private $fecha;
         private $estado;
@@ -50,6 +52,9 @@
         }
         public function getEmail(){
             return $this->email;
+        }
+        public function getCelular(){
+            return $this->celular;
         }
         public function getMontoInicial(){
             return $this->montoInicial;
@@ -80,6 +85,9 @@
         public function setEmail( $email ){
             $this->email = $email;
         }
+        public function setCelular( $celular ){
+            $this->celular = $celular;
+        }
         public function setMontoInicial( $montoInicial ){
             $this->montoInicial = $montoInicial;
         }
@@ -98,12 +106,13 @@
             return $this;
         }
 
-        public function setApostador( $ID, $cedula, $password, $nombre, $email, $montoInicial, $fecha, $estado ){
+        public function setApostador( $ID, $cedula, $password, $nombre, $email, $celular, $montoInicial, $fecha, $estado ){
             $this->setID( $ID );
             $this->setCedula( $cedula );
             $this->setPassword( $password );
             $this->setNombre( $nombre );
             $this->setEmail( $email );
+            $this->setCelular( $celular );
             $this->setMontoInicial( $montoInicial );
             $this->setFecha( $fecha );
             $this->setEstado( $estado );
@@ -137,6 +146,7 @@
                         $apostadorDB->password,
                         $apostadorDB->nombre,
                         $apostadorDB->email,
+                        $apostadorDB->celular,
                         $apostadorDB->monto_inicial,
                         $apostadorDB->fecha,
                         $apostadorDB->estado
@@ -170,6 +180,7 @@
                         $apostadorDB->password,
                         $apostadorDB->nombre,
                         $apostadorDB->email,
+                        $apostadorDB->celular,
                         $apostadorDB->monto_inicial,
                         $apostadorDB->fecha,
                         $apostadorDB->estado
@@ -219,6 +230,7 @@
                     'password' => md5($this->getPassword()),
                     'nombre' => $this->getNombre(),
                     'email' => $this->getEmail(),
+                    'celular' => $this->getCelular(),
                     'monto_inicial' => $this->getMontoInicial(),
                     'fecha' => $this->getFecha(),
                     'estado' => $this->getEstado(),
@@ -236,6 +248,7 @@
                     'password' => md5($this->getPassword()),
                     'nombre' => $this->getNombre(),
                     'email' => $this->getEmail(),
+                    'celular' => $this->getCelular(),
                     'monto_inicial' => $this->getMontoInicial(),
                     'fecha' => $this->getFecha(),
                     'estado' => $this->getEstado(),

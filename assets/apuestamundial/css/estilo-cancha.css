@@ -1,5 +1,5 @@
 html, body{
-	font-family: 'Roboto', sans-serif; 
+	font-family: 'Montserrat', sans-serif;
 }
 .error{
 	color: #FF0000;
@@ -73,6 +73,20 @@ html, body{
 	background-color: #005695;
 	color: #FFFFFF;
 }
+.btn-amarillo,
+.btn-amarillo-hover:hover,
+.btn-amarillo-hover:active,
+.btn-amarillo-hover:focus{
+	background-color: #FFA000;
+	color: #141414;
+}
+.btn-negro,
+.btn-negro-hover:hover,
+.btn-negro-hover:active,
+.btn-negro-hover:focus{
+	background-color: #141414;
+	color: #FFFFFF;
+}
 
 /* Fondos */
 .fondo-azul{
@@ -90,6 +104,15 @@ html, body{
 .fondo-opacidad{
 	background: rgba(0, 0, 0, 0.3);
 }
+.fondo-negro-1{
+	background-color: #0A0A0A;
+}
+.fondo-negro-2{
+	background-color: #141414;
+}
+.fondo-amarillo{
+	background-color: #FFA000;
+}
 
 /*Bordes*/
 .borde-azul{
@@ -99,8 +122,18 @@ html, body{
     border: 1px solid #1E508F;
 }
 /*************************************/
-
+body{
+	background: #F7F7F7;
+}
+body .container.body .right_col{
+}
+.site_title{
+	font-size: 18px;
+}
 /* Modificación al template Gentelella */
+.login_content h1{
+	font-family: 'Montserrat', sans-serif;
+}
 .login{
 	background-image: url("../img/arquero.jpg");
     background-size: cover;
@@ -109,27 +142,27 @@ html, body{
     background-position: center center;
 }
 .left_col{
-	/*background: #255BA5;*/
-	background-image: url("../img/tes1.jpg");
+	background-color: #141414;
+	/*background-image: url("../img/tes1.jpg");*/
 	background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center center;
 }
-body{
-	background: #255BA5;
-}
-body .container.body .right_col{
+#content form .submit,
+.login_content form input[type=submit]{
+	float: inherit;
+    margin-left: inherit;
 }
 .nav_title{
-	background: #152B76;
+	background: #0A0A0A;
 }
 .nav_menu{
-	background: #1E508F;
-	border-bottom: 1px solid #B6E3FF;
+	background: #141414;
+	border-bottom: 1px solid #0A0A0A;
 }
 .nav_menu .nav.toggle a{
-	color: #B6E3FF;
+	color: #FFCC00;
 }
 .nav.child_menu>li>a,
 .nav.side-menu>li>a{
@@ -140,53 +173,87 @@ body .container.body .right_col{
 .nav_menu .nav.toggle a:focus{
 	color: #FFFFFF;
 }
-.nav.side-menu>li.active>a{
-	background: #2E73CE;
-	color: #FFFFFF;
+.nav.side-menu>li.active>a,
+.nav.side-menu>li.active>a:hover,
+.nav.side-menu>li.active>a:active,
+.nav.side-menu>li.active>a:focus{
+	background: #262626;
+	color: #FFFFFF !important;
+}
+.main_menu span.fa{
+	color: #FFFFFF !important;
 }
 .nav.child_menu>li>a:hover{
 	color: #FFFFFF;
 }
 .nav-md ul.nav.child_menu li:before{
-	background: #4594CC;
+	background: #FFCC00;
 }
 .nav.side-menu>li.active,
 .nav.side-menu>li.current-page{
-	border-left: 5px solid #1ABB9C;
-	border-right: none;
+	border-right: 5px solid #FFCC00;
 }
 .nav-md ul.nav.child_menu li:after{
-	border-left: 1px solid #4594CC
+	border-left: 1px solid #FFA000;
 }
 .nav.navbar-nav>li>a{
-	background: #1E508F;
-    color: #B6E3FF !important;
+	background: #FFCC00;
+	color: #000000 !important;
 }
 .top_nav .nav .open>a,
 .top_nav .nav .open>a:focus,
 .top_nav .nav .open>a:hover,
 .top_nav .nav>li>a:focus,
 .top_nav .nav>li>a:hover{
-	background: #152B76;
-	color: #FFFFFF !important;
+	background: #FFA000;
+    color: #141414 !important;
 }
 
 .footer{
 	background: #F3F4F6;
 }
 .sidebar-footer{
-	background: #4594CC;
+	background: #0A0A0A;
 }
 .sidebar-footer a{
-	background: #1E508F;
-	color: #B6E3FF;
+	background: #FFCC00;
+	color: #141414;
 }
 .sidebar-footer a:hover{
-	background: #152B76; 
+	background: #141414; 
+	color: #FFFFFF;
 }
 .profile_info span{
-	color: #B6E3FF;
+	color: #FFCC00;
 }
+/*************************/
+.login_content form input[type="text"],
+.login_content form input[type="email"],
+.login_content form input[type="password"]{
+	background-color: transparent;
+	border: 1px solid #141414;
+	text-align: center;
+    box-shadow: none;
+    border-radius: 0px;
+    color: #FFFFFF;
+}
+
+.login_content form input[type="text"]:hover,
+.login_content form input[type="text"]:active,
+.login_content form input[type="text"]:focus,
+.login_content form input[type="email"]:hover,
+.login_content form input[type="email"]:active,
+.login_content form input[type="email"]:focus,
+.login_content form input[type="password"]:hover,
+.login_content form input[type="password"]:active,
+.login_content form input[type="password"]:focus{
+	background-color: transparent;
+	border: 1px solid #FFA000;
+}
+input:-webkit-autofill {
+	transition: all 5000s ease-in-out 0s;
+}
+/*************************/
 .login_content{
 	text-shadow: none;
 	color: #FFFFFF;
@@ -194,24 +261,6 @@ body .container.body .right_col{
 .login_content a{
 	color: #FFFFFF;
 }
-.login_content form input[type=text],
-.login_content form input[type=email],
-.login_content form input[type=password]{
-	background-color: transparent;
-	border: 1px solid #01A0E2;
-	text-align: center;
-    box-shadow: none;
-    border-radius: 0px;
-    color: #FFFFFF;
-}
-.login_content form input[type=text]:focus,
-.login_content form input[type=email]:focus,
-.login_content form input[type=password]:focus{
-	background-color: transparent;
-    color: #FFFFFF;
-    border: 1px solid #9CEDF1;
-}
-
 .login_content h1:before,
 .login_content h1:after{
 	background: #FFFFFF;
@@ -254,7 +303,22 @@ span.tag{
 .modal-content .modal-header .close:focus{
 	color: #FFFFFF;
 }
-
+.tile-stats{
+	border: 1px solid #0A0A0A;
+	border-radius: 0px;
+	background-color: #262626;
+}
+.tile-stats .icon,
+.tile-stats:hover .icon i{
+    color: #FFCC00;
+}
+.tile-stats h3{
+    color: #FFCC00;
+}
+.tile-stats .count,
+.tile-stats p{
+    color: #F2F2F2;
+}
 /*
 	Otros
 */

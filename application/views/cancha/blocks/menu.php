@@ -32,7 +32,7 @@
         <ul class="nav side-menu">
           <li>
             <a>
-              <i class="fa fa-briefcase"></i> Cancha <span class="fa fa-chevron-down"></span>
+              <i class="fa fa-dashboard"></i> Cancha <span class="fa fa-chevron-down"></span>
             </a>
             <ul class="nav child_menu">
               <li>
@@ -40,13 +40,23 @@
                   Dashboard
                 </a>
               </li>
-              <?php /*
               <li>
-                <a href="<?php echo site_url('cancha/historial'); ?>">
+                <a href="#">
                   Historial
                 </a>
               </li>
-              */ ?>
+            </ul>
+          </li>
+          <li>
+            <a>
+              <i class="fa fa-briefcase"></i> Contacto <span class="fa fa-chevron-down"></span>
+            </a>
+            <ul class="nav child_menu">
+              <li>
+                <a href="#">
+                  Mediadores
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -84,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="">
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <img src="<?php echo base_url('assets/apuestamundial/img/near-avatar.png'); ?>" alt=""><?php echo $this->session->nombre; ?>
+            <?php echo $this->session->nombre; ?>
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">

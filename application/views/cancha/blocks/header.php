@@ -57,7 +57,8 @@
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
 
 
-        <!-- Estilo NEAR -->
+        <!-- Estilo Cancha -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/apuestamundial/css/custom-bootstrap-margin-padding.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/apuestamundial/css/estilo-cancha.css'); ?>">
 
