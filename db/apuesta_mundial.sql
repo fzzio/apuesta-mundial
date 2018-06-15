@@ -1,16 +1,16 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 15-06-2018 a las 06:56:17
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 5.6.35
+-- Servidor: localhost:3306
+-- Tiempo de generación: 15-06-2018 a las 11:38:20
+-- Versión del servidor: 5.6.38
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "-05:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -45,9 +45,10 @@ CREATE TABLE `apostador` (
 --
 
 INSERT INTO `apostador` (`id`, `cedula`, `password`, `nombre`, `email`, `celular`, `monto_inicial`, `fecha`, `estado`) VALUES
-(1, '0922159363', '05f6507a9a86e36233426bb713cb4307', 'Fabricio Orrala', 'fzzio007@gmail.com', '0997213150', 10, '2018-06-13 04:03:18', 1),
-(2, '0917000093', 'ca832b58b1eff5d00c10ed4dc5e8c28c', 'Ricardo Chávez', 'ferichav@gmail.com', '0983862266', 10, '2018-06-13 04:20:36', 1),
-(3, '0915910400 ', '6f0836831d337c93c2745cbd4720ed8e', 'Dalthon Vera', 'dalve29@gmail.com', '0993661296', 10, '2018-06-13 04:20:36', 1);
+(1, '0922159363', 'd838a873bbbffc09aee45a2510759f5f', 'Fabricio Diógenes Orrala Parrales', 'fzzio007@gmail.com', '0997213150', 10, '2018-06-13 04:03:18', 1),
+(2, '0917000093', '491e15e28caaf37cb40d002a8066c1f1', 'Félix Ricardo Chávez Orrala', 'ferichav@gmail.com', '0983862266', 10, '2018-06-13 04:20:36', 1),
+(3, '0915910400', '1e5eeb40a3fce716b244599862fd2200', 'Dalthon  Mauricio Vera Orrala', 'dalve29@gmail.com', '0993661296', 10, '2018-06-13 04:20:36', 1),
+(4, '0924682461', '0066fdca207700676998c29bf2b68f4d', 'RONALD ENRIQUE BORBOR MALAVE', 'ron_odonto@hotmail.com', '0987297036', 10, '2018-06-15 10:00:38', 1);
 
 -- --------------------------------------------------------
 
@@ -57,8 +58,8 @@ INSERT INTO `apostador` (`id`, `cedula`, `password`, `nombre`, `email`, `celular
 
 CREATE TABLE `apuesta` (
   `id` int(11) NOT NULL,
-  `id_pronostico_1` int(11) NOT NULL,
-  `id_pronostico_2` int(11) DEFAULT NULL,
+  `id_pronostico_apostador_1` int(11) NOT NULL,
+  `id_pronostico_apostador_2` int(11) DEFAULT NULL,
   `monto` float NOT NULL,
   `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `estado` int(11) NOT NULL COMMENT '1 = Emparejada, 0 = Sin contrincante'
@@ -68,8 +69,14 @@ CREATE TABLE `apuesta` (
 -- Volcado de datos para la tabla `apuesta`
 --
 
-INSERT INTO `apuesta` (`id`, `id_pronostico_1`, `id_pronostico_2`, `monto`, `fecha`, `estado`) VALUES
-(1, 1, 2, 1, '2018-06-14 13:09:07', 1);
+INSERT INTO `apuesta` (`id`, `id_pronostico_apostador_1`, `id_pronostico_apostador_2`, `monto`, `fecha`, `estado`) VALUES
+(1, 1, 2, 1, '2018-06-14 13:09:07', 1),
+(2, 6, 7, 2, '2018-06-15 10:27:08', 1),
+(3, 3, NULL, 3, '2018-06-15 01:22:29', 0),
+(4, 4, NULL, 1, '2018-06-15 01:23:21', 0),
+(5, 5, NULL, 3, '2018-06-15 10:13:11', 0),
+(12, 8, 9, 1, '2018-06-15 10:29:56', 1),
+(13, 10, NULL, 2, '2018-06-15 10:34:01', 0);
 
 -- --------------------------------------------------------
 
@@ -358,11 +365,13 @@ CREATE TABLE `partido` (
 
 INSERT INTO `partido` (`id`, `id_pais_local`, `id_pais_visitante`, `fecha`, `goles_local`, `goles_visitante`, `incidencias_local`, `incidencias_visitante`, `fase`, `grupo`, `estado`) VALUES
 (1, 184, 11, '2018-06-14 10:00:00', 5, 0, '', NULL, 1, 'A', 3),
-(2, 67, 229, '2018-06-15 07:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1),
+(2, 67, 229, '2018-06-15 07:00:00', 0, 1, NULL, NULL, 1, 'A', 3),
 (3, 184, 67, '2018-06-19 13:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1),
 (4, 229, 11, '2018-06-20 10:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1),
 (5, 11, 67, '2018-06-25 09:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1),
-(6, 229, 184, '2018-06-25 09:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1);
+(6, 229, 184, '2018-06-25 09:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1),
+(7, 140, 107, '2018-06-15 10:00:00', NULL, NULL, NULL, NULL, 1, 'B', 2),
+(8, 177, 73, '2018-06-15 13:00:00', NULL, NULL, NULL, NULL, 1, 'B', 1);
 
 -- --------------------------------------------------------
 
@@ -385,7 +394,15 @@ CREATE TABLE `pronostico` (
 
 INSERT INTO `pronostico` (`id`, `id_partido`, `id_apostador`, `resultado`, `fecha`, `estado`) VALUES
 (1, 1, 1, 1, '2018-06-13 04:11:31', 1),
-(2, 1, 2, 2, '2018-06-13 05:26:31', 1);
+(2, 1, 2, 2, '2018-06-13 05:26:31', 1),
+(3, 2, 1, 1, '2018-06-15 01:21:39', 1),
+(4, 3, 1, 2, '2018-06-15 01:21:39', 1),
+(5, 8, 2, 1, '2018-06-15 10:12:45', 1),
+(6, 7, 1, 3, '2018-06-15 08:21:32', 1),
+(7, 7, 3, 2, '2018-06-15 09:21:32', 1),
+(8, 7, 1, 1, '2018-06-15 10:28:42', 1),
+(9, 7, 2, 1, '2018-06-15 10:29:22', 1),
+(10, 7, 3, 2, '2018-06-15 10:33:33', 1);
 
 -- --------------------------------------------------------
 
@@ -409,7 +426,7 @@ CREATE TABLE `super_administrador` (
 --
 
 INSERT INTO `super_administrador` (`id`, `nombre`, `email`, `user`, `password`, `fecha_registro`, `fecha_modificacion`, `estado`) VALUES
-(1, 'Super Administrador', 'info@mail.com.ec', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2018-03-23 14:30:06', '2018-03-23 14:46:16', 1);
+(1, 'Super Administrador', 'info@mail.com.ec', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2018-03-23 19:30:06', '2018-03-23 19:46:16', 1);
 
 --
 -- Índices para tablas volcadas
@@ -426,8 +443,8 @@ ALTER TABLE `apostador`
 --
 ALTER TABLE `apuesta`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_apostador_1` (`id_pronostico_1`),
-  ADD KEY `fk_apostador_2` (`id_pronostico_2`);
+  ADD KEY `fk_apostador_1` (`id_pronostico_apostador_1`),
+  ADD KEY `fk_apostador_2` (`id_pronostico_apostador_2`);
 
 --
 -- Indices de la tabla `pais`
@@ -465,13 +482,13 @@ ALTER TABLE `super_administrador`
 -- AUTO_INCREMENT de la tabla `apostador`
 --
 ALTER TABLE `apostador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `apuesta`
 --
 ALTER TABLE `apuesta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
@@ -483,13 +500,13 @@ ALTER TABLE `pais`
 -- AUTO_INCREMENT de la tabla `partido`
 --
 ALTER TABLE `partido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `pronostico`
 --
 ALTER TABLE `pronostico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `super_administrador`
@@ -505,8 +522,8 @@ ALTER TABLE `super_administrador`
 -- Filtros para la tabla `apuesta`
 --
 ALTER TABLE `apuesta`
-  ADD CONSTRAINT `fk_apostador_1` FOREIGN KEY (`id_pronostico_1`) REFERENCES `pronostico` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_apostador_2` FOREIGN KEY (`id_pronostico_2`) REFERENCES `pronostico` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_apostador_1` FOREIGN KEY (`id_pronostico_apostador_1`) REFERENCES `pronostico` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_apostador_2` FOREIGN KEY (`id_pronostico_apostador_2`) REFERENCES `pronostico` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `partido`
