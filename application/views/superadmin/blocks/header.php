@@ -59,7 +59,16 @@
 
         <!-- Estilo NEAR -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/apuestamundial/css/custom-bootstrap-margin-padding.css'); ?>">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/apuestamundial/css/estilo.css'); ?>">
+
+        <?php if (isset($css_files)): ?>
+            <!-- grocerycrud -->
+            <?php foreach($css_files as $file): ?>
+                <link rel="stylesheet" type="text/css" href="<?php echo $file; ?>" />
+            <?php endforeach; ?>
+            <!-- grocerycrud -->
+        <?php endif ?>
+
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/apuestamundial/css/estilo-admin.css'); ?>">
 
         <script type="text/javascript">
             var base_url = '<?php echo base_url(); ?>';
@@ -74,7 +83,9 @@
                 return urlTmp;
             }
         </script>
-        <title><?php echo PROYECTO_NOMBRE; ?>:: <?php echo $titlePage ?></title>
+        <title>
+            <?php echo PROYECTO_NOMBRE; ?>:: <?php echo $titlePage ?>
+        </title>
     </head>
     <?php $claseBody = ($this->router->method == 'login') ? 'login' : 'nav-md' ; ?>
     <body class="<?php echo($claseBody); ?>">

@@ -16,6 +16,7 @@ class Superadmin extends CI_Controller {
             array(
                 'session',
                 'form_validation',
+                'grocery_CRUD',
             )
         );
         $this->load->model(
@@ -29,7 +30,7 @@ class Superadmin extends CI_Controller {
 	public function index(){
 		if ( estaLogueadoCasa() ) {
 			$dataHeader['titlePage'] = "Dashboard";
-			$dataContent['paisesObj'] = Pais_model::getTodos();
+			$dataContent['paisesObj'] = Pais_model::getTodos(PAIS_ACTIVO);
 			$dataFooter = array();
 			$dataMenu = array();
 
@@ -78,5 +79,91 @@ class Superadmin extends CI_Controller {
 	public function logout(){
 		$this->session->sess_destroy();
 		redirect("superadmin/login");
+	}
+
+	public function agregar_partido(){
+		if ( estaLogueadoCasa() ) {
+			$dataHeader['titlePage'] = "Partido";
+			$dataContent = array();
+			$dataMenu = array();
+
+
+			try{
+				$crud = new grocery_CRUD();
+				//$crud->set_theme('datatables');
+
+				$crud->set_table("partido");
+				$crud->set_subject( $dataHeader['titlePage'] );
+
+				$crud->display_as('id_pais_local', 'País Local');
+				$crud->display_as('id_pais_visitante', 'País Visitante');
+				$crud->display_as('fecha', 'Fecha y Hora');
+				$crud->display_as('goles_local', 'Goles local');
+				$crud->display_as('goles_visitante', 'Goles Visitante');
+				$crud->display_as('incidencias_local', 'Incidencias Local');
+				$crud->display_as('incidencias_visitante', 'Incidencias Visitante');
+				$crud->display_as('fase', 'Fase');
+				$crud->display_as('grupo', 'Grupo');
+				$crud->display_as('estado', 'Estado');
+
+				$crud->field_type('fase', 'dropdown', array(
+					FASE_GRUPOS => 'Grupos',
+					FASE_OCTAVOS => 'Octavos de Final',
+					FASE_CUARTOS => 'Cuartos de Final',
+					FASE_SEMIFINAL => 'Semifinal',
+					FASE_FINAL => 'Final',
+					FASE_TERCERO => 'Tercer Puesto',
+					FASE_INACTIVO => 'Inactivo',
+				));
+				$crud->field_type('grupo', 'dropdown', array(
+					'A' => 'Grupo A',
+					'B' => 'Grupo B',
+					'C' => 'Grupo C',
+					'D' => 'Grupo D',
+					'E' => 'Grupo E',
+					'F' => 'Grupo F',
+					'G' => 'Grupo G',
+					'H' => 'Grupo H',
+					'' => 'Ninguno',
+				));
+				$crud->field_type('estado', 'dropdown', array(
+					PARTIDO_INACTIVO => 'Inactivo',
+					PARTIDO_POR_JUGAR => 'Por jugar',
+					PARTIDO_JUGANDO => 'Jugando',
+					PARTIDO_FINALIZADO => 'Finalizado'
+				));
+
+				$crud->set_relation('id_pais_local', 'pais', 'nombre', array('estado' => PAIS_ACTIVO));
+				$crud->set_relation('id_pais_visitante', 'pais', 'nombre', array('estado' => PAIS_ACTIVO));
+
+				$crud->unset_texteditor('incidencias_local','full_text');
+				$crud->unset_texteditor('incidencias_visitante','full_text');
+
+				$crud->columns( 'fecha', 'id_pais_local', 'id_pais_visitante', 'goles_local', 'goles_visitante', 'fase', 'grupo', 'estado');
+				$crud->fields( 'fecha', 'id_pais_local', 'id_pais_visitante', 'fase', 'grupo', 'goles_local', 'goles_visitante', 'incidencias_local', 'incidencias_visitante', 'estado');
+				$crud->required_fields( 'fecha', 'id_pais_local', 'id_pais_visitante', 'fase', 'grupo', 'estado');
+
+				$crud->unset_print();
+				$crud->unset_read();
+				$crud->unset_clone();
+
+				$output = $crud->render();
+
+				$dataHeader['css_files'] = $output->css_files;
+				$dataFooter['js_files'] = $output->js_files;
+				$dataContent['output'] = $output->output;
+
+			}catch(Exception $e){
+				show_error($e->getMessage().' --- '.$e->getTraceAsString());
+			}
+
+			// Se cargan las vistas
+	        $data['header'] = $this->load->view('superadmin/blocks/header', $dataHeader);
+	        $data['menu'] = $this->load->view('superadmin/blocks/menu', $dataMenu );
+	        $data['content'] = $this->load->view('superadmin/templates/blank', $dataContent );
+	        $data['footer'] = $this->load->view('superadmin/blocks/footer', $dataFooter );
+		}else{
+			redirect('superadmin/logout','refresh');
+		}
 	}
 }
