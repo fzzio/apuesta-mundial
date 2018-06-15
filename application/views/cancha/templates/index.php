@@ -43,7 +43,7 @@
 						<h2>
 							Resultados oficiales
 							<small>
-								<a href="" class="txt-amarillo txt-amarillo-hover">Ver todos</a>
+								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
 							</small>
 						</h2>
 						<div class="clearfix"></div>
@@ -95,9 +95,9 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							Próximos Partidos
+							Siguientes Partidos
 							<small>
-								<a href="" class="txt-amarillo txt-amarillo-hover">Ver todos</a>
+								Próximos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
 							</small>
 						</h2>
 						<div class="clearfix"></div>

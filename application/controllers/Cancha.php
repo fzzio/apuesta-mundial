@@ -33,8 +33,9 @@ class Cancha extends CI_Controller {
 		if ( estaLogueadoApostador() ) {
 			$dataHeader['titlePage'] = "Cancha";
 			$dataContent['totalApostadores'] = count(Apostador_model::getTodos(ESTADO_ACTIVO));
-			$dataContent['partidosJugadosObj'] = Partido_model::getTodos(PARTIDO_FINALIZADO);
-			$dataContent['partidosProximosObj'] = Partido_model::getTodos(PARTIDO_POR_JUGAR);
+			$dataContent['partidosJugadosObj'] = Partido_model::getUltimos(5, PARTIDO_FINALIZADO);
+			$dataContent['partidosProximosObj'] = Partido_model::getProximos(5, PARTIDO_POR_JUGAR);
+			$dataContent['partidosJugandoseObj'] = Partido_model::getProximos(null, PARTIDO_JUGANDO);
 
 			//////////////////////////////////////////////////
 			// Resultados

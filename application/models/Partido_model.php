@@ -236,7 +236,36 @@
             $arrPartidosObj = array();
             if ( !is_null($partidosDB) ) {
                 foreach ($partidosDB as $partidoDB) {
-                    $partidoObj = self::getPaisPorID($partidoDB["id"]);
+                    $partidoObj = self::getPartidoPorID($partidoDB["id"]);
+                    array_push($arrPartidosObj, $partidoObj);
+                }
+                return $arrPartidosObj;
+            }else{
+                return null;
+            }
+        }
+        public static function getProximos( $limite = 5, $estado = null ){
+            // Obtener instancia de CI para manejo de base
+            $instanciaCI =& get_instance();
+
+            $partidosDB = null;
+            $instanciaCI->db->select("p.id");
+            $instanciaCI->db->from('partido AS p');
+            if ( $estado != null ) {
+                $instanciaCI->db->where('p.estado', intval($estado));
+            }else{
+                $instanciaCI->db->where_in('p.estado', array(PARTIDO_POR_JUGAR, PARTIDO_JUGANDO, PARTIDO_FINALIZADO, PARTIDO_INACTIVO));
+            }
+            if ( $limite !== null ) {
+                $instanciaCI->db->limit( $limite );
+            }
+            $instanciaCI->db->order_by('p.fecha', 'ASC');
+            $partidosDB = $instanciaCI->db->get()->result_array();
+
+            $arrPartidosObj = array();
+            if ( !is_null($partidosDB) ) {
+                foreach ($partidosDB as $partidoDB) {
+                    $partidoObj = self::getPartidoPorID($partidoDB["id"]);
                     array_push($arrPartidosObj, $partidoObj);
                 }
                 return $arrPartidosObj;
