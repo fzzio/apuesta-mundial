@@ -24,6 +24,7 @@ class Cancha extends CI_Controller {
                 'Apostador_model',
                 'Partido_model',
                 'Pronostico_model',
+                'Apuesta_model',
             )
         );
 	}

@@ -197,14 +197,14 @@
         ///////////////////////////////////
         public function grabar( ){
             try {
-                $dataPartido = array(
+                $dataPronostico = array(
                     'id_partido' => $this->getPartido()->getID(),
                     'id_apostador' => $this->getApostador()->getID(),
                     'resultado' => $this->getResultado(),
                     'fecha' => $this->getFecha(),
                     'estado' => $this->getEstado(),
                 );
-                $this->db->insert('pronostico', $dataPartido);
+                $this->db->insert('pronostico', $dataPronostico);
                 return $this->db->insert_id();
             } catch (Exception $e) {
                 return null;
@@ -212,7 +212,7 @@
         }
         public function actualizar( ){
             try {
-                $dataPartido = array(
+                $dataPronostico = array(
                     'id_partido' => $this->getPartido()->getID(),
                     'id_apostador' => $this->getApostador()->getID(),
                     'resultado' => $this->getResultado(),
@@ -220,7 +220,7 @@
                     'estado' => $this->getEstado(),
                 );
                 $this->db->where('id', $this->getID() );
-                $this->db->update('pronostico', $dataPartido);
+                $this->db->update('pronostico', $dataPronostico);
                 return $this->getID();
             } catch (Exception $e) {
                 return null;
@@ -245,7 +245,7 @@
         // Otros
         ///////////////////////////////////
         public function __toString() {
-            return get_class($this) . " [ID: " . $this->getID() . ", Partido: " . $this->getPartido()-getNombre() . " vs. " . $this->getApostador()-getNombre() . "]";
+            return get_class($this) . " [ID: " . $this->getID() . "]";
         }
     }
 ?>
