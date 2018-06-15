@@ -5,7 +5,7 @@
   			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
   				<div class="tile-stats">
 					<div class="icon"><i class="fa fa-usd"></i></div>
-					<div class="count">10.07</div>
+					<div class="count"><?php echo number_format(10, 2); ?></div>
 					<h3>Total</h3>
 					<p>Tu saldo en caja</p>
   				</div>
@@ -21,7 +21,7 @@
   			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12 hidden-xs">
   				<div class="tile-stats">
 					<div class="icon"><i class="fa fa-futbol-o"></i></div>
-					<div class="count">63</div>
+					<div class="count"><?php echo count($partidosJugadosObj); ?>/64</div>
 					<h3>Partidos</h3>
 					<p>Encuentros restantes</p>
   				</div>
@@ -29,7 +29,7 @@
   			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12 hidden-xs">
   				<div class="tile-stats">
 					<div class="icon"><i class="fa fa-users"></i></div>
-					<div class="count">3</div>
+					<div class="count"><?php echo $totalApostadores; ?></div>
 					<h3>Participantes</h3>
 					<p>Personas apostando</p>
   				</div>
@@ -52,60 +52,39 @@
 						<div class="contenedor-tabla fondo-transparencia-negro-1">
 							<table class="table table-hover table-condensed tabla-partidos">
 								<tbody>
-									<tr class="info-partido">
-										<td class="text-center centrado-vertical">
-											<div class="date">
-												<p class="month">Jun</p>
-												<p class="day">14</p>
-												<p class="time">10:48</p>
-											</div>
-										</td>
-										<td class="text-right centrado-vertical">
-											<span class="flag-icon flag-icon-ec bandera-normal"></span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-blanco nombre-pais">Arabia Saudí</span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-amarillo texto-resultado">2:0</span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-blanco nombre-pais">México</span>
-										</td>
-										<td class="text-left centrado-vertical">
-											<span class="flag-icon flag-icon-mx bandera-normal"></span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="label label-success">Ganada</span>
-										</td>
-									</tr>
-									<tr class="info-partido">
-										<td class="text-center centrado-vertical">
-											<div class="date">
-												<p class="month">Jun</p>
-												<p class="day">14</p>
-												<p class="time">10:48</p>
-											</div>
-										</td>
-										<td class="text-right centrado-vertical">
-											<span class="flag-icon flag-icon-ar bandera-normal"></span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-blanco nombre-pais">Ecuador</span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-amarillo texto-resultado">2:0</span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-blanco nombre-pais">Nueva Zelanda</span>
-										</td>
-										<td class="text-left centrado-vertical">
-											<span class="flag-icon flag-icon-ve bandera-normal"></span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="label label-danger">Perdida</span>
-										</td>
-									</tr>
+									<?php foreach ($partidosJugadosObj as $indicePartidoJugado => $partidoJugadoObj): ?>
+										<tr class="info-partido">
+											<td class="text-center centrado-vertical">
+												<?php $fechaHoraPartido = DateTime::createFromFormat('Y-m-d H:i:s', $partidoJugadoObj->getFecha()); ?>
+												<div class="date">
+													<p class="month"><?php echo $fechaHoraPartido->format('M'); ?></p>
+													<p class="day"><?php echo $fechaHoraPartido->format('d'); ?></p>
+													<p class="time"><?php echo $fechaHoraPartido->format('H:i'); ?></p>
+												</div>
+											</td>
+											<td class="text-right centrado-vertical">
+												<span class="flag-icon flag-icon-<?php echo strtolower($partidoJugadoObj->getPaisLocal()->getIso()); ?> bandera-normal"></span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="txt-blanco nombre-pais">
+													<?php echo $partidoJugadoObj->getPaisLocal()->getNombre(); ?>
+												</span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="txt-amarillo texto-resultado">
+													<?php echo $partidoJugadoObj->getGolesLocal(); ?>:<?php echo $partidoJugadoObj->getGolesVisitante(); ?>
+												</span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="txt-blanco nombre-pais">
+													<?php echo $partidoJugadoObj->getPaisVisitante()->getNombre(); ?>
+												</span>
+											</td>
+											<td class="text-left centrado-vertical">
+												<span class="flag-icon flag-icon-<?php echo strtolower($partidoJugadoObj->getPaisVisitante()->getIso()); ?> bandera-normal"></span>
+											</td>
+										</tr>
+									<?php endforeach ?>
 								</tbody>
 							</table>
 						</div>
@@ -127,35 +106,42 @@
 						<div class="contenedor-tabla fondo-transparencia-negro-1">
 							<table class="table table-hover table-condensed tabla-partidos">
 								<tbody>
-									<tr class="info-partido">
-										<td class="text-right centrado-vertical">
-											<span class="flag-icon flag-icon-ru bandera-normal"></span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-blanco nombre-pais">Arabia Saudí</span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-amarillo">vs</span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-blanco nombre-pais">Estados Unidos</span>
-										</td>
-										<td class="text-left centrado-vertical">
-											<span class="flag-icon flag-icon-us bandera-normal"></span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<div class="date">
-												<p class="month">Jun</p>
-												<p class="day">14</p>
-												<p class="time">10:48</p>
-											</div>
-										</td>
-										<td class="text-center centrado-vertical">
-											<div class="btn btn-negro btn-amarillo-hover">
-												Apostar
-											</div>
-										</td>
-									</tr>
+									<?php foreach ($partidosProximosObj as $indicePartidoProximo => $partidoProximoObj): ?>
+										<tr class="info-partido">
+											<td class="text-right centrado-vertical">
+												<span class="flag-icon flag-icon-<?php echo strtolower($partidoProximoObj->getPaisLocal()->getIso()); ?> bandera-normal"></span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="txt-blanco nombre-pais">
+													<?php echo $partidoProximoObj->getPaisLocal()->getNombre(); ?>
+												</span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="txt-amarillo">vs</span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="txt-blanco nombre-pais">
+													<?php echo $partidoProximoObj->getPaisVisitante()->getNombre(); ?>
+												</span>
+											</td>
+											<td class="text-left centrado-vertical">
+												<span class="flag-icon flag-icon-<?php echo strtolower($partidoProximoObj->getPaisVisitante()->getIso()); ?> bandera-normal"></span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<?php $fechaHoraPartido = DateTime::createFromFormat('Y-m-d H:i:s', $partidoProximoObj->getFecha()); ?>
+												<div class="date">
+													<p class="month"><?php echo $fechaHoraPartido->format('M'); ?></p>
+													<p class="day"><?php echo $fechaHoraPartido->format('d'); ?></p>
+													<p class="time"><?php echo $fechaHoraPartido->format('H:i'); ?></p>
+												</div>
+											</td>
+											<td class="text-center centrado-vertical">
+												<div class="btn btn-negro btn-amarillo-hover">
+													Apostar
+												</div>
+											</td>
+										</tr>
+									<?php endforeach ?>
 								</tbody>
 							</table>
 						</div>
@@ -168,7 +154,7 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							Mesas abiertas
+							Apuestas Abiertas
 							<small>
 								<a href="" class="txt-amarillo txt-amarillo-hover">Ver todos</a>
 							</small>

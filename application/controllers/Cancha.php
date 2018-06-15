@@ -22,6 +22,7 @@ class Cancha extends CI_Controller {
             array(
                 'Pais_model',
                 'Apostador_model',
+                'Partido_model',
             )
         );
 	}
@@ -29,7 +30,9 @@ class Cancha extends CI_Controller {
 	public function index(){
 		if ( estaLogueadoApostador() ) {
 			$dataHeader['titlePage'] = "Cancha";
-			$dataContent['paisesObj'] = Pais_model::getTodos();
+			$dataContent['totalApostadores'] = count(Apostador_model::getTodos(ESTADO_ACTIVO));
+			$dataContent['partidosJugadosObj'] = Partido_model::getTodos(PARTIDO_FINALIZADO);
+			$dataContent['partidosProximosObj'] = Partido_model::getTodos(PARTIDO_POR_JUGAR);
 			$dataFooter = array();
 			$dataMenu = array();
 

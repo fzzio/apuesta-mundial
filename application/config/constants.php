@@ -97,6 +97,11 @@ defined('PAIS_INACTIVO')		OR define('PAIS_INACTIVO', 0);
 defined('PAIS_ACTIVO')			OR define('PAIS_ACTIVO', 1);
 defined('PAIS_ELIMINADO')		OR define('PAIS_ELIMINADO', 2);
 
+defined('PARTIDO_INACTIVO')		OR define('PARTIDO_INACTIVO', 0);
+defined('PARTIDO_POR_JUGAR')	OR define('PARTIDO_POR_JUGAR', 1);
+defined('PARTIDO_JUGANDO')		OR define('PARTIDO_JUGANDO', 2);
+defined('PARTIDO_FINALIZADO')	OR define('PARTIDO_FINALIZADO', 3);
+
 defined('FASE_INACTIVO')		OR define('FASE_INACTIVO', 0);
 defined('FASE_GRUPOS')			OR define('FASE_GRUPOS', 1);
 defined('FASE_OCTAVOS')			OR define('FASE_OCTAVOS', 2);
