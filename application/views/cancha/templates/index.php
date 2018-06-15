@@ -7,7 +7,7 @@
 					<div class="icon"><i class="fa fa-usd"></i></div>
 					<div class="count">10.07</div>
 					<h3>Total</h3>
-					<p>Saldo en caja</p>
+					<p>Tu saldo en caja</p>
   				</div>
   			</div>
   			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -15,10 +15,10 @@
 					<div class="icon"><i class="fa fa-check"></i></div>
 					<div class="count">0</div>
 					<h3>Acertadas</h3>
-					<p>Pronósticos correctos</p>
+					<p>Tus pronósticos correctos</p>
   				</div>
   			</div>
-  			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+  			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12 hidden-xs">
   				<div class="tile-stats">
 					<div class="icon"><i class="fa fa-futbol-o"></i></div>
 					<div class="count">63</div>
@@ -26,7 +26,7 @@
 					<p>Encuentros restantes</p>
   				</div>
   			</div>
-  			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+  			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12 hidden-xs">
   				<div class="tile-stats">
 					<div class="icon"><i class="fa fa-users"></i></div>
 					<div class="count">3</div>
@@ -41,7 +41,10 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							Resultados oficiales<small>Últimos jugados</small>
+							Resultados oficiales
+							<small>
+								<a href="" class="txt-amarillo txt-amarillo-hover">Ver todos</a>
+							</small>
 						</h2>
 						<div class="clearfix"></div>
 					</div>
@@ -113,7 +116,10 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							Próximos Partidos<small>Puedes apostar aún</small>
+							Próximos Partidos
+							<small>
+								<a href="" class="txt-amarillo txt-amarillo-hover">Ver todos</a>
+							</small>
 						</h2>
 						<div class="clearfix"></div>
 					</div>
@@ -122,13 +128,6 @@
 							<table class="table table-hover table-condensed tabla-partidos">
 								<tbody>
 									<tr class="info-partido">
-										<td class="text-center centrado-vertical">
-											<div class="date">
-												<p class="month">Jun</p>
-												<p class="day">14</p>
-												<p class="time">10:48</p>
-											</div>
-										</td>
 										<td class="text-right centrado-vertical">
 											<span class="flag-icon flag-icon-ru bandera-normal"></span>
 										</td>
@@ -145,33 +144,11 @@
 											<span class="flag-icon flag-icon-us bandera-normal"></span>
 										</td>
 										<td class="text-center centrado-vertical">
-											<div class="btn btn-negro btn-amarillo-hover">
-												Apostar
-											</div>
-										</td>
-									</tr>
-									<tr class="info-partido">
-										<td class="text-center centrado-vertical">
 											<div class="date">
 												<p class="month">Jun</p>
 												<p class="day">14</p>
 												<p class="time">10:48</p>
 											</div>
-										</td>
-										<td class="text-right centrado-vertical">
-											<span class="flag-icon flag-icon-bo bandera-normal"></span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-blanco nombre-pais">Bolivia</span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-amarillo">vs</span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-blanco nombre-pais">Chile</span>
-										</td>
-										<td class="text-left centrado-vertical">
-											<span class="flag-icon flag-icon-cl bandera-normal"></span>
 										</td>
 										<td class="text-center centrado-vertical">
 											<div class="btn btn-negro btn-amarillo-hover">
@@ -191,7 +168,10 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							Mesas abiertas<small>Apuesta contra ellos</small>
+							Mesas abiertas
+							<small>
+								<a href="" class="txt-amarillo txt-amarillo-hover">Ver todos</a>
+							</small>
 						</h2>
 						<div class="clearfix"></div>
 					</div>

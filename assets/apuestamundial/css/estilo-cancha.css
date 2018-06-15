@@ -323,7 +323,7 @@ input:-webkit-autofill {
 .fondo-imagen{
 	background-size: cover;
     background-repeat: no-repeat;
-    background-position: center top;
+    background-position: center center;
 }
 .fondo-transparencia-negro-1{
 	background-color: rgb(38,38,38);
