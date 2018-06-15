@@ -30,6 +30,12 @@ html, body{
 .txt-azul-hover:focus{
 	color: #01A0E2;
 }
+.txt-amarillo,
+.txt-amarillo-hover:hover,
+.txt-amarillo-hover:active,
+.txt-amarillo-hover:focus{
+	color: #FFCC00;
+}
 .txt-verde,
 .txt-verde-hover:hover,
 .txt-verde-hover:active,
@@ -109,6 +115,9 @@ html, body{
 }
 .fondo-negro-2{
 	background-color: #141414;
+}
+.fondo-negro-3{
+	background-color: #262626;
 }
 .fondo-amarillo{
 	background-color: #FFA000;
@@ -287,6 +296,46 @@ input:-webkit-autofill {
 	background: #1ABB9C;
 }
 
+.x_panel{
+	border: 1px solid #0A0A0A;
+    border-radius: 0px;
+    background-color: #262626;
+    padding: 0px;
+}
+.x_panel > .x_title{
+	padding: 10px;
+	border-bottom: 1px solid #FFCC00;
+	margin-bottom: 0px;
+	background-color: #141414;
+}
+.x_panel > .x_content{
+	background-color: #262626;
+	margin-top: 0px;
+	padding: 0px;
+}
+.x_title h2{
+	color: #FFFFFF;
+}
+.x_title h2 small{
+	color: #FFCC00;
+	font-weight: 300;
+}
+.fondo-imagen{
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+.fondo-transparencia-negro-1{
+	background-color: rgb(38,38,38);
+	background-color: rgba(38,38,38,0.6);
+}
+.fondo-imagen.fondo-1{
+	background-image: url("../img/main-slider-img1.jpg");
+}
+.fondo-imagen.fondo-2{
+	background-image: url("../img/main-slider-img2.jpg");
+}
+
 /* Tags*/
 span.tag{
 	background-color: #01A0E2;
@@ -341,14 +390,92 @@ span.tag{
 }
 
 .login_content form input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #CCCCCC;
+	color: #CCCCCC;
 }
 .login_content form input::-moz-placeholder { /* Firefox 19+ */
-  color: #CCCCCC;
+	color: #CCCCCC;
 }
 .login_content form input:-ms-input-placeholder { /* IE 10+ */
-  color: #CCCCCC;
+	color: #CCCCCC;
 }
 .login_content form input:-moz-placeholder { /* Firefox 18- */
-  color: #CCCCCC;
+	color: #CCCCCC;
+}
+.tabla-partidos{
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+.tabla-partidos>tbody>tr>td,
+.tabla-partidos>tbody>tr>th,
+.tabla-partidos>tfoot>tr>td,
+.tabla-partidos>tfoot>tr>th,
+.tabla-partidos>thead>tr>td,
+.tabla-partidos>thead>tr>th{
+	border: none;
+}
+.tabla-partidos.table-hover>tbody>tr:hover{
+	background-color: rgb(20,20,20);
+	background-color: rgba(20,20,20,0.6);
+}
+
+.centrado-vertical{
+	vertical-align: middle !important;
+}
+
+.info-partido .date{
+    width: 50px;
+    border-radius: 0px;
+    padding: 5px;
+    border: 1px solid #FFA000;
+    text-align: center;
+    margin: 0 auto;
+}
+.info-partido .date .day,
+.info-partido .date .month,
+.info-partido .date .year,
+.info-partido .date .time{
+    margin: 0;
+    text-align: center;
+}
+.info-partido .date .day {
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 300;
+    color: #FFCC00;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.info-partido .date .month {
+    font-size: 10px;
+    line-height: 10px;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+.info-partido .date .year {
+    font-size: 10px;
+    line-height: 10px;
+    font-weight: 300;
+    color: #FFFFFF;
+}
+.info-partido .date .time {
+    font-size: 10px;
+    line-height: 10px;
+    font-weight: 300;
+    color: #FFFFFF;
+}
+.info-partido .nombre-pais{
+	font-size: 18px;
+	font-weight: 300;
+}
+.info-partido .bandera-normal{
+	font-size: 25px;
+}
+.info-partido .texto-resultado{
+	font-size: 30px;
+	font-weight: 700;
+}
+
+.contenedor-tabla{
+	overflow: auto;
 }
