@@ -67,14 +67,10 @@
             $this->ID = $ID;
         }
         public function setPronosticoApostador1( Pronostico_model $PronosticoApostador1 = null ){
-            if ( !is_null( $PronosticoApostador1 ) ) {
-                $this->PronosticoApostador1 = $PronosticoApostador1;
-            }
+            $this->PronosticoApostador1 = $PronosticoApostador1;
         }
         public function setPronosticoApostador2( Pronostico_model $PronosticoApostador2 = null ){
-            if ( !is_null( $PronosticoApostador2 ) ) {
-                $this->PronosticoApostador2 = $PronosticoApostador2;
-            }
+            $this->PronosticoApostador2 = $PronosticoApostador2;
         }
         public function setMonto( $monto ){
             $this->monto = $monto;
@@ -157,6 +153,84 @@
                     array_push($arrApuestasObj, $apuestaObj);
                 }
                 return $arrApuestasObj;
+            }else{
+                return null;
+            }
+        }
+        public static function getTodosPorApostador( Apostador_model $apostadorObj = null, $estado = null){
+            // Obtener instancia de CI para manejo de base
+            $instanciaCI =& get_instance();
+
+            if( !is_null( $apostadorObj ) ){
+                $pronosticosObj = Pronostico_model::getTodosPorApostador( $apostadorObj, $estado );
+
+                $apuestasDB = null;
+                $instanciaCI->db->select("a.id");
+                $instanciaCI->db->from('apuesta AS a');
+                if ( $estado != null ) {
+                    $instanciaCI->db->where('a.estado', intval($estado));
+                }else{
+                    $instanciaCI->db->where_in('a.estado', array(APUESTA_NO_EMPAREJADA, APUESTA_EMPAREJADA));
+                }
+                $arrPronosticosID = array();
+                foreach ($pronosticosObj as $pronosticoObj) {
+                    array_push($arrPronosticosID, $pronosticoObj->getID());
+                }
+                if( count( $arrPronosticosID ) > 0){
+                    $instanciaCI->db->where_in('a.id_pronostico_apostador_1', $arrPronosticosID);
+                }
+                $instanciaCI->db->order_by('a.fecha', 'DESC');
+                $apuestasDB = $instanciaCI->db->get()->result_array();
+
+                $arrApuestasObj = array();
+                if ( !is_null($apuestasDB) ) {
+                    foreach ($apuestasDB as $apuestaDB) {
+                        $apuestaObj = self::getApuestaPorID($apuestaDB["id"]);
+                        array_push($arrApuestasObj, $apuestaObj);
+                    }
+                    return $arrApuestasObj;
+                }else{
+                    return null;
+                }
+            }else{
+                return null;
+            }
+        }
+        public static function getTodosPorApostadorSin( Apostador_model $apostadorObj = null, $estado = null){
+            // Obtener instancia de CI para manejo de base
+            $instanciaCI =& get_instance();
+
+            if( !is_null( $apostadorObj ) ){
+                $pronosticosObj = Pronostico_model::getTodosPorApostadorSin( $apostadorObj, $estado );
+
+                $apuestasDB = null;
+                $instanciaCI->db->select("a.id");
+                $instanciaCI->db->from('apuesta AS a');
+                if ( $estado != null ) {
+                    $instanciaCI->db->where('a.estado', intval($estado));
+                }else{
+                    $instanciaCI->db->where_in('a.estado', array(APUESTA_NO_EMPAREJADA, APUESTA_EMPAREJADA));
+                }
+                $arrPronosticosID = array();
+                foreach ($pronosticosObj as $pronosticoObj) {
+                    array_push($arrPronosticosID, $pronosticoObj->getID());
+                }
+                if( count( $arrPronosticosID ) > 0){
+                    $instanciaCI->db->where_in('a.id_pronostico_apostador_1', $arrPronosticosID);
+                }
+                $instanciaCI->db->order_by('a.fecha', 'DESC');
+                $apuestasDB = $instanciaCI->db->get()->result_array();
+
+                $arrApuestasObj = array();
+                if ( !is_null($apuestasDB) ) {
+                    foreach ($apuestasDB as $apuestaDB) {
+                        $apuestaObj = self::getApuestaPorID($apuestaDB["id"]);
+                        array_push($arrApuestasObj, $apuestaObj);
+                    }
+                    return $arrApuestasObj;
+                }else{
+                    return null;
+                }
             }else{
                 return null;
             }

@@ -60,6 +60,9 @@ html, body{
 .txt-negrita{
 	font-weight: bold;
 }
+.txt-light{
+	font-weight: 300;
+}
 /*Botones*/
 .btn,
 .input-group-addon{
@@ -337,6 +340,9 @@ input:-webkit-autofill {
 }
 .fondo-imagen.fondo-3{
 	background-image: url("../img/home-about-bg.jpg");
+}
+.fondo-imagen.fondo-4{
+	background-image: url("../img/mt-0966-gallery-img01-bg.jpg");
 }
 
 /* Tags*/

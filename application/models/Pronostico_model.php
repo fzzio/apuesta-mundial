@@ -162,6 +162,66 @@
                 return null;
             }
         }
+        public static function getTodosPorApostador( Apostador_model $apostadorObj = null, $estado = null ){
+            if( !is_null( $apostadorObj ) ){
+                // Obtener instancia de CI para manejo de base
+                $instanciaCI =& get_instance();
+
+                $pronosticosDB = null;
+                $instanciaCI->db->select("p.id");
+                $instanciaCI->db->from('pronostico AS p');
+                $instanciaCI->db->where('p.id_apostador', intval( $apostadorObj->getID() ));
+                if ( $estado != null ) {
+                    $instanciaCI->db->where('p.estado', intval($estado));
+                }else{
+                    $instanciaCI->db->where_in('p.estado', array(PRONOSTICO_GANA_LOCAL, PRONOSTICO_GANA_VISITANTE, PRONOSTICO_EMPATE));
+                }
+                $pronosticosDB = $instanciaCI->db->get()->result_array();
+
+                $arrPronosticosObj = array();
+                if ( !is_null($pronosticosDB) ) {
+                    foreach ($pronosticosDB as $pronosticoDB) {
+                        $pronosticoObj = self::getPronosticoPorID($pronosticoDB["id"]);
+                        array_push($arrPronosticosObj, $pronosticoObj);
+                    }
+                    return $arrPronosticosObj;
+                }else{
+                    return null;
+                }
+            }else{
+                return null;
+            }
+        }
+        public static function getTodosPorApostadorSin( Apostador_model $apostadorObj = null, $estado = null ){
+            if( !is_null( $apostadorObj ) ){
+                // Obtener instancia de CI para manejo de base
+                $instanciaCI =& get_instance();
+
+                $pronosticosDB = null;
+                $instanciaCI->db->select("p.id");
+                $instanciaCI->db->from('pronostico AS p');
+                $instanciaCI->db->where('p.id_apostador !=', intval( $apostadorObj->getID() ));
+                if ( $estado != null ) {
+                    $instanciaCI->db->where('p.estado', intval($estado));
+                }else{
+                    $instanciaCI->db->where_in('p.estado', array(PRONOSTICO_GANA_LOCAL, PRONOSTICO_GANA_VISITANTE, PRONOSTICO_EMPATE));
+                }
+                $pronosticosDB = $instanciaCI->db->get()->result_array();
+
+                $arrPronosticosObj = array();
+                if ( !is_null($pronosticosDB) ) {
+                    foreach ($pronosticosDB as $pronosticoDB) {
+                        $pronosticoObj = self::getPronosticoPorID($pronosticoDB["id"]);
+                        array_push($arrPronosticosObj, $pronosticoObj);
+                    }
+                    return $arrPronosticosObj;
+                }else{
+                    return null;
+                }
+            }else{
+                return null;
+            }
+        }
         public static function getUltimos( $limite = 5, $estado = null ){
             // Obtener instancia de CI para manejo de base
             $instanciaCI =& get_instance();

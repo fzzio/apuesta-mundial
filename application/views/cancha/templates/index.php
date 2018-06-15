@@ -5,7 +5,7 @@
   			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
   				<div class="tile-stats">
 					<div class="icon"><i class="fa fa-usd"></i></div>
-					<div class="count"><?php echo number_format(10, 2); ?></div>
+					<div class="count"><?php echo number_format($saldoApuesta, 2); ?></div>
 					<h3>Total</h3>
 					<p>Tu saldo en caja</p>
   				</div>
@@ -13,7 +13,7 @@
   			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
   				<div class="tile-stats">
 					<div class="icon"><i class="fa fa-check"></i></div>
-					<div class="count">0</div>
+					<div class="count"><?php echo $numeroAciertos; ?></div>
 					<h3>Acertadas</h3>
 					<p>Tus pronósticos correctos</p>
   				</div>
@@ -154,7 +154,120 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							Apuestas Abiertas
+							Mis apuestas iniciadas
+							<small>
+								<a href="" class="txt-amarillo txt-amarillo-hover">Ver todos</a>
+							</small>
+						</h2>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content fondo-imagen fondo-4">
+						<div class="contenedor-tabla fondo-transparencia-negro-1 p-10">
+							<table class="table table-hover table-condensed tabla-partidos tabla-partidos-apuestas">
+								<thead>
+									<tr>
+										<th class="text-center centrado-vertical">
+											<span class="txt-amarillo text-uppercase">Fecha</span>
+										</th>
+										<th class="text-center centrado-vertical">
+											<span class="txt-amarillo text-uppercase">Partido</span>
+										</th>
+										<th class="text-center centrado-vertical">
+											<span class="txt-amarillo text-uppercase">Monto</span>
+										</th>
+										<th class="text-center centrado-vertical">
+											<span class="txt-amarillo text-uppercase">Mi Apuesta</span>
+										</th>
+										<th class="text-center centrado-vertical">
+											<span class="txt-amarillo text-uppercase">Rival</span>
+										</th>
+										<th class="text-center centrado-vertical">
+											<span class="txt-amarillo text-uppercase">Apuesta del Rival</span>
+										</th>
+										<th class="text-center centrado-vertical">
+											<span class="txt-amarillo text-uppercase">Resultado</span>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach ($arrConsolidadoMisApuestas as $indiceApuesta => $apuesta): ?>
+										<?php $partidoObj = $apuesta["partidoObj"]; ?>
+										<tr class="info-partido">
+											<td class="text-center centrado-vertical">
+												<?php $fechaHoraPartido = DateTime::createFromFormat('Y-m-d H:i:s', $partidoObj->getFecha()); ?>
+												<div class="date">
+													<p class="month"><?php echo $fechaHoraPartido->format('M'); ?></p>
+													<p class="day"><?php echo $fechaHoraPartido->format('d'); ?></p>
+													<p class="time"><?php echo $fechaHoraPartido->format('H:i'); ?></p>
+												</div>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="flag-icon flag-icon-<?php echo strtolower($partidoObj->getPaisLocal()->getIso()); ?> bandera-md"></span>
+												<span class="txt-blanco">
+													<?php echo $partidoObj->getPaisLocal()->getNombre(); ?>
+												</span>
+												<span class="txt-amarillo">vs</span>
+												<span class="txt-blanco">
+													<?php echo $partidoObj->getPaisVisitante()->getNombre(); ?>
+												</span>
+												<span class="flag-icon flag-icon-<?php echo strtolower($partidoObj->getPaisVisitante()->getIso()); ?> bandera-md"></span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="txt-blanco">
+													$ <?php echo number_format($apuesta["montoApuesta"], 2); ?>
+												</span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="txt-blanco">
+													<?php echo $apuesta["resultadoMioStr"]; ?>
+												</span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="txt-blanco">
+													<?php if ( $apuesta["rivalNombre"] != "" ): ?>
+														<?php echo $apuesta["rivalNombre"]; ?>
+													<?php else: ?>
+														--
+													<?php endif ?>
+												</span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="txt-blanco">
+													<?php if ( $apuesta["resultadoRivalStr"] != "" ): ?>
+														<?php echo $apuesta["resultadoRivalStr"]; ?>
+													<?php else: ?>
+														--
+													<?php endif ?>
+												</span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<?php if ( !is_null( $apuesta["resultadoApuesta"] ) ): ?>
+													<?php if ( $apuesta["resultadoApuesta"] == RESULTADO_GANASTE ): ?>
+														<span class="label label-success txt-light">Has Ganado</span>
+													<?php elseif ( $apuesta["resultadoApuesta"] == RESULTADO_PERDISTE ): ?>
+														<span class="label label-danger txt-light">Has Perdido</span>
+													<?php else: ?>
+														<span class="label label-default txt-light">Casa gana</span>
+													<?php endif ?>
+												<?php else: ?>
+													--
+												<?php endif ?>
+											</td>
+										</tr>
+									<?php endforeach ?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+  		</div>
+  		<div class="row">
+  			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>
+							Apuestas de otros
 							<small>
 								<a href="" class="txt-amarillo txt-amarillo-hover">Ver todos</a>
 							</small>
@@ -173,7 +286,7 @@
 											<span class="txt-amarillo text-uppercase">Partido</span>
 										</th>
 										<th class="text-center centrado-vertical">
-											<span class="txt-amarillo text-uppercase">Participante</span>
+											<span class="txt-amarillo text-uppercase">Rival</span>
 										</th>
 										<th class="text-center centrado-vertical">
 											<span class="txt-amarillo text-uppercase">Monto</span>
@@ -184,47 +297,55 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="info-partido">
-										<td class="text-center centrado-vertical">
-											<div class="date">
-												<p class="month">Jun</p>
-												<p class="day">14</p>
-												<p class="time">10:48</p>
-											</div>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="flag-icon flag-icon-ec bandera-md"></span>
-											<span class="txt-blanco">Arabia Saudí</span>
-											<span class="txt-amarillo">vs</span>
-											<span class="txt-blanco">México</span>
-											<span class="flag-icon flag-icon-mx bandera-md"></span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-blanco">
-												Fabricio Diógenes Orrala Parrales
-											</span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<span class="txt-blanco">
-												$ 1.00
-											</span>
-										</td>
-										<td class="text-center centrado-vertical">
-											<div class="btn btn-negro btn-amarillo-hover">
-												Gana Local
-											</div>
-										</td>
-										<td class="text-center centrado-vertical">
-											<div class="btn btn-negro btn-amarillo-hover">
-												Empate
-											</div>
-										</td>
-										<td class="text-center centrado-vertical">
-											<div class="btn btn-negro btn-amarillo-hover">
-												Gana Visitante
-											</div>
-										</td>
-									</tr>
+									<?php foreach ($arrConsolidadoOtrasApuestas as $indiceApuesta => $apuesta): ?>
+										<?php $partidoObj = $apuesta["partidoObj"]; ?>
+										<tr class="info-partido">
+											<td class="text-center centrado-vertical">
+												<?php $fechaHoraPartido = DateTime::createFromFormat('Y-m-d H:i:s', $partidoObj->getFecha()); ?>
+												<div class="date">
+													<p class="month"><?php echo $fechaHoraPartido->format('M'); ?></p>
+													<p class="day"><?php echo $fechaHoraPartido->format('d'); ?></p>
+													<p class="time"><?php echo $fechaHoraPartido->format('H:i'); ?></p>
+												</div>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="flag-icon flag-icon-<?php echo strtolower($partidoObj->getPaisLocal()->getIso()); ?> bandera-md"></span>
+												<span class="txt-blanco">
+													<?php echo $partidoObj->getPaisLocal()->getNombre(); ?>
+												</span>
+												<span class="txt-amarillo">vs</span>
+												<span class="txt-blanco">
+													<?php echo $partidoObj->getPaisVisitante()->getNombre(); ?>
+												</span>
+												<span class="flag-icon flag-icon-<?php echo strtolower($partidoObj->getPaisVisitante()->getIso()); ?> bandera-md"></span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="txt-blanco">
+													<?php echo $apuesta["rivalNombre"]; ?>
+												</span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<span class="txt-blanco">
+													$ <?php echo number_format($apuesta["montoApuesta"], 2); ?>
+												</span>
+											</td>
+											<td class="text-center centrado-vertical">
+												<div class="btn btn-negro btn-amarillo-hover">
+													Gana Local
+												</div>
+											</td>
+											<td class="text-center centrado-vertical">
+												<div class="btn btn-negro btn-amarillo-hover">
+													Empate
+												</div>
+											</td>
+											<td class="text-center centrado-vertical">
+												<div class="btn btn-negro btn-amarillo-hover">
+													Gana Visitante
+												</div>
+											</td>
+										</tr>
+									<?php endforeach ?>
 								</tbody>
 							</table>
 						</div>

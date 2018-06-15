@@ -35,6 +35,171 @@ class Cancha extends CI_Controller {
 			$dataContent['totalApostadores'] = count(Apostador_model::getTodos(ESTADO_ACTIVO));
 			$dataContent['partidosJugadosObj'] = Partido_model::getTodos(PARTIDO_FINALIZADO);
 			$dataContent['partidosProximosObj'] = Partido_model::getTodos(PARTIDO_POR_JUGAR);
+
+			//////////////////////////////////////////////////
+			// Resultados
+			$totalGanado = 0;
+			$totalPerdido = 0;
+			$dataContent['numeroAciertos'] = 0;
+
+			$dataContent['apostadorObj'] = Apostador_model::getApostadorPorID( $this->session->id );
+			
+			//////////////////////////////////////////////////
+			// Apuestas propias
+			$dataContent['misApuestasObj'] = Apuesta_model::getTodosPorApostador( $dataContent['apostadorObj']  );
+			$dataContent['arrConsolidadoMisApuestas'] = array();
+			foreach ( $dataContent['misApuestasObj']  as $indiceApuesta => $apuestaObj) {
+				// Partido
+				$partidoObj = $apuestaObj->getPronosticoApostador1()->getPartido();
+				$totalPerdido += 0.20;
+
+				// Monto
+				$montoApuesta = $apuestaObj->getMonto();
+
+				// Mi apuesta
+				$resultadoMio = $apuestaObj->getPronosticoApostador1()->getResultado();
+				$resultadoMioStr = "";
+				if ( $resultadoMio == PRONOSTICO_GANA_LOCAL ) {
+					$resultadoMioStr = "Gana " . $partidoObj->getPaisLocal()->getNombre();
+				}elseif ( $resultadoMio == PRONOSTICO_GANA_VISITANTE ) {
+					$resultadoMioStr = "Gana " . $partidoObj->getPaisVisitante()->getNombre();
+				}else{
+					$resultadoMioStr = "Empate";
+				}
+
+				// Mi rival
+				$rivalNombre = "";
+				$resultadoRival = null;
+				$resultadoRivalStr = "";
+				if( !is_null( $apuestaObj->getPronosticoApostador2() ) ){
+					$rivalNombre = $apuestaObj->getPronosticoApostador2()->getApostador()->getNombre();
+					$resultadoRival = $apuestaObj->getPronosticoApostador2()->getResultado();
+					if ( $resultadoRival == PRONOSTICO_GANA_LOCAL ) {
+						$resultadoRivalStr = "Gana " . $partidoObj->getPaisLocal()->getNombre();
+					}elseif ( $resultadoRival == PRONOSTICO_GANA_VISITANTE ) {
+						$resultadoRivalStr = "Gana " . $partidoObj->getPaisVisitante()->getNombre();
+					}else{
+						$resultadoRivalStr = "Empate";
+					}
+				}
+
+				// Si está finalizado se obtiene el resultado
+				$resultadoApuesta = null;
+				if ( $partidoObj->getEstado() == PARTIDO_FINALIZADO ) {
+					$resultadoPartido = null;
+					if ( ($partidoObj->getGolesLocal() - $partidoObj->getGolesVisitante() ) > 0) {
+						$resultadoPartido = PRONOSTICO_GANA_LOCAL;
+					}elseif ( ($partidoObj->getGolesLocal() - $partidoObj->getGolesVisitante() ) < 0) {
+						$resultadoPartido = PRONOSTICO_GANA_VISITANTE;						
+					}else{
+						$resultadoPartido = PRONOSTICO_EMPATE;
+					}
+
+					// Verificamos si ganó o no
+					if( $resultadoPartido == $resultadoMio ){
+						$resultadoApuesta = RESULTADO_GANASTE;
+						$totalGanado += $montoApuesta;
+						$dataContent['numeroAciertos'] += 1;
+					}elseif( $resultadoPartido == $resultadoRival ){
+						$resultadoApuesta = RESULTADO_PERDISTE;
+						$totalPerdido += $montoApuesta;
+					}else{
+						$resultadoApuesta = RESULTADO_CASA_GANA;
+						$totalPerdido += $montoApuesta;
+					}
+				}
+
+				array_push(
+					$dataContent['arrConsolidadoMisApuestas'], array(
+						"partidoObj" => $partidoObj,
+						"montoApuesta" => $montoApuesta,
+						"resultadoMioStr" => $resultadoMioStr,
+						"rivalNombre" => $rivalNombre,
+						"resultadoRivalStr" => $resultadoRivalStr,
+						"resultadoApuesta" => $resultadoApuesta,
+					)
+				);
+			}
+			$dataContent['saldoApuesta'] = $dataContent['apostadorObj']->getMontoInicial() + $totalGanado - $totalPerdido;
+
+			//////////////////////////////////////////////////
+			// Apuestas de otros
+			$dataContent['otrasApuestasObj'] = Apuesta_model::getTodosPorApostadorSin( $dataContent['apostadorObj']  );
+			$dataContent['arrConsolidadoOtrasApuestas'] = array();
+			foreach ( $dataContent['otrasApuestasObj']  as $indiceApuesta => $apuestaObj) {
+				// Partido
+				$partidoObj = $apuestaObj->getPronosticoApostador1()->getPartido();
+				
+
+				// Monto
+				$montoApuesta = $apuestaObj->getMonto();
+
+				// Rival
+				$resultadoRivalStr = "";
+				$resultadoRival = $apuestaObj->getPronosticoApostador1()->getResultado();
+				$rivalNombre = $apuestaObj->getPronosticoApostador1()->getApostador()->getNombre();
+				if ( $resultadoRival == PRONOSTICO_GANA_LOCAL ) {
+					$resultadoRivalStr = "Gana " . $partidoObj->getPaisLocal()->getNombre();
+				}elseif ( $resultadoRival == PRONOSTICO_GANA_VISITANTE ) {
+					$resultadoRivalStr = "Gana " . $partidoObj->getPaisVisitante()->getNombre();
+				}else{
+					$resultadoRivalStr = "Empate";
+				}
+
+				// Mi rival
+				$resultadoMio = null;
+				$resultadoMioStr = "";
+				if( !is_null( $apuestaObj->getPronosticoApostador2() ) ){
+					$resultadoMio = $apuestaObj->getPronosticoApostador2()->getResultado();
+					if ( $resultadoMio == PRONOSTICO_GANA_LOCAL ) {
+						$resultadoMioStr = "Gana " . $partidoObj->getPaisLocal()->getNombre();
+					}elseif ( $resultadoMio == PRONOSTICO_GANA_VISITANTE ) {
+						$resultadoMioStr = "Gana " . $partidoObj->getPaisVisitante()->getNombre();
+					}else{
+						$resultadoMioStr = "Empate";
+					}
+				}
+
+				// Si está finalizado se obtiene el resultado
+				$resultadoApuesta = null;
+				if ( $partidoObj->getEstado() == PARTIDO_FINALIZADO ) {
+					$resultadoPartido = null;
+					if ( ($partidoObj->getGolesLocal() - $partidoObj->getGolesVisitante() ) > 0) {
+						$resultadoPartido = PRONOSTICO_GANA_LOCAL;
+					}elseif ( ($partidoObj->getGolesLocal() - $partidoObj->getGolesVisitante() ) < 0) {
+						$resultadoPartido = PRONOSTICO_GANA_VISITANTE;						
+					}else{
+						$resultadoPartido = PRONOSTICO_EMPATE;
+					}
+
+					// Verificamos si ganó o no
+					if( $resultadoPartido == $resultadoMio ){
+						$resultadoApuesta = RESULTADO_GANASTE;
+						//$totalGanado += $montoApuesta;
+						//$dataContent['numeroAciertos'] += 1;
+					}elseif( $resultadoPartido == $resultadoRival ){
+						$resultadoApuesta = RESULTADO_PERDISTE;
+						//$totalPerdido += $montoApuesta;
+					}else{
+						$resultadoApuesta = RESULTADO_CASA_GANA;
+						//$totalPerdido += $montoApuesta;
+					}
+				}
+
+				array_push(
+					$dataContent['arrConsolidadoOtrasApuestas'], array(
+						"partidoObj" => $partidoObj,
+						"montoApuesta" => $montoApuesta,
+						"resultadoMioStr" => $resultadoMioStr,
+						"rivalNombre" => $rivalNombre,
+						"resultadoRivalStr" => $resultadoRivalStr,
+						"resultadoApuesta" => $resultadoApuesta,
+					)
+				);
+			}
+
+
+
 			$dataFooter = array();
 			$dataMenu = array();
 
