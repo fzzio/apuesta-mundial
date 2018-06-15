@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 15-06-2018 a las 11:38:20
+-- Tiempo de generación: 15-06-2018 a las 16:04:19
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 5.6.30
 
@@ -370,8 +370,8 @@ INSERT INTO `partido` (`id`, `id_pais_local`, `id_pais_visitante`, `fecha`, `gol
 (4, 229, 11, '2018-06-20 10:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1),
 (5, 11, 67, '2018-06-25 09:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1),
 (6, 229, 184, '2018-06-25 09:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1),
-(7, 140, 107, '2018-06-15 10:00:00', NULL, NULL, NULL, NULL, 1, 'B', 2),
-(8, 177, 73, '2018-06-15 13:00:00', NULL, NULL, NULL, NULL, 1, 'B', 1);
+(7, 140, 107, '2018-06-15 10:00:00', 0, 1, NULL, NULL, 1, 'B', 3),
+(8, 177, 73, '2018-06-15 13:00:00', 3, 3, NULL, NULL, 1, 'B', 3);
 
 -- --------------------------------------------------------
 
@@ -426,7 +426,7 @@ CREATE TABLE `super_administrador` (
 --
 
 INSERT INTO `super_administrador` (`id`, `nombre`, `email`, `user`, `password`, `fecha_registro`, `fecha_modificacion`, `estado`) VALUES
-(1, 'Super Administrador', 'info@mail.com.ec', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2018-03-23 19:30:06', '2018-03-23 19:46:16', 1);
+(1, 'Super Administrador', 'info@mail.com.ec', 'admin', 'e015ef992e2d8a57d866d70d078ff1cb', '2018-03-23 19:30:06', '2018-06-15 17:07:58', 1);
 
 --
 -- Índices para tablas volcadas
