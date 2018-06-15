@@ -110,6 +110,10 @@ defined('FASE_SEMIFINAL')		OR define('FASE_SEMIFINAL', 4);
 defined('FASE_FINAL')			OR define('FASE_FINAL', 5);
 defined('FASE_TERCERO')			OR define('FASE_TERCERO', 6);
 
+defined('PRONOSTICO_GANA_LOCAL')		OR define('PRONOSTICO_GANA_LOCAL', 1);
+defined('PRONOSTICO_GANA_VISITANTE')	OR define('PRONOSTICO_GANA_VISITANTE', 2);
+defined('PRONOSTICO_EMPATE')			OR define('PRONOSTICO_EMPATE', 3);
+
 
 // Roles
 defined('ROL_CASA')				OR define('ROL_CASA', 1);
