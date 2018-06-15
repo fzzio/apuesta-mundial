@@ -54,7 +54,7 @@
               </li>
               <li>
                 <a href="<?php echo site_url('superadmin/apuesta'); ?>">
-                  Pronósticos
+                  Apuesta
                 </a>
               </li>
             </ul>
