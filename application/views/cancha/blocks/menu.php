@@ -49,12 +49,17 @@
           </li>
           <li>
             <a>
-              <i class="fa fa-briefcase"></i> Contacto <span class="fa fa-chevron-down"></span>
+              <i class="fa fa-briefcase"></i> Información <span class="fa fa-chevron-down"></span>
             </a>
             <ul class="nav child_menu">
               <li>
                 <a href="#">
-                  Mediadores
+                  Instrucciones
+                </a>
+              </li>
+              <li>
+                <a href="<?php echo site_url('cancha/mediadores'); ?>">
+                  Contacto mediadores
                 </a>
               </li>
             </ul>

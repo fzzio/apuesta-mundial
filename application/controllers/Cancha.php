@@ -249,4 +249,20 @@ class Cancha extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect("cancha/login");
 	}
+
+	public function mediadores(){
+		if ( estaLogueadoApostador() ) {
+			$dataHeader['titlePage'] = "Mediadores";
+			$dataMenu = array();
+			$dataContent = array();
+			$dataFooter = array();
+			// Se cargan las vistas
+	        $data['header'] = $this->load->view('cancha/blocks/header', $dataHeader);
+	        $data['menu'] = $this->load->view('cancha/blocks/menu', $dataMenu );
+	        $data['content'] = $this->load->view('cancha/templates/mediadores', $dataContent );
+	        $data['footer'] = $this->load->view('cancha/blocks/footer', $dataFooter );
+		}else{
+			redirect('cancha/logout','refresh');
+		}
+	}
 }

@@ -344,6 +344,10 @@ input:-webkit-autofill {
 .fondo-imagen.fondo-4{
 	background-image: url("../img/mt-0966-gallery-img01-bg.jpg");
 }
+.fondo-imagen.fondo-5{
+	background-image: url("../img/club-stuff-bg.jpg");
+	background-position: center top;
+}
 
 /* Tags*/
 span.tag{
