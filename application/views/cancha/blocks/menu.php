@@ -111,6 +111,11 @@
                 <i class="fa fa-sign-out pull-right"></i> Salir
               </a>
             </li>
+            <li>
+              <a href="">
+                <i class="fa fa-sign-out pull-right"></i> Salir
+              </a>
+            </li>
           </ul>
         </li>
 
