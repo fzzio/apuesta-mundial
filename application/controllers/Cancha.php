@@ -265,4 +265,20 @@ class Cancha extends CI_Controller {
 			redirect('cancha/logout','refresh');
 		}
 	}
+
+	public function instrucciones(){
+		if ( estaLogueadoApostador() ) {
+			$dataHeader['titlePage'] = "Instrucciones";
+			$dataMenu = array();
+			$dataContent = array();
+			$dataFooter = array();
+			// Se cargan las vistas
+	        $data['header'] = $this->load->view('cancha/blocks/header', $dataHeader);
+	        $data['menu'] = $this->load->view('cancha/blocks/menu', $dataMenu );
+	        $data['content'] = $this->load->view('cancha/templates/instrucciones', $dataContent );
+	        $data['footer'] = $this->load->view('cancha/blocks/footer', $dataFooter );
+		}else{
+			redirect('cancha/logout','refresh');
+		}
+	}
 }

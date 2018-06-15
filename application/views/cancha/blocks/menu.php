@@ -53,7 +53,7 @@
             </a>
             <ul class="nav child_menu">
               <li>
-                <a href="#">
+                <a href="<?php echo site_url('cancha/instrucciones'); ?>">
                   Instrucciones
                 </a>
               </li>

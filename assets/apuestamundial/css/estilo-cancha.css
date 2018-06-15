@@ -58,10 +58,16 @@ html, body{
 	text-shadow: none;
 }
 .txt-negrita{
-	font-weight: bold;
+	font-weight: 700;
+}
+.txt-regular{
+	font-weight: 400;
 }
 .txt-light{
 	font-weight: 300;
+}
+.txt-underline{
+	text-decoration: underline;
 }
 /*Botones*/
 .btn,
@@ -347,6 +353,9 @@ input:-webkit-autofill {
 .fondo-imagen.fondo-5{
 	background-image: url("../img/club-stuff-bg.jpg");
 	background-position: center top;
+}
+.fondo-imagen.fondo-6{
+	background-image: url("../img/mt-0966-header-bg.jpg");
 }
 
 /* Tags*/
