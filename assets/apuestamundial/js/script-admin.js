@@ -1,36 +1,3 @@
-function readURL(input) {
-    if (input.files && input.files[0] ) {
-        console.log("Size: " + input.files[0].size/1024/1024 + "MB" + " --- Type: " + input.files[0].type);
-
-        var uploadErrors = [];
-        var acceptFileTypes = /^image\/(jpe?g|png)$/i;
-        if(input.files[0].type.length && !acceptFileTypes.test(input.files[0].type)) {
-            uploadErrors.push('Sólo se pueden subir imágenes JPG y PNG.' );
-        }
-        if( input.files[0].size/1024/1024 > 5 ) {
-            uploadErrors.push('El archivo excede los 5Mb permitidos por imagen.');
-        }
-        if(uploadErrors.length > 0) {
-            alert(uploadErrors.join("\n"));
-        } else {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $(input).closest('.custom-input-file').find('.sm-img-foto')
-                    .attr('src', e.target.result);
-                $(input).closest('.custom-input-file').find('.sm-img-foto').show();
-                $(input).closest('.custom-input-file').css('background-image', 'none');
-        		//$(input).closest('.custom-input-file-edit').addClass('edit-flag');
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }else{
-        $(input).closest('.custom-input-file').find('.sm-img-foto').attr('src', js_base_url('assets/near/img/camara.png'));
-        $(input).closest('.custom-input-file').find('.sm-img-foto').removeAttr('style');
-        $(input).closest('.custom-input-file').removeAttr('style');
-        $(input).closest('.custom-input-file-edit').removeClass('edit-flag');
-    }
-}
-
 /**
  * Resize function without multiple trigger
  * 
@@ -651,20 +618,20 @@ $(document).ready(function() {
 	//init_cropper();
 	//init_knob();
 	//init_IonRangeSlider();
-	init_ColorPicker();
-	init_TagsInput();
-	init_parsley();
+	//init_ColorPicker();
+	//init_TagsInput();
+	//init_parsley();
 	//init_daterangepicker();
 	//init_daterangepicker_right();
-	init_daterangepicker_single_call();
+	//init_daterangepicker_single_call();
 	//init_daterangepicker_reservation();
 	//init_SmartWizard();
 	//init_EasyPieChart();
 	//init_charts();
 	//init_skycons();
-	init_select2();
-	init_validator();
-	init_DataTables();
+	//init_select2();
+	//init_validator();
+	//init_DataTables();
 	//init_chart_doughut();
 	//init_gauge();
 	//init_PNotify();

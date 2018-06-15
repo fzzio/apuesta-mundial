@@ -81,7 +81,7 @@ class Superadmin extends CI_Controller {
 		redirect("superadmin/login");
 	}
 
-	public function agregar_partido(){
+	public function partido(){
 		if ( estaLogueadoCasa() ) {
 			$dataHeader['titlePage'] = "Partido";
 			$dataContent = array();
@@ -143,9 +143,15 @@ class Superadmin extends CI_Controller {
 				$crud->fields( 'fecha', 'id_pais_local', 'id_pais_visitante', 'fase', 'grupo', 'goles_local', 'goles_visitante', 'incidencias_local', 'incidencias_visitante', 'estado');
 				$crud->required_fields( 'fecha', 'id_pais_local', 'id_pais_visitante', 'fase', 'grupo', 'estado');
 
+				$crud->order_by('fecha','asc');
+
 				$crud->unset_print();
 				$crud->unset_read();
+				$crud->unset_export();
 				$crud->unset_clone();
+
+				$crud->unset_jquery();
+				$crud->unset_bootstrap();
 
 				$output = $crud->render();
 

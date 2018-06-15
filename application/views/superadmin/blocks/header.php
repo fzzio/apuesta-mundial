@@ -25,14 +25,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/iCheck/skins/flat/blue.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/animate.css/animate.min.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css'); ?>">
-        <?php if ( $this->router->method == 'agregar'): ?>
-        <!-- bootstrap-wysiwyg -->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/google-code-prettify/bin/prettify.min.css'); ?>">
-        <!-- Select2 -->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/select2/dist/css/select2.min.css'); ?>">
-        <!-- starrr -->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/starrr/dist/starrr.css'); ?>">
-        <?php endif ?>
+
         <!-- Switchery -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/switchery/dist/switchery.min.css'); ?>">
         <!-- bootstrap-daterangepicker -->
@@ -40,24 +33,12 @@
         <!-- Bootstrap Colorpicker -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css'); ?>">
 
-        <?php if ($this->router->class == 'personal' && $this->router->method == 'listar'): ?>
-            <!-- Datatables -->
-            <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
-            <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css'); ?>">
-            <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css'); ?>">
-            <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'); ?>">
-            <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css'); ?>">
-        <?php endif ?>
         
         <!-- Gentelella -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/build/css/custom.min.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/flag-icon-css/css/flag-icon.min.css'); ?>">
-        <?php /*
-        <!-- Google Fonts -->
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
-        */ ?>
 
-        <!-- Estilo NEAR -->
+        <!-- Estilo Sistema -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/apuestamundial/css/custom-bootstrap-margin-padding.css'); ?>">
 
         <?php if (isset($css_files)): ?>
