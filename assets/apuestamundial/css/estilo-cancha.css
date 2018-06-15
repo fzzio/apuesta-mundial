@@ -335,6 +335,9 @@ input:-webkit-autofill {
 .fondo-imagen.fondo-2{
 	background-image: url("../img/main-slider-img2.jpg");
 }
+.fondo-imagen.fondo-3{
+	background-image: url("../img/home-about-bg.jpg");
+}
 
 /* Tags*/
 span.tag{
@@ -413,9 +416,21 @@ span.tag{
 .tabla-partidos>thead>tr>th{
 	border: none;
 }
+.tabla-partidos.tabla-partidos-apuestas>thead:first-child>tr:first-child>th,
+.tabla-partidos.tabla-partidos-apuestas>tbody>tr>td,
+.tabla-partidos.tabla-partidos-apuestas>tbody>tr>th,
+.tabla-partidos.tabla-partidos-apuestas>tfoot>tr>td,
+.tabla-partidos.tabla-partidos-apuestas>tfoot>tr>th,
+.tabla-partidos.tabla-partidos-apuestas>thead>tr>td,
+.tabla-partidos.tabla-partidos-apuestas>thead>tr>th{
+	border: 1px solid #FFCC00;
+}
 .tabla-partidos.table-hover>tbody>tr:hover{
 	background-color: rgb(20,20,20);
 	background-color: rgba(20,20,20,0.6);
+}
+.tabla-partidos.tabla-partidos-apuestas .info-partido .date{
+	border: none;
 }
 
 .centrado-vertical{
@@ -470,6 +485,9 @@ span.tag{
 }
 .info-partido .bandera-normal{
 	font-size: 25px;
+}
+.info-partido .bandera-md{
+	font-size: 16px;
 }
 .info-partido .texto-resultado{
 	font-size: 30px;
