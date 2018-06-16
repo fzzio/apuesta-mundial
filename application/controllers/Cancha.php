@@ -103,6 +103,8 @@ class Cancha extends CI_Controller {
 						}else{
 							$resultadoApuesta = RESULTADO_CASA_GANA;
 						}
+					}else{
+						$resultadoApuesta = RESULTADO_PENDIENTE;
 					}
 				}else{
 					$resultadoApuesta = RESULTADO_DESIERTA;

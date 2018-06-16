@@ -211,6 +211,11 @@
 													<?php echo $partidoObj->getPaisVisitante()->getNombre(); ?>
 												</span>
 												<span class="flag-icon flag-icon-<?php echo strtolower($partidoObj->getPaisVisitante()->getIso()); ?> bandera-md"></span>
+												<?php if ( $partidoObj->getEstado() == PARTIDO_FINALIZADO): ?>
+													<p class="txt-blanco mb-0">
+														<?php echo $partidoObj->getGolesLocal() ?> : <?php echo $partidoObj->getGolesVisitante() ?> (Final)
+													</p>
+												<?php endif ?>
 											</td>
 											<td class="text-center centrado-vertical">
 												<span class="txt-blanco">
@@ -246,6 +251,8 @@
 														<span class="label label-success txt-light">Ganaste</span>
 													<?php elseif ( $apuesta["resultadoApuesta"] == RESULTADO_PERDISTE ): ?>
 														<span class="label label-danger txt-light">Perdiste</span>
+													<?php elseif ( $apuesta["resultadoApuesta"] == RESULTADO_CASA_GANA ): ?>
+														<span class="label label-warning txt-light">Ambos pierden</span>
 													<?php elseif ( $apuesta["resultadoApuesta"] == RESULTADO_DESIERTA ): ?>
 														<span class="label label-default txt-light">Nadie apostó</span>
 													<?php else: ?>
