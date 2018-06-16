@@ -23,7 +23,7 @@
 					<div class="icon"><i class="fa fa-futbol-o"></i></div>
 					<div class="count"><?php echo count($partidosJugadosObj); ?>/64</div>
 					<h3>Partidos</h3>
-					<p>Encuentros restantes</p>
+					<p>Encuentros jugados</p>
   				</div>
   			</div>
   			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12 hidden-xs">
@@ -149,12 +149,13 @@
 				</div>
 			</div>
   		</div>
+
   		<div class="row">
   			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							Mis apuestas iniciadas
+							Mis apuestas creadas
 							<small>
 								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
 							</small>
@@ -273,12 +274,13 @@
 				</div>
 			</div>
   		</div>
+  		
   		<div class="row">
   			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							Apuestas abiertas
+							Apuestas de otros
 							<small>
 								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
 							</small>
