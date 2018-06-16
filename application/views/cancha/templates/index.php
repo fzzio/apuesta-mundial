@@ -256,7 +256,9 @@
 													<?php elseif ( $apuesta["resultadoApuesta"] == RESULTADO_DESIERTA ): ?>
 														<span class="label label-default txt-light">Nadie apostó</span>
 													<?php else: ?>
-														--
+														<span class="txt-blanco">
+															--
+														</span>
 													<?php endif ?>
 												<?php else: ?>
 													--

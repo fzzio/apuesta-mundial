@@ -107,9 +107,12 @@ class Cancha extends CI_Controller {
 						$resultadoApuesta = RESULTADO_PENDIENTE;
 					}
 				}else{
-					$resultadoApuesta = RESULTADO_DESIERTA;
+					if ( $partidoObj->getEstado() == PARTIDO_FINALIZADO ) {
+						$resultadoApuesta = RESULTADO_DESIERTA;
+					}else{
+						$resultadoApuesta = RESULTADO_PENDIENTE;
+					}
 				}
-
 
 				array_push(
 					$dataContent['arrConsolidadoApuestas'], array(
