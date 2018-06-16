@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-06-2018 a las 02:24:09
+-- Tiempo de generación: 16-06-2018 a las 02:49:26
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 5.6.30
 
@@ -409,7 +409,7 @@ INSERT INTO `partido` (`id`, `id_pais_local`, `id_pais_visitante`, `fecha`, `gol
 (44, 176, 196, '2018-06-19 10:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
 (45, 52, 114, '2018-06-19 07:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
 (46, 114, 196, '2018-06-24 10:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
-(47, 176, 52, '2018-06-16 13:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
+(47, 176, 52, '2018-06-24 13:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
 (48, 196, 52, '2018-06-28 09:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
 (49, 114, 176, '2018-06-28 09:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1);
 
