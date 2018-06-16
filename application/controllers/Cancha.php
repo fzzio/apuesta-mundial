@@ -35,7 +35,7 @@ class Cancha extends CI_Controller {
 			$dataContent['totalApostadores'] = count(Apostador_model::getTodos(ESTADO_ACTIVO));
 			$dataContent['partidosJugadosObj'] = Partido_model::getUltimos(5, PARTIDO_FINALIZADO);
 			$dataContent['partidosProximosObj'] = Partido_model::getProximos(5, PARTIDO_POR_JUGAR);
-			$dataContent['partidosJugandoseObj'] = Partido_model::getProximos(null, PARTIDO_JUGANDO);
+			$dataContent['partidosJugandoObj'] = Partido_model::getProximos(null, PARTIDO_JUGANDO);
 
 			//////////////////////////////////////////////////
 			// Resultados
@@ -136,7 +136,7 @@ class Cancha extends CI_Controller {
 		}
 	}
 
-	
+
 	public function getConsolidadoApostador( $apuestasObj ){
 		$arrConsolidadoApuestas = array();
 		foreach ( $apuestasObj as $indiceApuesta => $apuestaObj) {
@@ -289,5 +289,49 @@ class Cancha extends CI_Controller {
 			);
 		}
 		return $arrConsolidadoApuestas;
+	}
+
+	public function crearApuesta(){
+
+	}
+
+	public function getPartidoToJson(){
+		$resultado = array();
+		if ( $this->input->server('REQUEST_METHOD') == 'POST' ) {
+			$partidoObj = Partido_model::getPartidoPorID( $this->input->post( 'partido' ) );
+			if ( $partidoObj !== null ) {
+				$fechaHoraPartido = DateTime::createFromFormat('Y-m-d H:i:s', $partidoObj->getFecha());
+				$resultado = array(
+					'codigo' => 1, 
+					'fecha' => date('Y-m-d H:i:s'), 
+					'mensaje' => "Se encontró datos del partido",
+					'data' => array(
+						"partidoID" => $partidoObj->getID(),
+						"partidoPaisLocal" => $partidoObj->getPaisLocal()->getNombre(),
+						"partidoPaisVisitante" => $partidoObj->getPaisVisitante()->getNombre(),
+						"partidoIsoPaisLocal" => strtolower($partidoObj->getPaisLocal()->getIso()),
+						"partidoIsoPaisVisitante" => strtolower($partidoObj->getPaisVisitante()->getIso()),
+						"partidoFechaMes" => $fechaHoraPartido->format('M'),
+						"partidoFechaDia" => $fechaHoraPartido->format('d'),
+						"partidoFechaHora" => $fechaHoraPartido->format('H:i'),
+					)
+				);	
+			}else{
+				$resultado = array(
+					'codigo' => 0, 
+					'fecha' => date('Y-m-d H:i:s'), 
+					'mensaje' => "Error: No se encontró partido" 
+				);
+			}
+
+		}else{
+			$resultado = array(
+				'codigo' => 0, 
+				'fecha' => date('Y-m-d H:i:s'), 
+				'mensaje' => "Error: No se recibieron parámetros" 
+			);
+		}
+		header('Content-Type: application/json');
+		echo json_encode( $resultado );
 	}
 }

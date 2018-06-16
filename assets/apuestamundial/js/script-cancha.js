@@ -640,6 +640,38 @@ function init_DataTables() {
 	
 };
 
+function modalCrearApuesta(partido){
+	var parametros = {
+		partido: partido
+	}
+	$.ajax({
+		url: js_site_url('cancha/getPartidoToJson'),
+		type: 'POST',
+		async: true,
+		data: parametros,
+		dataType: "json",
+		success: function (respuesta) {
+			if(respuesta.codigo == 1){
+				$("#apuesta-partido").val(respuesta.data.partidoID);
+				$("#apuesta-pais-local").text(respuesta.data.partidoPaisLocal);
+				$("#apuesta-pais-visitante").text(respuesta.data.partidoPaisVisitante);
+				$("#apuesta-bandera-local").attr('class','flag-icon flag-icon-' + respuesta.data.partidoIsoPaisLocal + ' bandera-normal');
+				$("#apuesta-bandera-visitante").attr('class','flag-icon flag-icon-' + respuesta.data.partidoIsoPaisVisitante + ' bandera-normal');
+				$("#apuesta-partido-mes").text(respuesta.data.partidoFechaMes);
+				$("#apuesta-partido-dia").text(respuesta.data.partidoFechaDia);
+				$("#apuesta-partido-hora").text(respuesta.data.partidoFechaHora);
+				$("#apuesta-pronostico-ganalocal").text("Gana " + respuesta.data.partidoPaisLocal);
+				$("#apuesta-pronostico-ganavisitante").text("Gana " + respuesta.data.partidoPaisVisitante);
+
+				$("#modal-crear-apuesta").modal('show');
+			}
+		}, 
+		error: function (error) {
+			console.log("ERROR: " + error);
+		}
+	});
+}
+
 
 $(document).ready(function() {
 	//init_sparklines();

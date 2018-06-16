@@ -74,6 +74,11 @@
                 var urlTmp = "<?php echo base_url('" + urlText + "'); ?>";
                 return urlTmp;
             }
+
+            // Constantes JS
+            var PRONOSTICO_GANA_LOCAL       = <?php echo PRONOSTICO_GANA_LOCAL; ?>;
+            var PRONOSTICO_GANA_VISITANTE   = <?php echo PRONOSTICO_GANA_VISITANTE; ?>;
+            var PRONOSTICO_EMPATE           = <?php echo PRONOSTICO_EMPATE; ?>;
         </script>
         <title><?php echo PROYECTO_NOMBRE; ?>:: <?php echo $titlePage ?></title>
     </head>

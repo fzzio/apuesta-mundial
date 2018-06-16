@@ -136,6 +136,9 @@ html, body{
 .borde-azul{
     border: 1px solid #01A0E2;
 }
+.borde-amarillo{
+    border: 1px solid #FFA000;
+}
 .borde-azul-oscuro{
     border: 1px solid #1E508F;
 }
@@ -357,6 +360,9 @@ input:-webkit-autofill {
 .fondo-imagen.fondo-6{
 	background-image: url("../img/mt-0966-header-bg.jpg");
 }
+.fondo-imagen.fondo-7{
+	background-image: url("../img/mt-0966-content-bg01.jpg");
+}
 
 /* Tags*/
 span.tag{
@@ -374,18 +380,32 @@ span.tag{
 	border-radius: 0px;
 }
 .modal-content .modal-header{
-	background: #1E508F;
-	border-bottom: 1px solid #B6E3FF;
-	color: #B6E3FF;
+    background-color: #141414;
+    border-bottom: 1px solid #FFCC00;
+	color: #FFFFFF;
+
+	/*padding: 10px;*/
+    /*margin-bottom: 0px;*/
+}
+.modal-content .modal-body{
+	background-color: #262626;
 }
 .modal-content .modal-header .close{
-	color: #B6E3FF;
+	color: #FFCC00;
 	opacity: 1;
+	text-shadow: none;
 }
 .modal-content .modal-header .close:hover,
 .modal-content .modal-header .close:active,
 .modal-content .modal-header .close:focus{
 	color: #FFFFFF;
+}
+.modal-content .modal-footer{
+	background-color: #262626;
+	border-top: 1px solid #FFCC00;
+}
+.no-border{
+	border: none !important;
 }
 .tile-stats{
 	border: 1px solid #0A0A0A;

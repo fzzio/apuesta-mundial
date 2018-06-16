@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-06-2018 a las 02:49:26
+-- Tiempo de generación: 16-06-2018 a las 14:54:47
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 5.6.30
 
@@ -376,14 +376,14 @@ INSERT INTO `partido` (`id`, `id_pais_local`, `id_pais_visitante`, `fecha`, `gol
 (10, 107, 73, '2018-06-20 13:00:00', NULL, NULL, NULL, NULL, 1, 'B', 1),
 (11, 73, 140, '2018-06-25 13:00:00', NULL, NULL, NULL, NULL, 1, 'B', 1),
 (13, 107, 177, '2018-06-25 13:00:00', NULL, NULL, NULL, NULL, 1, 'B', 1),
-(14, 82, 16, '2018-06-16 05:00:00', NULL, NULL, NULL, NULL, 1, 'C', 1),
-(15, 173, 63, '2018-06-16 11:00:00', NULL, NULL, NULL, NULL, 1, 'C', 1),
+(14, 82, 16, '2018-06-16 05:00:00', 2, 1, NULL, NULL, 1, 'C', 3),
+(15, 173, 63, '2018-06-16 11:00:00', 0, 1, NULL, NULL, 1, 'C', 3),
 (16, 82, 173, '2018-06-21 10:00:00', NULL, NULL, NULL, NULL, 1, 'C', 1),
 (17, 63, 16, '2018-06-21 07:00:00', NULL, NULL, NULL, NULL, 1, 'C', 1),
 (18, 16, 173, '2018-06-26 09:00:00', NULL, NULL, NULL, NULL, 1, 'C', 1),
 (19, 63, 82, '2018-06-26 09:00:00', NULL, NULL, NULL, NULL, 1, 'C', 1),
-(20, 13, 110, '2018-06-16 08:00:00', NULL, NULL, NULL, NULL, 1, 'D', 1),
-(21, 61, 159, '2018-06-16 14:00:00', NULL, NULL, NULL, NULL, 1, 'D', 1),
+(20, 13, 110, '2018-06-16 08:00:00', 1, 1, NULL, NULL, 1, 'D', 3),
+(21, 61, 159, '2018-06-16 14:00:00', NULL, NULL, NULL, NULL, 1, 'D', 2),
 (22, 13, 61, '2018-06-21 13:00:00', NULL, NULL, NULL, NULL, 1, 'D', 1),
 (23, 159, 110, '2018-06-22 10:00:00', NULL, NULL, NULL, NULL, 1, 'D', 1),
 (24, 110, 61, '2018-06-26 13:00:00', NULL, NULL, NULL, NULL, 1, 'D', 1),
