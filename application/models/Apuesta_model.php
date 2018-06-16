@@ -157,29 +157,33 @@
                 return null;
             }
         }
-        public static function getTodosPorApostador( Apostador_model $apostadorObj = null, $estado = null){
+
+        public static function getApuestasIniciadasPorApostador( Apostador_model $apostadorObj = null, $estadoApuesta = null, $limite = 5, $ordenHoraPartido = null, $estadoPartido = null ){
             // Obtener instancia de CI para manejo de base
             $instanciaCI =& get_instance();
 
             if( !is_null( $apostadorObj ) ){
-                $pronosticosObj = Pronostico_model::getTodosPorApostador( $apostadorObj, $estado );
-
                 $apuestasDB = null;
-                $instanciaCI->db->select("a.id");
+                $instanciaCI->db->select("a.*");
                 $instanciaCI->db->from('apuesta AS a');
-                if ( $estado != null ) {
-                    $instanciaCI->db->where('a.estado', intval($estado));
+                $instanciaCI->db->join("pronostico as p", "p.id = a.id_pronostico_apostador_1");
+                $instanciaCI->db->join("partido as pa", "pa.id = p.id_partido");
+                if ( $estadoApuesta != null ) {
+                    $instanciaCI->db->where('a.estado', intval($estadoApuesta));
                 }else{
                     $instanciaCI->db->where_in('a.estado', array(APUESTA_NO_EMPAREJADA, APUESTA_EMPAREJADA));
                 }
-                $arrPronosticosID = array();
-                foreach ($pronosticosObj as $pronosticoObj) {
-                    array_push($arrPronosticosID, $pronosticoObj->getID());
+                if ( !is_null( $apostadorObj ) ) {
+                    $instanciaCI->db->where('p.id_apostador', intval($apostadorObj->getID()));
                 }
-                if( count( $arrPronosticosID ) > 0){
-                    $instanciaCI->db->where_in('a.id_pronostico_apostador_1', $arrPronosticosID);
+                if ( $limite !== null ) {
+                    $instanciaCI->db->limit( $limite );
                 }
-                $instanciaCI->db->order_by('a.fecha', 'DESC');
+                if ( !is_null( $ordenHoraPartido ) ) {
+                    $instanciaCI->db->order_by('pa.fecha', $ordenHoraPartido);
+                }else{
+                    $instanciaCI->db->order_by('pa.fecha', 'DESC');
+                }
                 $apuestasDB = $instanciaCI->db->get()->result_array();
 
                 $arrApuestasObj = array();
@@ -196,29 +200,38 @@
                 return null;
             }
         }
-        public static function getTodosPorApostadorSin( Apostador_model $apostadorObj = null, $estado = null){
+
+        public static function getApuestasIniciadasOtrosApostadores( Apostador_model $apostadorObj = null, $estadoApuesta = null, $limite = 5, $ordenHoraPartido = null, $estadoPartido = null ){
             // Obtener instancia de CI para manejo de base
             $instanciaCI =& get_instance();
 
             if( !is_null( $apostadorObj ) ){
-                $pronosticosObj = Pronostico_model::getTodosPorApostadorSin( $apostadorObj, $estado );
-
                 $apuestasDB = null;
-                $instanciaCI->db->select("a.id");
+                $instanciaCI->db->select("a.id, pa.estado");
                 $instanciaCI->db->from('apuesta AS a');
-                if ( $estado != null ) {
-                    $instanciaCI->db->where('a.estado', intval($estado));
+                $instanciaCI->db->join("pronostico as p", "p.id = a.id_pronostico_apostador_1");
+                $instanciaCI->db->join("partido as pa", "pa.id = p.id_partido");
+                if ( $estadoApuesta != null ) {
+                    $instanciaCI->db->where('a.estado', intval($estadoApuesta));
                 }else{
                     $instanciaCI->db->where_in('a.estado', array(APUESTA_NO_EMPAREJADA, APUESTA_EMPAREJADA));
                 }
-                $arrPronosticosID = array();
-                foreach ($pronosticosObj as $pronosticoObj) {
-                    array_push($arrPronosticosID, $pronosticoObj->getID());
+                if ( !is_null( $apostadorObj ) ) {
+                    $instanciaCI->db->where('p.id_apostador !=', intval($apostadorObj->getID()));
                 }
-                if( count( $arrPronosticosID ) > 0){
-                    $instanciaCI->db->where_in('a.id_pronostico_apostador_1', $arrPronosticosID);
+                if ( $estadoPartido != null ) {
+                    $instanciaCI->db->where('pa.estado', intval($estadoPartido));
+                }else{
+                    $instanciaCI->db->where_in('pa.estado', array(PARTIDO_POR_JUGAR, PARTIDO_JUGANDO, PARTIDO_FINALIZADO, PARTIDO_INACTIVO));
                 }
-                $instanciaCI->db->order_by('a.fecha', 'DESC');
+                if ( $limite !== null ) {
+                    $instanciaCI->db->limit( $limite );
+                }
+                if ( !is_null( $ordenHoraPartido ) ) {
+                    $instanciaCI->db->order_by('pa.fecha', $ordenHoraPartido);
+                }else{
+                    $instanciaCI->db->order_by('pa.fecha', 'DESC');
+                }
                 $apuestasDB = $instanciaCI->db->get()->result_array();
 
                 $arrApuestasObj = array();
@@ -235,6 +248,7 @@
                 return null;
             }
         }
+
         public static function getUltimos( $limite = 5, $estado = null ){
             // Obtener instancia de CI para manejo de base
             $instanciaCI =& get_instance();

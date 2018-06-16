@@ -156,7 +156,7 @@
 						<h2>
 							Mis apuestas iniciadas
 							<small>
-								<a href="" class="txt-amarillo txt-amarillo-hover">Ver todos</a>
+								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
 							</small>
 						</h2>
 						<div class="clearfix"></div>
@@ -190,7 +190,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach ($arrConsolidadoMisApuestas as $indiceApuesta => $apuesta): ?>
+									<?php foreach ($arrConsolidadoApuestas as $indiceApuesta => $apuesta): ?>
 										<?php $partidoObj = $apuesta["partidoObj"]; ?>
 										<tr class="info-partido">
 											<td class="text-center centrado-vertical">
@@ -219,7 +219,7 @@
 											</td>
 											<td class="text-center centrado-vertical">
 												<span class="txt-blanco">
-													<?php echo $apuesta["resultadoMioStr"]; ?>
+													<?php echo $apuesta["resultadoApostadorStr"]; ?>
 												</span>
 											</td>
 											<td class="text-center centrado-vertical">
@@ -243,11 +243,13 @@
 											<td class="text-center centrado-vertical">
 												<?php if ( !is_null( $apuesta["resultadoApuesta"] ) ): ?>
 													<?php if ( $apuesta["resultadoApuesta"] == RESULTADO_GANASTE ): ?>
-														<span class="label label-success txt-light">Has Ganado</span>
+														<span class="label label-success txt-light">Ganaste</span>
 													<?php elseif ( $apuesta["resultadoApuesta"] == RESULTADO_PERDISTE ): ?>
-														<span class="label label-danger txt-light">Has Perdido</span>
+														<span class="label label-danger txt-light">Perdiste</span>
+													<?php elseif ( $apuesta["resultadoApuesta"] == RESULTADO_DESIERTA ): ?>
+														<span class="label label-default txt-light">Nadie apostó</span>
 													<?php else: ?>
-														<span class="label label-default txt-light">Casa gana</span>
+														--
 													<?php endif ?>
 												<?php else: ?>
 													--
@@ -267,9 +269,9 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							Apuestas de otros
+							Apuestas abiertas
 							<small>
-								<a href="" class="txt-amarillo txt-amarillo-hover">Ver todos</a>
+								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
 							</small>
 						</h2>
 						<div class="clearfix"></div>
@@ -330,19 +332,37 @@
 												</span>
 											</td>
 											<td class="text-center centrado-vertical">
-												<div class="btn btn-negro btn-amarillo-hover">
-													Gana Local
-												</div>
+												<?php if ( $apuesta["resultadoRival"] == PRONOSTICO_GANA_LOCAL ): ?>
+													<span class="txt-blanco">
+														Gana Local
+													</span>
+												<?php else: ?>
+													<div class="btn btn-negro btn-amarillo-hover">
+														Gana Local
+													</div>
+												<?php endif ?>
 											</td>
 											<td class="text-center centrado-vertical">
-												<div class="btn btn-negro btn-amarillo-hover">
-													Empate
-												</div>
+												<?php if ( $apuesta["resultadoRival"] == PRONOSTICO_EMPATE ): ?>
+													<span class="txt-blanco">
+														Empate
+													</span>
+												<?php else: ?>
+													<div class="btn btn-negro btn-amarillo-hover">
+														Empate
+													</div>
+												<?php endif ?>
 											</td>
 											<td class="text-center centrado-vertical">
-												<div class="btn btn-negro btn-amarillo-hover">
-													Gana Visitante
-												</div>
+												<?php if ( $apuesta["resultadoRival"] == PRONOSTICO_GANA_VISITANTE ): ?>
+													<span class="txt-blanco">
+														Gana Visitante
+													</span>
+												<?php else: ?>
+													<div class="btn btn-negro btn-amarillo-hover">
+														Gana Visitante
+													</div>
+												<?php endif ?>
 											</td>
 										</tr>
 									<?php endforeach ?>
