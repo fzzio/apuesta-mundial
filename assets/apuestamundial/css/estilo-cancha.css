@@ -545,3 +545,7 @@ span.tag{
 .pt-8{
 	padding-top: 8px;
 }
+#contenedor-error-crear,
+#contenedor-error-unir{
+	display: none;
+}

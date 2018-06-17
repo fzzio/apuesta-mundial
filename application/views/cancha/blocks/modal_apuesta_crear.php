@@ -84,8 +84,16 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<p class="txt-blanco text-center">
-									<small>El costo por apostar en esta fase es de <span class="txt-amarillo" id="apuesta-partido-costo"></span></small>
+									<small>
+										Costo adicional por apuesta: <span class="txt-amarillo" id="apuesta-partido-costo"></span>
+									</small>
 								</p>
+							</div>
+						</div>
+						<div class="row" id="contenedor-error-crear">
+							<div class="col-xs-12">
+								<div class="alert alert-danger" role="alert" id="apuesta-mensaje-error">
+								</div>
 							</div>
 						</div>
 					</div>

@@ -663,6 +663,8 @@ function modalCrearApuesta(partido){
 				$("#apuesta-pronostico-ganalocal").text("Gana " + respuesta.data.partidoPaisLocal);
 				$("#apuesta-pronostico-ganavisitante").text("Gana " + respuesta.data.partidoPaisVisitante);
 				$("#apuesta-partido-costo").text("$ " + respuesta.data.partidoCostoApuesta);
+				$("#apuesta-mensaje-error").text("");
+				$("#contenedor-error-crear").hide();
 				$("#modal-crear-apuesta").modal('show');
 			}
 		}, 
@@ -722,6 +724,8 @@ function modalUnirApuesta(apuesta, pronostico){
 				$("#apuesta-unir-id").val(respuesta.data.apuestaID);
 				$("#apuesta-unir-pronostico").val(pronostico);
 				$("#apuesta-unir-partido-costo").text("$ " + respuesta.data.partidoCostoApuesta);
+				$("#apuesta-unir-mensaje-error").text("");
+				$("#contenedor-error-unir").hide();
 				$("#modal-unir-apuesta").modal('show');
 			}
 		}, 
@@ -748,8 +752,15 @@ function initFormularios(){
 			dataType: "json",
 			success: function (respuesta) {
 				if(respuesta.codigo == 1){
+					$("#contenedor-error-crear").hide();
 					$("#modal-crear-apuesta").modal('hide');
 					window.location.href = js_site_url('cancha/index');
+				}else if(respuesta.codigo == 0){
+					$("#apuesta-mensaje-error").text(respuesta.mensaje);
+					$("#contenedor-error-crear").show();
+				}else{
+					$("#apuesta-mensaje-error").text('Tenemos problemas técnicos, reintente en un momento.');
+					$("#contenedor-error-crear").show();
 				}
 			}, 
 			error: function (error) {
@@ -775,6 +786,12 @@ function initFormularios(){
 				if(respuesta.codigo == 1){
 					$("#modal-unir-apuesta").modal('hide');
 					window.location.href = js_site_url('cancha/index');
+				}else if(respuesta.codigo == 0){
+					$("#apuesta-unir-mensaje-error").text(respuesta.mensaje);
+					$("#contenedor-error-unir").show();
+				}else{
+					$("#apuesta-unir-mensaje-error").text('Tenemos problemas técnicos, reintente en un momento.');
+					$("#contenedor-error-unir").show();
 				}
 			}, 
 			error: function (error) {

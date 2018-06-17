@@ -436,7 +436,7 @@ class Cancha extends CI_Controller {
 					$resultado = array(
 				    	'codigo' => 0, 
 				    	'fecha' => date('Y-m-d H:i:s'), 
-				    	'mensaje' => "Error: El valor disponible es menor al monto de la apuesta. Por favor recargue saldo."
+				    	'mensaje' => "Error: El saldo Disponible ($ " . number_format( $apostadorObj->getValorDisponible(), 2) . ") es menor al Monto de la apuesta ($ " . number_format( ( $apuestaMonto + $partidoObj->getValorPartido() )  , 2) . "). Por favor recargue saldo."
 				    );
 				}
 
@@ -509,7 +509,7 @@ class Cancha extends CI_Controller {
 					$resultado = array(
 				    	'codigo' => 0, 
 				    	'fecha' => date('Y-m-d H:i:s'), 
-				    	'mensaje' => "Error: El valor disponible es menor al monto de la apuesta. Por favor recargue saldo."
+				    	'mensaje' => "Error: El saldo Disponible ($ " . number_format( $apostadorObj->getValorDisponible(), 2) . ") es menor al Monto de la apuesta ($ " . number_format( ( $apuestaObj->getMonto() + $apuestaObj->getPronosticoApostador1()->getPartido()->getValorPartido() )  , 2) . "). Por favor recargue saldo."
 				    );
 				}
 
