@@ -70,7 +70,8 @@
 								</div>
 								<div class="form-group">
 									<label class="control-label col-md-4 col-sm-4 col-xs-12 txt-blanco" for="apuesta-monto">
-										Monto $:
+										Monto: <br />
+										<small class="txt-light">(Disponible $ <?php echo number_format($saldoDisponible, 2); ?>)</small>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input type="text" name="apuesta-monto" value="" id="apuesta-monto" class="form-control col-md-7 col-xs-12" placeholder="1.00" required>
@@ -78,6 +79,13 @@
 								</div>
 								<input type="hidden" id="apuesta-apostador" name="apuesta-apostador" value="<?php echo $this->session->userdata('id'); ?>" />
 								<input type="hidden" id="apuesta-partido" name="apuesta-partido" value="" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<p class="txt-blanco text-center">
+									<small>El costo por apostar en esta fase es de <span class="txt-amarillo" id="apuesta-partido-costo"></span></small>
+								</p>
 							</div>
 						</div>
 					</div>

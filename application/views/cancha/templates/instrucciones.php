@@ -43,7 +43,10 @@
 									</h3>
 									<ul class="txt-blanco">
 										<li>
-											El costo por apostar en cada partido es de <span class="txt-amarillo txt-negrita">$ 0.10</span> que se descontarán de su saldo.
+											El costo por apostar en cada partido es de 
+											<span class="txt-amarillo txt-negrita">
+												$ <?php echo number_format( COSTO_APUESTA_FASE_GRUPOS, 2); ?>
+											</span> que se descontarán de su saldo.
 										</li>
 										<li>
 											El <span class="txt-amarillo txt-negrita">monto</span> de la apuesta lo decide la persona que abre la mesa
@@ -67,16 +70,29 @@
 											El costo por apostar en estos partidos son:
 											<ul>
 												<li>
-													<span class="txt-amarillo txt-negrita">$ 0.20</span> Octavos de Final
+													<span class="txt-amarillo txt-negrita">
+														$ <?php echo number_format( COSTO_APUESTA_FASE_OCTAVOS, 2); ?>
+													</span> Octavos de Final
 												</li>
 												<li>
-													<span class="txt-amarillo txt-negrita">$ 0.30</span> Cuartos de Final
+													<span class="txt-amarillo txt-negrita">
+														$ <?php echo number_format( COSTO_APUESTA_FASE_CUARTOS, 2); ?>
+													</span> Cuartos de Final
 												</li>
 												<li>
-													<span class="txt-amarillo txt-negrita">$ 0.40</span> Semifinal y Tercer Puesto
+													<span class="txt-amarillo txt-negrita">
+														$ <?php echo number_format( COSTO_APUESTA_FASE_SEMIFINAL, 2); ?>
+													</span> Semifinal
 												</li>
 												<li>
-													<span class="txt-amarillo txt-negrita">$ 0.50</span> Final
+													<span class="txt-amarillo txt-negrita">
+														$ <?php echo number_format( COSTO_APUESTA_FASE_TERCERO, 2); ?>
+													</span> Tercer Puesto
+												</li>
+												<li>
+													<span class="txt-amarillo txt-negrita">
+														$ <?php echo number_format( COSTO_APUESTA_FASE_FINAL, 2); ?>
+													</span> Final
 												</li>
 											</ul>
 										</li>

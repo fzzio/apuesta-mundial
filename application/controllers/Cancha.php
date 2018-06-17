@@ -522,6 +522,30 @@ class Cancha extends CI_Controller {
 			$partidoObj = Partido_model::getPartidoPorID( $this->input->post( 'partido' ) );
 			if ( $partidoObj !== null ) {
 				$fechaHoraPartido = DateTime::createFromFormat('Y-m-d H:i:s', $partidoObj->getFecha());
+				$partidoCostoApuesta = 0.10;
+				switch ( intval( $partidoObj->getFase() ) ) {
+					case FASE_GRUPOS:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_GRUPOS;
+						break;
+					case FASE_OCTAVOS:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_OCTAVOS;
+						break;
+					case FASE_CUARTOS:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_CUARTOS;
+						break;
+					case FASE_SEMIFINAL:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_SEMIFINAL;
+						break;
+					case FASE_TERCERO:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_TERCERO;
+						break;
+					case FASE_FINAL:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_FINAL;
+						break;
+					default:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_GRUPOS;
+						break;
+				}
 				$resultado = array(
 					'codigo' => 1, 
 					'fecha' => date('Y-m-d H:i:s'), 
@@ -535,6 +559,8 @@ class Cancha extends CI_Controller {
 						"partidoFechaMes" => $fechaHoraPartido->format('M'),
 						"partidoFechaDia" => $fechaHoraPartido->format('d'),
 						"partidoFechaHora" => $fechaHoraPartido->format('H:i'),
+						"partidoFase" => $partidoObj->getFase(),
+						"partidoCostoApuesta" => number_format( $partidoCostoApuesta, 2),
 					)
 				);	
 			}else{

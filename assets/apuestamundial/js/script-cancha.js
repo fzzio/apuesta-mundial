@@ -662,6 +662,7 @@ function modalCrearApuesta(partido){
 				$("#apuesta-partido-hora").text(respuesta.data.partidoFechaHora);
 				$("#apuesta-pronostico-ganalocal").text("Gana " + respuesta.data.partidoPaisLocal);
 				$("#apuesta-pronostico-ganavisitante").text("Gana " + respuesta.data.partidoPaisVisitante);
+				$("#apuesta-partido-costo").text("$ " + respuesta.data.partidoCostoApuesta);
 
 				$("#modal-crear-apuesta").modal('show');
 			}
