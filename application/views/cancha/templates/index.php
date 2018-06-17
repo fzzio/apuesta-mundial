@@ -17,7 +17,7 @@
 					<div class="icon"><i class="fa fa-check"></i></div>
 					<div class="count"><?php echo $numeroAciertos; ?></div>
 					<h3>Acertadas</h3>
-					<p>Tus pronósticos correctos</p>
+					<p>Tus apuestas correctos</p>
   				</div>
   			</div>
   			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12 hidden-xs">

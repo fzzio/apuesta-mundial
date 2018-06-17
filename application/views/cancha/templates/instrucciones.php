@@ -55,7 +55,7 @@
 											Se puede apostar a 3 posibles resultados: <span class="txt-amarillo txt-negrita">Gana Local</span>, <span class="txt-amarillo txt-negrita">Gana Visitante</span> y <span class="txt-amarillo txt-negrita">Empate</span>.
 										</li>
 										<li>
-											Si el partido empieza y <span class="txt-amarillo txt-negrita">no se ha emparejado</span> con otro apostador, sólo se cuenta el valor de haber abierto la mesa.
+											Si el partido empieza y <span class="txt-amarillo txt-negrita">no se ha emparejado</span> con otro apostador, sólo se descuenta el valor de haber creado la apuesta.
 										</li>
 									</ul>
 								</div>
