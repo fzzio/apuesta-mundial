@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-06-2018 a las 14:54:47
+-- Tiempo de generación: 17-06-2018 a las 15:05:55
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 5.6.30
 
@@ -48,7 +48,9 @@ INSERT INTO `apostador` (`id`, `cedula`, `password`, `nombre`, `email`, `celular
 (1, '0922159363', 'd838a873bbbffc09aee45a2510759f5f', 'Fabricio Diógenes Orrala Parrales', 'fzzio007@gmail.com', '0997213150', 10, '2018-06-13 04:03:18', 1),
 (2, '0917000093', '491e15e28caaf37cb40d002a8066c1f1', 'Félix Ricardo Chávez Orrala', 'ferichav@gmail.com', '0983862266', 10, '2018-06-13 04:20:36', 1),
 (3, '0915910400', '1e5eeb40a3fce716b244599862fd2200', 'Dalthon  Mauricio Vera Orrala', 'dalve29@gmail.com', '0993661296', 10, '2018-06-13 04:20:36', 1),
-(4, '0924682461', '0066fdca207700676998c29bf2b68f4d', 'RONALD ENRIQUE BORBOR MALAVE', 'ron_odonto@hotmail.com', '0987297036', 10, '2018-06-15 10:00:38', 1);
+(4, '0924682461', '0066fdca207700676998c29bf2b68f4d', 'RONALD ENRIQUE BORBOR MALAVE', 'ron_odonto@hotmail.com', '0987297036', 10, '2018-06-15 10:00:38', 1),
+(5, '0918671017', '0384f9417161ce3c5c826b1c15d0a751', 'Jhonny Javier Parrales Ramírez', 'johnnyjavier2040@gmail.com', '0992748925', 10, '2018-06-17 12:57:52', 1),
+(6, '0920471588', 'a28648e6793cefd224bbd96f72189d2c', 'Denisse Adriana Ochoa Cevallos', 'denochoa@hotmail.com', '0985760243', 10, '2018-06-17 13:35:00', 1);
 
 -- --------------------------------------------------------
 
@@ -61,7 +63,7 @@ CREATE TABLE `apuesta` (
   `id_pronostico_apostador_1` int(11) NOT NULL,
   `id_pronostico_apostador_2` int(11) DEFAULT NULL,
   `monto` float NOT NULL,
-  `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `estado` int(11) NOT NULL COMMENT '1 = Emparejada, 0 = Sin contrincante'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -76,7 +78,11 @@ INSERT INTO `apuesta` (`id`, `id_pronostico_apostador_1`, `id_pronostico_apostad
 (4, 4, NULL, 1, '2018-06-15 01:23:21', 0),
 (5, 5, NULL, 3, '2018-06-15 10:13:11', 0),
 (12, 8, 9, 1, '2018-06-15 10:29:56', 1),
-(13, 10, NULL, 2, '2018-06-15 10:34:01', 0);
+(13, 10, NULL, 2, '2018-06-15 10:34:01', 0),
+(14, 12, NULL, 1, '2018-06-17 09:08:43', 0),
+(15, 13, NULL, 2, '2018-06-17 09:31:11', 0),
+(16, 14, 15, 1, '2018-06-17 12:58:57', 1),
+(17, 16, 17, 5, '2018-06-17 13:01:59', 1);
 
 -- --------------------------------------------------------
 
@@ -383,18 +389,18 @@ INSERT INTO `partido` (`id`, `id_pais_local`, `id_pais_visitante`, `fecha`, `gol
 (18, 16, 173, '2018-06-26 09:00:00', NULL, NULL, NULL, NULL, 1, 'C', 1),
 (19, 63, 82, '2018-06-26 09:00:00', NULL, NULL, NULL, NULL, 1, 'C', 1),
 (20, 13, 110, '2018-06-16 08:00:00', 1, 1, NULL, NULL, 1, 'D', 3),
-(21, 61, 159, '2018-06-16 14:00:00', NULL, NULL, NULL, NULL, 1, 'D', 2),
+(21, 61, 159, '2018-06-16 14:00:00', 2, 0, NULL, NULL, 1, 'D', 3),
 (22, 13, 61, '2018-06-21 13:00:00', NULL, NULL, NULL, NULL, 1, 'D', 1),
 (23, 159, 110, '2018-06-22 10:00:00', NULL, NULL, NULL, NULL, 1, 'D', 1),
 (24, 110, 61, '2018-06-26 13:00:00', NULL, NULL, NULL, NULL, 1, 'D', 1),
 (25, 159, 13, '2018-06-26 13:00:00', NULL, NULL, NULL, NULL, 1, 'D', 1),
-(26, 60, 242, '2018-06-17 07:00:00', NULL, NULL, NULL, NULL, 1, 'E', 1),
-(27, 33, 208, '2018-06-17 13:00:00', NULL, NULL, NULL, NULL, 1, 'E', 1),
+(26, 60, 242, '2018-06-17 07:00:00', 0, 1, NULL, NULL, 1, 'E', 3),
+(27, 33, 208, '2018-06-17 13:00:00', NULL, NULL, NULL, NULL, 1, 'E', 2),
 (28, 33, 60, '2018-06-22 07:00:00', NULL, NULL, NULL, NULL, 1, 'E', 1),
 (29, 242, 208, '2018-06-22 13:00:00', NULL, NULL, NULL, NULL, 1, 'E', 1),
 (30, 208, 60, '2018-06-27 13:00:00', NULL, NULL, NULL, NULL, 1, 'E', 1),
 (31, 242, 33, '2018-06-27 13:00:00', NULL, NULL, NULL, NULL, 1, 'E', 1),
-(32, 4, 146, '2018-06-17 10:00:00', NULL, NULL, NULL, NULL, 1, 'F', 1),
+(32, 4, 146, '2018-06-17 10:00:00', 0, 1, NULL, NULL, 1, 'F', 3),
 (33, 207, 58, '2018-06-18 07:00:00', NULL, NULL, NULL, NULL, 1, 'F', 1),
 (34, 4, 207, '2018-06-23 13:00:00', NULL, NULL, NULL, NULL, 1, 'F', 1),
 (35, 58, 146, '2018-06-23 10:00:00', NULL, NULL, NULL, NULL, 1, 'F', 1),
@@ -443,7 +449,13 @@ INSERT INTO `pronostico` (`id`, `id_partido`, `id_apostador`, `resultado`, `fech
 (8, 7, 1, 1, '2018-06-15 10:28:42', 1),
 (9, 7, 2, 2, '2018-06-15 10:29:22', 1),
 (10, 7, 3, 2, '2018-06-15 10:33:33', 1),
-(11, 9, 2, 2, '2018-06-15 22:35:06', 1);
+(11, 9, 2, 2, '2018-06-15 22:35:06', 1),
+(12, 32, 1, 2, '2018-06-17 09:08:43', 1),
+(13, 32, 2, 3, '2018-06-17 09:31:11', 1),
+(14, 27, 5, 1, '2018-06-17 12:58:57', 1),
+(15, 27, 2, 3, '2018-06-17 13:01:05', 1),
+(16, 27, 5, 1, '2018-06-17 13:01:59', 1),
+(17, 27, 1, 2, '2018-06-17 13:07:06', 1);
 
 -- --------------------------------------------------------
 
@@ -523,13 +535,13 @@ ALTER TABLE `super_administrador`
 -- AUTO_INCREMENT de la tabla `apostador`
 --
 ALTER TABLE `apostador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `apuesta`
 --
 ALTER TABLE `apuesta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
@@ -547,7 +559,7 @@ ALTER TABLE `partido`
 -- AUTO_INCREMENT de la tabla `pronostico`
 --
 ALTER TABLE `pronostico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `super_administrador`
