@@ -288,6 +288,34 @@
             }
         }
 
+        public function getValorPartido(){
+            $partidoCostoApuesta = COSTO_APUESTA_FASE_GRUPOS;
+            switch ( intval( $this->getFase() ) ) {
+                case FASE_GRUPOS:
+                    $partidoCostoApuesta = COSTO_APUESTA_FASE_GRUPOS;
+                    break;
+                case FASE_OCTAVOS:
+                    $partidoCostoApuesta = COSTO_APUESTA_FASE_OCTAVOS;
+                    break;
+                case FASE_CUARTOS:
+                    $partidoCostoApuesta = COSTO_APUESTA_FASE_CUARTOS;
+                    break;
+                case FASE_SEMIFINAL:
+                    $partidoCostoApuesta = COSTO_APUESTA_FASE_SEMIFINAL;
+                    break;
+                case FASE_TERCERO:
+                    $partidoCostoApuesta = COSTO_APUESTA_FASE_TERCERO;
+                    break;
+                case FASE_FINAL:
+                    $partidoCostoApuesta = COSTO_APUESTA_FASE_FINAL;
+                    break;
+                default:
+                    $partidoCostoApuesta = COSTO_APUESTA_FASE_GRUPOS;
+                    break;
+            }
+            return $partidoCostoApuesta;
+        }
+
         ///////////////////////////////////
         // Modificación de base de datos
         ///////////////////////////////////
