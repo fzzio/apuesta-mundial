@@ -465,7 +465,7 @@ class Cancha extends CI_Controller {
 			$apostadorObj = Apostador_model::getApostadorPorID( $this->input->post( 'apostador', TRUE ) );
 			$apuestaPronostico = $this->input->post( 'pronostico', TRUE );
 			if ( !is_null( $apuestaObj ) && !is_null( $apostadorObj ) && ( $apuestaPronostico != "" ) ) {
-				if ( $apostadorObj->getValorDisponible() > ($apuestaObj->getMonto() + $partidoObj->getValorPartido() ) ) {
+				if ( $apostadorObj->getValorDisponible() > ($apuestaObj->getMonto() + $apuestaObj->getPronosticoApostador1()->getPartido()->getValorPartido() ) ) {
 					try {
 						$this->db->trans_start();
 							$pronosticoObj = new Pronostico_model();
