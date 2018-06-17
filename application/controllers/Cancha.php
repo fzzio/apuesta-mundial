@@ -43,10 +43,11 @@ class Cancha extends CI_Controller {
 			
 			$dataContent['numeroJugados'] = count( Partido_model::getTodos(PARTIDO_FINALIZADO) );
 			$dataContent['numeroAciertos'] = $dataContent['apostadorObj']->getNumeroGanadas();
-			$saldoTotalAcumulado = $dataContent['apostadorObj']->getValorAculumadoGanado() - $dataContent['apostadorObj']->getValorAculumadoPerdido();
+
+			
+			$dataContent['saldoDisponible'] = $dataContent['apostadorObj']->getValorDisponible();
 			$dataContent['saldoBloqueado'] = $dataContent['apostadorObj']->getValorAculumadoBloqueado();
-			$dataContent['saldoDisponible'] = $dataContent['apostadorObj']->getMontoInicial() + $saldoTotalAcumulado - $this->obtenerGastoTotalPorApostar( $dataContent['apostadorObj'] ) - $dataContent['saldoBloqueado'];
-			$dataContent['saldoGanado'] = $dataContent['apostadorObj']->getMontoInicial() + $saldoTotalAcumulado - $this->obtenerGastoTotalPorApostar( $dataContent['apostadorObj'] );
+			$dataContent['saldoGanado'] = $dataContent['apostadorObj']->getValorAculumadoGanadoReal();
 
 			
 			//////////////////////////////////////////////////
@@ -387,49 +388,56 @@ class Cancha extends CI_Controller {
 			$apuestaMonto = $this->input->post( 'monto', TRUE );
 			$apuestaPronostico = $this->input->post( 'pronostico', TRUE );
 			if ( !is_null( $partidoObj ) && !is_null( $apostadorObj ) && ( $apuestaMonto != "" ) && ( $apuestaPronostico != "" ) ) {
-				try {
-					$this->db->trans_start();
-						$pronosticoObj = new Pronostico_model();
-						$pronosticoObj->setPartido( $partidoObj );
-						$pronosticoObj->setApostador( $apostadorObj );
-						$pronosticoObj->setResultado( $apuestaPronostico );
-						$pronosticoObj->setFecha( FECHA_HOY );
-						$pronosticoObj->setEstado( ESTADO_ACTIVO );
-						$idPronostico = $pronosticoObj->grabar( );
-						$pronosticoObj = Pronostico_model::getPronosticoPorID( $idPronostico );
+				if ( $apostadorObj->getValorDisponible() > ($apuestaMonto + $partidoObj->getValorApuesta() ) ) {
+					try {
+						$this->db->trans_start();
+							$pronosticoObj = new Pronostico_model();
+							$pronosticoObj->setPartido( $partidoObj );
+							$pronosticoObj->setApostador( $apostadorObj );
+							$pronosticoObj->setResultado( $apuestaPronostico );
+							$pronosticoObj->setFecha( FECHA_HOY );
+							$pronosticoObj->setEstado( ESTADO_ACTIVO );
+							$idPronostico = $pronosticoObj->grabar( );
+							$pronosticoObj = Pronostico_model::getPronosticoPorID( $idPronostico );
 
-						$apuestaObj = new Apuesta_model();
-						$apuestaObj->setPronosticoApostador1( $pronosticoObj );
-						$apuestaObj->setPronosticoApostador2( null );
-						$apuestaObj->setMonto( $apuestaMonto );
-						$apuestaObj->setFecha( FECHA_HOY );
-						$apuestaObj->setEstado( APUESTA_NO_EMPAREJADA );
-						$idApuesta = $apuestaObj->grabar( );
-					$this->db->trans_complete();
+							$apuestaObj = new Apuesta_model();
+							$apuestaObj->setPronosticoApostador1( $pronosticoObj );
+							$apuestaObj->setPronosticoApostador2( null );
+							$apuestaObj->setMonto( $apuestaMonto );
+							$apuestaObj->setFecha( FECHA_HOY );
+							$apuestaObj->setEstado( APUESTA_NO_EMPAREJADA );
+							$idApuesta = $apuestaObj->grabar( );
+						$this->db->trans_complete();
 
-					if ($this->db->trans_status() === FALSE){
-					    $this->db->trans_rollback();
-					    $resultado = array(
-					    	'codigo' => 0, 
-					    	'fecha' => date('Y-m-d H:i:s'), 
-					    	'mensaje' => "Error al insertar datos."
-					    );
-					}else{
-					    $this->db->trans_commit();
+						if ($this->db->trans_status() === FALSE){
+						    $this->db->trans_rollback();
+						    $resultado = array(
+						    	'codigo' => 0, 
+						    	'fecha' => date('Y-m-d H:i:s'), 
+						    	'mensaje' => "Error al insertar datos."
+						    );
+						}else{
+						    $this->db->trans_commit();
+							$resultado = array(
+								'codigo' => 1, 
+								'fecha' => date('Y-m-d H:i:s'), 
+								'mensaje' => "Se registró apuesta ID: " . $idApuesta,
+								'data' => array()
+							);	
+						}
+					} catch (Exception $e) {
 						$resultado = array(
-							'codigo' => 1, 
+							'codigo' => 0, 
 							'fecha' => date('Y-m-d H:i:s'), 
-							'mensaje' => "Se registró apuesta ID: " . $idApuesta,
-							'data' => array()
-						);	
+							'mensaje' => $e->getMessage() 
+						);
 					}
-					
-				} catch (Exception $e) {
+				}else{
 					$resultado = array(
-						'codigo' => 0, 
-						'fecha' => date('Y-m-d H:i:s'), 
-						'mensaje' => $e->getMessage() 
-					);
+				    	'codigo' => 0, 
+				    	'fecha' => date('Y-m-d H:i:s'), 
+				    	'mensaje' => "Error: El valor disponible es menor al monto de la apuesta. Por favor recargue saldo."
+				    );
 				}
 
 			}else{
@@ -649,20 +657,5 @@ class Cancha extends CI_Controller {
 		}
 		header('Content-Type: application/json');
 		echo json_encode( $resultado );
-	}
-
-	public function obtenerGastoTotalPorApostar( Apostador_model $apostadorObj ){
-		if ( !is_null( $apostadorObj ) ) {
-			$totalApuestasGrupos = $apostadorObj->getNumeroApuestasPorFase( FASE_GRUPOS ) * COSTO_APUESTA_FASE_GRUPOS;
-			$totalApuestasOctavos = $apostadorObj->getNumeroApuestasPorFase( FASE_OCTAVOS ) * COSTO_APUESTA_FASE_OCTAVOS;
-			$totalApuestasCuartos = $apostadorObj->getNumeroApuestasPorFase( FASE_CUARTOS ) * COSTO_APUESTA_FASE_CUARTOS;
-			$totalApuestasSemifinal = $apostadorObj->getNumeroApuestasPorFase( FASE_SEMIFINAL ) * COSTO_APUESTA_FASE_SEMIFINAL;
-			$totalApuestasTercero = $apostadorObj->getNumeroApuestasPorFase( FASE_TERCERO ) * COSTO_APUESTA_FASE_TERCERO;
-			$totalApuestasFinal = $apostadorObj->getNumeroApuestasPorFase( FASE_FINAL ) * COSTO_APUESTA_FASE_FINAL;
-
-			return $totalApuestasGrupos + $totalApuestasOctavos + $totalApuestasCuartos + $totalApuestasSemifinal + $totalApuestasTercero + $totalApuestasFinal;
-		}else{
-			return 0;
-		}
 	}
 }

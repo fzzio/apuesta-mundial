@@ -388,6 +388,37 @@
             }
         }
 
+        public function getGastoTotalPorApostar(){
+            if( $this->getID() ){
+                $totalApuestasGrupos = $this->getNumeroApuestasPorFase( FASE_GRUPOS ) * COSTO_APUESTA_FASE_GRUPOS;
+                $totalApuestasOctavos = $this->getNumeroApuestasPorFase( FASE_OCTAVOS ) * COSTO_APUESTA_FASE_OCTAVOS;
+                $totalApuestasCuartos = $this->getNumeroApuestasPorFase( FASE_CUARTOS ) * COSTO_APUESTA_FASE_CUARTOS;
+                $totalApuestasSemifinal = $this->getNumeroApuestasPorFase( FASE_SEMIFINAL ) * COSTO_APUESTA_FASE_SEMIFINAL;
+                $totalApuestasTercero = $this->getNumeroApuestasPorFase( FASE_TERCERO ) * COSTO_APUESTA_FASE_TERCERO;
+                $totalApuestasFinal = $this->getNumeroApuestasPorFase( FASE_FINAL ) * COSTO_APUESTA_FASE_FINAL;
+
+                return $totalApuestasGrupos + $totalApuestasOctavos + $totalApuestasCuartos + $totalApuestasSemifinal + $totalApuestasTercero + $totalApuestasFinal;
+            }else{
+                return 0;
+            }
+        }
+
+        public function getValorAculumadoGanadoReal(){
+            if( $this->getID() ){
+                return $this->getMontoInicial() + $this->getValorAculumadoGanado() - $this->getValorAculumadoPerdido() - $this->getGastoTotalPorApostar();
+            }else{
+                return 0;
+            }
+        }
+
+        public function getValorDisponible(){
+            if( $this->getID() ){
+                return $this->getMontoInicial() + $this->getValorAculumadoGanado() - $this->getGastoTotalPorApostar() - $this->getValorAculumadoPerdido() - $this->getValorAculumadoBloqueado();
+            }else{
+                return 0;
+            }
+        }
+
         public function getNumeroGanadas(){
             if( $this->getID() ){
                 $numeroGanadasCreadas = 0;
