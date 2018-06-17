@@ -274,6 +274,20 @@
             }
         }
 
+        public function getResultadoFinal(){
+            if ( $this->getID() && $this->getEstado() == PARTIDO_FINALIZADO ) {
+                if ( ($this->getGolesLocal() - $this->getGolesVisitante() ) > 0) {
+                    return PRONOSTICO_GANA_LOCAL;
+                }elseif ( ($this->getGolesLocal() - $this->getGolesVisitante() ) < 0) {
+                    return PRONOSTICO_GANA_VISITANTE;
+                }else{
+                    return PRONOSTICO_EMPATE;
+                }
+            }else{
+                return PRONOSTICO_NO_DISPONIBLE;
+            }
+        }
+
         ///////////////////////////////////
         // Modificación de base de datos
         ///////////////////////////////////

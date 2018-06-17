@@ -326,6 +326,32 @@
             }
         }
 
+        public function getResultadoFinal(){
+            if ( $this->getID() ) {
+                if ( $this->getEstado() == APUESTA_EMPAREJADA ) {
+                    if ( $this->getPronosticoApostador1()->getPartido()->getEstado() == PARTIDO_FINALIZADO ) {
+                        if ( $this->getPronosticoApostador1()->getResultadoFinal() == RESULTADO_GANASTE ) {
+                            return RESULTADO_GANA_LOCAL;
+                        }elseif ( $this->getPronosticoApostador2()->getResultadoFinal() == RESULTADO_GANASTE ) {
+                            return RESULTADO_GANA_VISITANTE;
+                        }else{
+                            return RESULTADO_CASA_GANA;
+                        }
+                    }else{
+                        return RESULTADO_PENDIENTE;
+                    }
+                }else{
+                    if ( $this->getPronosticoApostador1()->getPartido()->getEstado() == PARTIDO_FINALIZADO ) {
+                        return RESULTADO_DESIERTA;
+                    }else{
+                        return RESULTADO_PENDIENTE;
+                    }
+                }
+            }else{
+                return RESULTADO_PENDIENTE;
+            }
+        }
+
         ///////////////////////////////////
         // Modificación de base de datos
         ///////////////////////////////////

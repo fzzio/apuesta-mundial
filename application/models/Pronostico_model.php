@@ -255,6 +255,19 @@
             }
         }
 
+
+        public function getResultadoFinal(){
+            if ( $this->getID() && $this->getPartido()->getEstado() == PARTIDO_FINALIZADO ) {
+                if( $this->getPartido()->getResultadoFinal() == $this->getResultado() ){
+                    return PRONOSTICO_ACIERTO;
+                }else{
+                    return PRONOSTICO_DESACIERTO;
+                }
+            }else{
+                return PRONOSTICO_NO_DISPONIBLE;
+            }
+        }
+
         ///////////////////////////////////
         // Modificación de base de datos
         ///////////////////////////////////

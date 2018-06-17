@@ -232,7 +232,7 @@
                 $this->db->where('pa.fase', intval($fase));
                 $numeroApuestasApostador = $this->db->count_all_results();
 
-                // Obtenemos el total de las que creo el apostador
+                // Obtenemos el total de las el apostador desafió a un rival
                 $this->db->select("a.id");
                 $this->db->from('apuesta AS a');
                 $this->db->join("pronostico as pr", "pr.id = a.id_pronostico_apostador_2");
