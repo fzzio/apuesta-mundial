@@ -248,6 +248,146 @@
             }
         }
 
+        public function getValorAculumadoGanado(){
+            if( $this->getID() ){
+                $totalGanadoCreado = 0;
+                $totalGanadoUnido = 0;
+
+                // Obtenemos el total de las que creo el apostador
+                $apuestasCreadasDB = null;
+                $this->db->select("ap.id");
+                $this->db->from('apuesta AS ap');
+                $this->db->join("pronostico as pr", "pr.id = ap.id_pronostico_apostador_1");
+                $this->db->join("partido as pa", "pa.id = pr.id_partido");
+                $this->db->where('ap.estado', APUESTA_EMPAREJADA);
+                $this->db->where('pr.id_apostador', intval( $this->getID() ));
+                $this->db->where('pa.estado', PARTIDO_FINALIZADO);
+                $apuestasCreadasDB = $this->db->get()->result_array();
+                if ( !is_null($apuestasCreadasDB) ) {
+                    foreach ($apuestasCreadasDB as $apuestaCreadaDB) {
+                        $apuestaCreadaObj = Apuesta_model::getApuestaPorID($apuestaCreadaDB["id"]);
+                        if ( $apuestaCreadaObj->getPronosticoApostador1()->getResultadoFinal() == PRONOSTICO_ACIERTO ) {
+                            $totalGanadoCreado += $apuestaCreadaObj->getMonto();
+                        }
+                    }
+                }
+
+                // Obtenemos el total de las el apostador desafió a un rival
+                $apuestasUnidasDB = null;
+                $this->db->select("ap.id");
+                $this->db->from('apuesta AS ap');
+                $this->db->join("pronostico as pr", "pr.id = ap.id_pronostico_apostador_2");
+                $this->db->join("partido as pa", "pa.id = pr.id_partido");
+                $this->db->where('ap.estado', APUESTA_EMPAREJADA);
+                $this->db->where('pr.id_apostador', intval( $this->getID() ));
+                $this->db->where('pa.estado', PARTIDO_FINALIZADO);
+                $apuestasUnidasDB = $this->db->get()->result_array();
+                if ( !is_null($apuestasUnidasDB) ) {
+                    foreach ($apuestasUnidasDB as $apuestaUnidaDB) {
+                        $apuestaUnidaObj = Apuesta_model::getApuestaPorID($apuestaUnidaDB["id"]);
+                        if ( $apuestaUnidaObj->getPronosticoApostador2()->getResultadoFinal() == PRONOSTICO_ACIERTO ) {
+                            $totalGanadoUnido += $apuestaUnidaObj->getMonto();
+                        }
+                    }
+                }
+                return $totalGanadoCreado + $totalGanadoUnido;
+            }else{
+                return 0;
+            }
+        }
+
+        public function getValorAculumadoPerdido(){
+            if( $this->getID() ){
+                $totalPerdidoCreado = 0;
+                $totalPerdidoUnido = 0;
+
+                // Obtenemos el total de las que creo el apostador
+                $apuestasCreadasDB = null;
+                $this->db->select("ap.id");
+                $this->db->from('apuesta AS ap');
+                $this->db->join("pronostico as pr", "pr.id = ap.id_pronostico_apostador_1");
+                $this->db->join("partido as pa", "pa.id = pr.id_partido");
+                $this->db->where('ap.estado', APUESTA_EMPAREJADA);
+                $this->db->where('pr.id_apostador', intval( $this->getID() ));
+                $this->db->where('pa.estado', PARTIDO_FINALIZADO);
+                $apuestasCreadasDB = $this->db->get()->result_array();
+                if ( !is_null($apuestasCreadasDB) ) {
+                    foreach ($apuestasCreadasDB as $apuestaCreadaDB) {
+                        $apuestaCreadaObj = Apuesta_model::getApuestaPorID($apuestaCreadaDB["id"]);
+                        if ( $apuestaCreadaObj->getPronosticoApostador1()->getResultadoFinal() == PRONOSTICO_DESACIERTO ) {
+                            $totalPerdidoCreado += $apuestaCreadaObj->getMonto();
+                        }
+                    }
+                }
+
+                // Obtenemos el total de las el apostador desafió a un rival
+                $apuestasUnidasDB = null;
+                $this->db->select("ap.id");
+                $this->db->from('apuesta AS ap');
+                $this->db->join("pronostico as pr", "pr.id = ap.id_pronostico_apostador_2");
+                $this->db->join("partido as pa", "pa.id = pr.id_partido");
+                $this->db->where('ap.estado', APUESTA_EMPAREJADA);
+                $this->db->where('pr.id_apostador', intval( $this->getID() ));
+                $this->db->where('pa.estado', PARTIDO_FINALIZADO);
+                $apuestasUnidasDB = $this->db->get()->result_array();
+                if ( !is_null($apuestasUnidasDB) ) {
+                    foreach ($apuestasUnidasDB as $apuestaUnidaDB) {
+                        $apuestaUnidaObj = Apuesta_model::getApuestaPorID($apuestaUnidaDB["id"]);
+                        if ( $apuestaUnidaObj->getPronosticoApostador2()->getResultadoFinal() == PRONOSTICO_DESACIERTO ) {
+                            $totalPerdidoUnido += $apuestaUnidaObj->getMonto();
+                        }
+                    }
+                }
+                return $totalPerdidoCreado + $totalPerdidoUnido;
+            }else{
+                return 0;
+            }
+        }
+
+        public function getValorAculumadoBloqueado(){
+            if( $this->getID() ){
+                $totalBloqueadoCreado = 0;
+                $totalBloqueadoUnido = 0;
+
+                // Obtenemos el total de las que creo el apostador
+                $apuestasCreadasDB = null;
+                $this->db->select("ap.id");
+                $this->db->from('apuesta AS ap');
+                $this->db->join("pronostico as pr", "pr.id = ap.id_pronostico_apostador_1");
+                $this->db->join("partido as pa", "pa.id = pr.id_partido");
+                $this->db->where_in('ap.estado', array(APUESTA_EMPAREJADA, APUESTA_NO_EMPAREJADA));
+                $this->db->where('pr.id_apostador', intval( $this->getID() ));
+                $this->db->where_in('pa.estado', array(PARTIDO_POR_JUGAR, PARTIDO_JUGANDO));
+                $apuestasCreadasDB = $this->db->get()->result_array();
+                if ( !is_null($apuestasCreadasDB) ) {
+                    foreach ($apuestasCreadasDB as $apuestaCreadaDB) {
+                        $apuestaCreadaObj = Apuesta_model::getApuestaPorID($apuestaCreadaDB["id"]);
+                        $totalBloqueadoCreado += $apuestaCreadaObj->getMonto();
+                    }
+                }
+
+                // Obtenemos el total de las el apostador desafió a un rival
+                $apuestasUnidasDB = null;
+                $this->db->select("ap.id");
+                $this->db->from('apuesta AS ap');
+                $this->db->join("pronostico as pr", "pr.id = ap.id_pronostico_apostador_2");
+                $this->db->join("partido as pa", "pa.id = pr.id_partido");
+                $this->db->where_in('ap.estado', array(APUESTA_EMPAREJADA, APUESTA_NO_EMPAREJADA));
+                $this->db->where('pr.id_apostador', intval( $this->getID() ));
+                $this->db->where_in('pa.estado', array(PARTIDO_POR_JUGAR, PARTIDO_JUGANDO));
+                $apuestasUnidasDB = $this->db->get()->result_array();
+                if ( !is_null($apuestasUnidasDB) ) {
+                    foreach ($apuestasUnidasDB as $apuestaUnidaDB) {
+                        $apuestaUnidaObj = Apuesta_model::getApuestaPorID($apuestaUnidaDB["id"]);
+                        $totalBloqueadoUnido += $apuestaUnidaObj->getMonto();
+                    }
+                }
+                return $totalBloqueadoCreado + $totalBloqueadoUnido;
+            }else{
+                return 0;
+            }
+        }
+
         ///////////////////////////////////
         // Modificación de base de datos
         ///////////////////////////////////

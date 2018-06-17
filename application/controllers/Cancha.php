@@ -43,7 +43,10 @@ class Cancha extends CI_Controller {
 			$totalGanado = 0;
 			
 			$dataContent['numeroAciertos'] = 0;
-			$dataContent['saldoApuesta'] = $dataContent['apostadorObj']->getMontoInicial() - $this->obtenerCostoTotalApuestas( $dataContent['apostadorObj'] );
+			$saldoTotalAcumulado = $dataContent['apostadorObj']->getValorAculumadoGanado() - $dataContent['apostadorObj']->getValorAculumadoPerdido();
+			$dataContent['saldoBloqueado'] = $dataContent['apostadorObj']->getValorAculumadoBloqueado();
+			$dataContent['saldoDisponible'] = $dataContent['apostadorObj']->getMontoInicial() + $saldoTotalAcumulado - $this->obtenerGastoTotalPorApostar( $dataContent['apostadorObj'] ) - $dataContent['saldoBloqueado'];
+			$dataContent['saldoGanado'] = $dataContent['apostadorObj']->getMontoInicial() + $saldoTotalAcumulado - $this->obtenerGastoTotalPorApostar( $dataContent['apostadorObj'] );
 
 			
 			//////////////////////////////////////////////////
@@ -597,7 +600,7 @@ class Cancha extends CI_Controller {
 		echo json_encode( $resultado );
 	}
 
-	public function obtenerCostoTotalApuestas( Apostador_model $apostadorObj ){
+	public function obtenerGastoTotalPorApostar( Apostador_model $apostadorObj ){
 		if ( !is_null( $apostadorObj ) ) {
 			$totalApuestasGrupos = $apostadorObj->getNumeroApuestasPorFase( FASE_GRUPOS ) * COSTO_APUESTA_FASE_GRUPOS;
 			$totalApuestasOctavos = $apostadorObj->getNumeroApuestasPorFase( FASE_OCTAVOS ) * COSTO_APUESTA_FASE_OCTAVOS;

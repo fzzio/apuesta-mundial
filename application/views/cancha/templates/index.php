@@ -5,9 +5,11 @@
   			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
   				<div class="tile-stats">
 					<div class="icon"><i class="fa fa-usd"></i></div>
-					<div class="count"><?php echo number_format($saldoApuesta, 2); ?></div>
-					<h3>Total</h3>
-					<p>Tu saldo en caja</p>
+					<div class="count"><?php echo number_format($saldoDisponible, 2); ?></div>
+					<h3>Total en caja</h3>
+					<p>
+						$ <?php echo number_format($saldoGanado, 2); ?> (Ganado) - $ <?php echo number_format($saldoBloqueado, 2); ?> (Bloqueado)
+					</p>
   				</div>
   			</div>
   			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
