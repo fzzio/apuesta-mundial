@@ -292,7 +292,75 @@ class Cancha extends CI_Controller {
 	}
 
 	public function crearApuesta(){
+		$resultado = array();
+		if ( $this->input->server('REQUEST_METHOD') == 'POST' ) {
+			$partidoObj = Partido_model::getPartidoPorID( $this->input->post( 'partido', TRUE ) );
+			$apostadorObj = Apostador_model::getApostadorPorID( $this->input->post( 'apostador', TRUE ) );
+			$apuestaMonto = $this->input->post( 'monto', TRUE );
+			$apuestaPronostico = $this->input->post( 'pronostico', TRUE );
+			if ( !is_null( $partidoObj ) && !is_null( $apostadorObj ) && ( $apuestaMonto != "" ) && ( $apuestaPronostico != "" ) ) {
+				try {
+					$this->db->trans_start();
+						$pronosticoObj = new Pronostico_model();
+						$pronosticoObj->setPartido( $partidoObj );
+						$pronosticoObj->setApostador( $apostadorObj );
+						$pronosticoObj->setResultado( $apuestaPronostico );
+						$pronosticoObj->setFecha( FECHA_HOY );
+						$pronosticoObj->setEstado( ESTADO_ACTIVO );
+						$idPronostico = $pronosticoObj->grabar( );
+						$pronosticoObj = Pronostico_model::getPronosticoPorID( $idPronostico );
 
+						$apuestaObj = new Apuesta_model();
+						$apuestaObj->setPronosticoApostador1( $pronosticoObj );
+						$apuestaObj->setPronosticoApostador2( null );
+						$apuestaObj->setMonto( $apuestaMonto );
+						$apuestaObj->setFecha( FECHA_HOY );
+						$apuestaObj->setEstado( APUESTA_NO_EMPAREJADA );
+						$idApuesta = $apuestaObj->grabar( );
+					$this->db->trans_complete();
+
+					if ($this->db->trans_status() === FALSE){
+					    $this->db->trans_rollback();
+					    $resultado = array(
+					    	'codigo' => 0, 
+					    	'fecha' => date('Y-m-d H:i:s'), 
+					    	'mensaje' => "Error al insertar datos."
+					    );
+					}else{
+					    $this->db->trans_commit();
+						$resultado = array(
+							'codigo' => 1, 
+							'fecha' => date('Y-m-d H:i:s'), 
+							'mensaje' => "Se registró apuesta ID: " . $idApuesta,
+							'data' => array()
+						);	
+					}
+					
+				} catch (Exception $e) {
+					$resultado = array(
+						'codigo' => 0, 
+						'fecha' => date('Y-m-d H:i:s'), 
+						'mensaje' => $e->getMessage() 
+					);
+				}
+
+			}else{
+				$resultado = array(
+					'codigo' => 0, 
+					'fecha' => date('Y-m-d H:i:s'), 
+					'mensaje' => "Error: Faltan datos" 
+				);
+			}
+
+		}else{
+			$resultado = array(
+				'codigo' => 0, 
+				'fecha' => date('Y-m-d H:i:s'), 
+				'mensaje' => "Error: No se recibieron parámetros" 
+			);
+		}
+		header('Content-Type: application/json');
+		echo json_encode( $resultado );
 	}
 
 	public function getPartidoToJson(){

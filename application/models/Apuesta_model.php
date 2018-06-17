@@ -55,6 +55,9 @@
         public function getMonto(){
             return $this->monto;
         }
+        public function getFecha(){
+            return $this->fecha;
+        }
         public function getEstado(){
             return $this->estado;
         }
@@ -286,7 +289,7 @@
             try {
                 $dataApuesta = array(
                     'id_pronostico_apostador_1' => $this->getPronosticoApostador1()->getID(),
-                    'id_pronostico_apostador_2' => $this->getPronosticoApostador2()->getID(),
+                    'id_pronostico_apostador_2' => ( !is_null( $this->getPronosticoApostador2() ) ) ? $this->getPronosticoApostador2()->getID() : NULL,
                     'monto' => $this->getMonto(),
                     'fecha' => $this->getFecha(),
                     'estado' => $this->getEstado(),
@@ -301,7 +304,7 @@
             try {
                 $dataApuesta = array(
                     'id_pronostico_apostador_1' => $this->getPronosticoApostador1()->getID(),
-                    'id_pronostico_apostador_2' => $this->getPronosticoApostador2()->getID(),
+                    'id_pronostico_apostador_2' => ( !is_null( $this->getPronosticoApostador2() ) ) ? $this->getPronosticoApostador2()->getID() : NULL,
                     'monto' => $this->getMonto(),
                     'fecha' => $this->getFecha(),
                     'estado' => $this->getEstado(),

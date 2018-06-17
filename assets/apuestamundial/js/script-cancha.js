@@ -672,6 +672,34 @@ function modalCrearApuesta(partido){
 	});
 }
 
+function initFormularios(){
+	$("#form-apuesta-crear").submit(function(event){
+        event.preventDefault();
+		var parametros = {
+			partido: $("#apuesta-partido").val(),
+			apostador: $("#apuesta-apostador").val(),
+			monto: $("#apuesta-monto").val(),
+			pronostico: $("#apuesta-pronostico").val()
+		}
+        $.ajax({
+        	url: js_site_url('cancha/crearApuesta'),
+        	type: 'POST',
+        	async: true,
+        	data: parametros,
+        	dataType: "json",
+        	success: function (respuesta) {
+        		if(respuesta.codigo == 1){
+        			$("#modal-crear-apuesta").modal('hide');
+        			window.location.href = js_site_url('cancha/index');
+        		}
+        	}, 
+        	error: function (error) {
+        		console.log("ERROR: " + error);
+        	}
+        });
+    });
+}
+
 
 $(document).ready(function() {
 	//init_sparklines();
@@ -708,4 +736,5 @@ $(document).ready(function() {
 	//init_autocomplete();
 
 	// Apuesta Mundial
+	initFormularios();
 });

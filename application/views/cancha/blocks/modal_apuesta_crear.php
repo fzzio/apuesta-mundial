@@ -1,7 +1,7 @@
 <!-- Modal apuesta crear -->
 <div id="modal-crear-apuesta" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-md">
-		<form action="<?php echo site_url('cancha/crearApuesta'); ?>" method="POST" class="form-horizontal form-label-left">
+		<form action="" method="POST" id="form-apuesta-crear" class="form-horizontal form-label-left">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">

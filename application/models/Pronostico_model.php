@@ -56,6 +56,9 @@
         public function getResultado(){
             return $this->resultado;
         }
+        public function getFecha(){
+            return $this->fecha;
+        }
         public function getEstado(){
             return $this->estado;
         }
