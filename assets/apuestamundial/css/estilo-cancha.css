@@ -366,6 +366,9 @@ input:-webkit-autofill {
 .fondo-imagen.fondo-7{
 	background-image: url("../img/mt-0966-content-bg01.jpg");
 }
+.fondo-imagen.fondo-8{
+	background-image: url("../img/main-slider-img.jpg");
+}
 
 /* Tags*/
 span.tag{

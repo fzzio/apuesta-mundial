@@ -185,7 +185,7 @@
   						</h2>
   						<div class="clearfix"></div>
   					</div>
-  					<div class="x_content fondo-imagen fondo-4">
+  					<div class="x_content fondo-imagen fondo-8">
   						<div class="contenedor-tabla fondo-transparencia-negro-1 p-10">
 							<?php $this->load->view('cancha/blocks/apuestas_resultado', array('arrApuestas' => $arrConsolidadoApostadorParticipaciones)); ?>
   						</div>
