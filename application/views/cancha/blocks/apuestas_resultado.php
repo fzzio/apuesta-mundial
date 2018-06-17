@@ -25,7 +25,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ($arrConsolidadoApuestas as $indiceApuesta => $apuesta): ?>
+		<?php foreach ($arrApuestas as $indiceApuesta => $apuesta): ?>
 			<?php $partidoObj = $apuesta["partidoObj"]; ?>
 			<tr class="info-partido">
 				<td class="text-center centrado-vertical">

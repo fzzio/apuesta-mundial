@@ -167,7 +167,7 @@
 
             if( !is_null( $apostadorObj ) ){
                 $apuestasDB = null;
-                $instanciaCI->db->select("a.*");
+                $instanciaCI->db->select("a.id");
                 $instanciaCI->db->from('apuesta AS a');
                 $instanciaCI->db->join("pronostico as p", "p.id = a.id_pronostico_apostador_1");
                 $instanciaCI->db->join("partido as pa", "pa.id = p.id_partido");
@@ -210,7 +210,7 @@
 
             if( !is_null( $apostadorObj ) ){
                 $apuestasDB = null;
-                $instanciaCI->db->select("a.id, pa.estado");
+                $instanciaCI->db->select("a.id");
                 $instanciaCI->db->from('apuesta AS a');
                 $instanciaCI->db->join("pronostico as p", "p.id = a.id_pronostico_apostador_1");
                 $instanciaCI->db->join("partido as pa", "pa.id = p.id_partido");
@@ -221,6 +221,50 @@
                 }
                 if ( !is_null( $apostadorObj ) ) {
                     $instanciaCI->db->where('p.id_apostador !=', intval($apostadorObj->getID()));
+                }
+                if ( !is_null( $estadoPartido ) ) {
+                    $instanciaCI->db->where('pa.estado', intval($estadoPartido));
+                }else{
+                    $instanciaCI->db->where_in('pa.estado', array(PARTIDO_POR_JUGAR, PARTIDO_JUGANDO, PARTIDO_FINALIZADO, PARTIDO_INACTIVO));
+                }
+                if ( !is_null( $limite ) ) {
+                    $instanciaCI->db->limit( $limite );
+                }
+                if ( !is_null( $ordenHoraPartido ) ) {
+                    $instanciaCI->db->order_by('pa.fecha', $ordenHoraPartido);
+                }else{
+                    $instanciaCI->db->order_by('pa.fecha', 'DESC');
+                }
+                $apuestasDB = $instanciaCI->db->get()->result_array();
+
+                $arrApuestasObj = array();
+                if ( !is_null($apuestasDB) ) {
+                    foreach ($apuestasDB as $apuestaDB) {
+                        $apuestaObj = self::getApuestaPorID($apuestaDB["id"]);
+                        array_push($arrApuestasObj, $apuestaObj);
+                    }
+                    return $arrApuestasObj;
+                }else{
+                    return null;
+                }
+            }else{
+                return null;
+            }
+        }
+
+        public static function getApuestasEmparejadasConApostador( Apostador_model $apostadorObj = null, $limite = 5, $ordenHoraPartido = null, $estadoPartido = null ){
+            // Obtener instancia de CI para manejo de base
+            $instanciaCI =& get_instance();
+
+            if( !is_null( $apostadorObj ) ){
+                $apuestasDB = null;
+                $instanciaCI->db->select("a.id");
+                $instanciaCI->db->from('apuesta AS a');
+                $instanciaCI->db->join("pronostico as p", "p.id = a.id_pronostico_apostador_2");
+                $instanciaCI->db->join("partido as pa", "pa.id = p.id_partido");
+                $instanciaCI->db->where('a.estado', intval(APUESTA_EMPAREJADA));
+                if ( !is_null( $apostadorObj ) ) {
+                    $instanciaCI->db->where('p.id_apostador', intval($apostadorObj->getID()));
                 }
                 if ( !is_null( $estadoPartido ) ) {
                     $instanciaCI->db->where('pa.estado', intval($estadoPartido));
