@@ -663,7 +663,6 @@ function modalCrearApuesta(partido){
 				$("#apuesta-pronostico-ganalocal").text("Gana " + respuesta.data.partidoPaisLocal);
 				$("#apuesta-pronostico-ganavisitante").text("Gana " + respuesta.data.partidoPaisVisitante);
 				$("#apuesta-partido-costo").text("$ " + respuesta.data.partidoCostoApuesta);
-
 				$("#modal-crear-apuesta").modal('show');
 			}
 		}, 
@@ -722,7 +721,7 @@ function modalUnirApuesta(apuesta, pronostico){
 				}
 				$("#apuesta-unir-id").val(respuesta.data.apuestaID);
 				$("#apuesta-unir-pronostico").val(pronostico);
-
+				$("#apuesta-unir-partido-costo").text("$ " + respuesta.data.partidoCostoApuesta);
 				$("#modal-unir-apuesta").modal('show');
 			}
 		}, 

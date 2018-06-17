@@ -522,7 +522,7 @@ class Cancha extends CI_Controller {
 			$partidoObj = Partido_model::getPartidoPorID( $this->input->post( 'partido' ) );
 			if ( $partidoObj !== null ) {
 				$fechaHoraPartido = DateTime::createFromFormat('Y-m-d H:i:s', $partidoObj->getFecha());
-				$partidoCostoApuesta = 0.10;
+				$partidoCostoApuesta = COSTO_APUESTA_FASE_GRUPOS;
 				switch ( intval( $partidoObj->getFase() ) ) {
 					case FASE_GRUPOS:
 						$partidoCostoApuesta = COSTO_APUESTA_FASE_GRUPOS;
@@ -588,6 +588,30 @@ class Cancha extends CI_Controller {
 			$apuestaObj = Apuesta_model::getApuestaPorID( $this->input->post( 'apuesta' ) );
 			if ( $apuestaObj !== null ) {
 				$partidoObj = $apuestaObj->getPronosticoApostador1()->getPartido();
+				$partidoCostoApuesta = COSTO_APUESTA_FASE_GRUPOS;
+				switch ( intval( $partidoObj->getFase() ) ) {
+					case FASE_GRUPOS:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_GRUPOS;
+						break;
+					case FASE_OCTAVOS:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_OCTAVOS;
+						break;
+					case FASE_CUARTOS:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_CUARTOS;
+						break;
+					case FASE_SEMIFINAL:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_SEMIFINAL;
+						break;
+					case FASE_TERCERO:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_TERCERO;
+						break;
+					case FASE_FINAL:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_FINAL;
+						break;
+					default:
+						$partidoCostoApuesta = COSTO_APUESTA_FASE_GRUPOS;
+						break;
+				}
 				$fechaHoraPartido = DateTime::createFromFormat('Y-m-d H:i:s', $partidoObj->getFecha());
 				$resultado = array(
 					'codigo' => 1, 
@@ -601,6 +625,7 @@ class Cancha extends CI_Controller {
 						"partidoFechaMes" => $fechaHoraPartido->format('M'),
 						"partidoFechaDia" => $fechaHoraPartido->format('d'),
 						"partidoFechaHora" => $fechaHoraPartido->format('H:i'),
+						"partidoCostoApuesta" => number_format( $partidoCostoApuesta, 2),
 						"rivalNombre" => $apuestaObj->getPronosticoApostador1()->getApostador()->getNombre(),
 						"rivalPronostico" => $apuestaObj->getPronosticoApostador1()->getResultado(),
 						"apuestaID" => $apuestaObj->getID(),

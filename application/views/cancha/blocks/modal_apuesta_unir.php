@@ -87,6 +87,13 @@
 								<input type="hidden" id="apuesta-unir-pronostico" name="apuesta-unir-pronostico" value="" />
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<p class="txt-blanco text-center">
+									<small>El costo por apostar en esta fase es de <span class="txt-amarillo" id="apuesta-unir-partido-costo"></span></small>
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
