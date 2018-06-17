@@ -278,6 +278,7 @@ class Cancha extends CI_Controller {
 
 			array_push(
 				$arrConsolidadoApuestas, array(
+					"apuestaID" => $apuestaObj->getID(),
 					"partidoObj" => $partidoObj,
 					"montoApuesta" => $montoApuesta,
 					"resultadoApostadorStr" => $resultadoApostadorStr,
@@ -362,6 +363,71 @@ class Cancha extends CI_Controller {
 		header('Content-Type: application/json');
 		echo json_encode( $resultado );
 	}
+	public function unirApuesta(){
+		$resultado = array();
+		if ( $this->input->server('REQUEST_METHOD') == 'POST' ) {
+			$apuestaObj = Apuesta_model::getApuestaPorID( $this->input->post( 'apuesta', TRUE ) );
+			$apostadorObj = Apostador_model::getApostadorPorID( $this->input->post( 'apostador', TRUE ) );
+			$apuestaPronostico = $this->input->post( 'pronostico', TRUE );
+			if ( !is_null( $apuestaObj ) && !is_null( $apostadorObj ) && ( $apuestaPronostico != "" ) ) {
+				try {
+					$this->db->trans_start();
+						$pronosticoObj = new Pronostico_model();
+						$pronosticoObj->setPartido( $apuestaObj->getPronosticoApostador1()->getPartido() );
+						$pronosticoObj->setApostador( $apostadorObj );
+						$pronosticoObj->setResultado( $apuestaPronostico );
+						$pronosticoObj->setFecha( FECHA_HOY );
+						$pronosticoObj->setEstado( ESTADO_ACTIVO );
+						$idPronostico = $pronosticoObj->grabar( );
+						$pronosticoObj = Pronostico_model::getPronosticoPorID( $idPronostico );
+
+						$apuestaObj->setPronosticoApostador2( $pronosticoObj );
+						$apuestaObj->setEstado( APUESTA_EMPAREJADA );
+						$idApuesta = $apuestaObj->actualizar( );
+					$this->db->trans_complete();
+
+					if ($this->db->trans_status() === FALSE){
+					    $this->db->trans_rollback();
+					    $resultado = array(
+					    	'codigo' => 0, 
+					    	'fecha' => date('Y-m-d H:i:s'), 
+					    	'mensaje' => "Error al actualizar datos."
+					    );
+					}else{
+					    $this->db->trans_commit();
+						$resultado = array(
+							'codigo' => 1, 
+							'fecha' => date('Y-m-d H:i:s'), 
+							'mensaje' => "Se actualizó apuesta ID: " . $idApuesta,
+							'data' => array()
+						);	
+					}
+				} catch (Exception $e) {
+					$resultado = array(
+						'codigo' => 0, 
+						'fecha' => date('Y-m-d H:i:s'), 
+						'mensaje' => $e->getMessage() 
+					);
+				}
+
+			}else{
+				$resultado = array(
+					'codigo' => 0, 
+					'fecha' => date('Y-m-d H:i:s'), 
+					'mensaje' => "Error: Faltan datos" 
+				);
+			}
+
+		}else{
+			$resultado = array(
+				'codigo' => 0, 
+				'fecha' => date('Y-m-d H:i:s'), 
+				'mensaje' => "Error: No se recibieron parámetros" 
+			);
+		}
+		header('Content-Type: application/json');
+		echo json_encode( $resultado );
+	}
 
 	public function getPartidoToJson(){
 		$resultado = array();
@@ -389,6 +455,50 @@ class Cancha extends CI_Controller {
 					'codigo' => 0, 
 					'fecha' => date('Y-m-d H:i:s'), 
 					'mensaje' => "Error: No se encontró partido" 
+				);
+			}
+
+		}else{
+			$resultado = array(
+				'codigo' => 0, 
+				'fecha' => date('Y-m-d H:i:s'), 
+				'mensaje' => "Error: No se recibieron parámetros" 
+			);
+		}
+		header('Content-Type: application/json');
+		echo json_encode( $resultado );
+	}
+
+	public function getApuestaToJson(){
+		$resultado = array();
+		if ( $this->input->server('REQUEST_METHOD') == 'POST' ) {
+			$apuestaObj = Apuesta_model::getApuestaPorID( $this->input->post( 'apuesta' ) );
+			if ( $apuestaObj !== null ) {
+				$partidoObj = $apuestaObj->getPronosticoApostador1()->getPartido();
+				$fechaHoraPartido = DateTime::createFromFormat('Y-m-d H:i:s', $partidoObj->getFecha());
+				$resultado = array(
+					'codigo' => 1, 
+					'fecha' => date('Y-m-d H:i:s'), 
+					'mensaje' => "Se encontró datos de la apuesta",
+					'data' => array(
+						"partidoPaisLocal" => $partidoObj->getPaisLocal()->getNombre(),
+						"partidoPaisVisitante" => $partidoObj->getPaisVisitante()->getNombre(),
+						"partidoIsoPaisLocal" => strtolower($partidoObj->getPaisLocal()->getIso()),
+						"partidoIsoPaisVisitante" => strtolower($partidoObj->getPaisVisitante()->getIso()),
+						"partidoFechaMes" => $fechaHoraPartido->format('M'),
+						"partidoFechaDia" => $fechaHoraPartido->format('d'),
+						"partidoFechaHora" => $fechaHoraPartido->format('H:i'),
+						"rivalNombre" => $apuestaObj->getPronosticoApostador1()->getApostador()->getNombre(),
+						"rivalPronostico" => $apuestaObj->getPronosticoApostador1()->getResultado(),
+						"apuestaID" => $apuestaObj->getID(),
+						"apuestaMonto" => number_format( $apuestaObj->getMonto() , 2),
+					)
+				);	
+			}else{
+				$resultado = array(
+					'codigo' => 0, 
+					'fecha' => date('Y-m-d H:i:s'), 
+					'mensaje' => "Error: No se encontró apuesta" 
 				);
 			}
 

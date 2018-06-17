@@ -147,7 +147,7 @@
             $pronosticosDB = null;
             $instanciaCI->db->select("p.id");
             $instanciaCI->db->from('pronostico AS p');
-            if ( $estado != null ) {
+            if ( !is_null( $estado ) ) {
                 $instanciaCI->db->where('p.estado', intval($estado));
             }else{
                 $instanciaCI->db->where_in('p.estado', array(PRONOSTICO_GANA_LOCAL, PRONOSTICO_GANA_VISITANTE, PRONOSTICO_EMPATE));
@@ -174,7 +174,7 @@
                 $instanciaCI->db->select("p.id");
                 $instanciaCI->db->from('pronostico AS p');
                 $instanciaCI->db->where('p.id_apostador', intval( $apostadorObj->getID() ));
-                if ( $estado != null ) {
+                if ( !is_null( $estado ) ) {
                     $instanciaCI->db->where('p.estado', intval($estado));
                 }else{
                     $instanciaCI->db->where_in('p.estado', array(PRONOSTICO_GANA_LOCAL, PRONOSTICO_GANA_VISITANTE, PRONOSTICO_EMPATE));
@@ -204,7 +204,7 @@
                 $instanciaCI->db->select("p.id");
                 $instanciaCI->db->from('pronostico AS p');
                 $instanciaCI->db->where('p.id_apostador !=', intval( $apostadorObj->getID() ));
-                if ( $estado != null ) {
+                if ( !is_null( $estado ) ) {
                     $instanciaCI->db->where('p.estado', intval($estado));
                 }else{
                     $instanciaCI->db->where_in('p.estado', array(PRONOSTICO_GANA_LOCAL, PRONOSTICO_GANA_VISITANTE, PRONOSTICO_EMPATE));
@@ -232,7 +232,7 @@
             $pronosticosDB = null;
             $instanciaCI->db->select("p.id");
             $instanciaCI->db->from('pronostico AS p');
-            if ( $estado != null ) {
+            if ( !is_null( $estado ) ) {
                 $instanciaCI->db->where('p.estado', intval($estado));
             }else{
                 $instanciaCI->db->where_in('p.estado', array(PRONOSTICO_GANA_LOCAL, PRONOSTICO_GANA_VISITANTE, PRONOSTICO_EMPATE));

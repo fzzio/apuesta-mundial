@@ -54,11 +54,11 @@
 				<td class="text-center centrado-vertical">
 					<?php if ( $apuesta["resultadoRival"] == PRONOSTICO_GANA_LOCAL ): ?>
 						<span class="txt-blanco">
-							Gana Local
+							Gana <?php echo $partidoObj->getPaisLocal()->getNombre(); ?>
 						</span>
 					<?php else: ?>
-						<div class="btn btn-negro btn-amarillo-hover">
-							Gana Local
+						<div class="btn btn-sm btn-negro btn-amarillo-hover" onclick="modalUnirApuesta(<?php echo $apuesta['apuestaID']; ?>, <?php echo PRONOSTICO_GANA_LOCAL; ?>);">
+							Gana <?php echo $partidoObj->getPaisLocal()->getNombre(); ?>
 						</div>
 					<?php endif ?>
 				</td>
@@ -68,7 +68,7 @@
 							Empate
 						</span>
 					<?php else: ?>
-						<div class="btn btn-negro btn-amarillo-hover">
+						<div class="btn btn-sm btn-negro btn-amarillo-hover" onclick="modalUnirApuesta(<?php echo $apuesta['apuestaID']; ?>, <?php echo PRONOSTICO_EMPATE; ?>);">
 							Empate
 						</div>
 					<?php endif ?>
@@ -76,11 +76,11 @@
 				<td class="text-center centrado-vertical">
 					<?php if ( $apuesta["resultadoRival"] == PRONOSTICO_GANA_VISITANTE ): ?>
 						<span class="txt-blanco">
-							Gana Visitante
+							Gana <?php echo $partidoObj->getPaisVisitante()->getNombre(); ?>
 						</span>
 					<?php else: ?>
-						<div class="btn btn-negro btn-amarillo-hover">
-							Gana Visitante
+						<div class="btn btn-sm btn-negro btn-amarillo-hover" onclick="modalUnirApuesta(<?php echo $apuesta['apuestaID']; ?>, <?php echo PRONOSTICO_GANA_VISITANTE; ?>);">
+							Gana <?php echo $partidoObj->getPaisVisitante()->getNombre(); ?>
 						</div>
 					<?php endif ?>
 				</td>

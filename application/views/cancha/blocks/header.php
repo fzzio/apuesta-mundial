@@ -76,9 +76,9 @@
             }
 
             // Constantes JS
-            var PRONOSTICO_GANA_LOCAL       = <?php echo PRONOSTICO_GANA_LOCAL; ?>;
-            var PRONOSTICO_GANA_VISITANTE   = <?php echo PRONOSTICO_GANA_VISITANTE; ?>;
-            var PRONOSTICO_EMPATE           = <?php echo PRONOSTICO_EMPATE; ?>;
+            var JS_PRONOSTICO_GANA_LOCAL       = <?php echo PRONOSTICO_GANA_LOCAL; ?>;
+            var JS_PRONOSTICO_GANA_VISITANTE   = <?php echo PRONOSTICO_GANA_VISITANTE; ?>;
+            var JS_PRONOSTICO_EMPATE           = <?php echo PRONOSTICO_EMPATE; ?>;
         </script>
         <title><?php echo PROYECTO_NOMBRE; ?>:: <?php echo $titlePage ?></title>
     </head>

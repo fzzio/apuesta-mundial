@@ -112,7 +112,7 @@
             $paisesDB = null;
             $instanciaCI->db->select("p.id");
             $instanciaCI->db->from('pais AS p');
-            if ( $estado != null ) {
+            if ( !is_null( $estado ) ) {
                 $instanciaCI->db->where('p.estado', intval($estado));
             }else{
                 //$instanciaCI->db->where_in('p.estado', array(PAIS_INACTIVO, PAIS_ACTIVO, PAIS_ELIMINADO);

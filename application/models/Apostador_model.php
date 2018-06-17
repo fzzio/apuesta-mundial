@@ -201,7 +201,7 @@
             $apostadoresDB = null;
             $instanciaCI->db->select("a.id");
             $instanciaCI->db->from('apostador AS a');
-            if ( $estado != null ) {
+            if ( !is_null( $estado ) ) {
                 $instanciaCI->db->where('a.estado', intval($estado));
             }else{
                 $instanciaCI->db->where_in('a.estado', array(ESTADO_INACTIVO, ESTADO_ACTIVO));

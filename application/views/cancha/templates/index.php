@@ -178,7 +178,7 @@
   				<div class="x_panel">
   					<div class="x_title">
   						<h2>
-  							Apuestas de otros
+  							Apuestas disponibles de otros
   							<small>
   								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
   							</small>

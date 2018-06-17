@@ -672,32 +672,116 @@ function modalCrearApuesta(partido){
 	});
 }
 
+function modalUnirApuesta(apuesta, pronostico){
+	var parametros = {
+		apuesta: apuesta
+	}
+	$.ajax({
+		url: js_site_url('cancha/getApuestaToJson'),
+		type: 'POST',
+		async: true,
+		data: parametros,
+		dataType: "json",
+		success: function (respuesta) {
+			if(respuesta.codigo == 1){
+				$("#apuesta-unir-pais-local").text(respuesta.data.partidoPaisLocal);
+				$("#apuesta-unir-pais-visitante").text(respuesta.data.partidoPaisVisitante);
+				$("#apuesta-unir-bandera-local").attr('class','flag-icon flag-icon-' + respuesta.data.partidoIsoPaisLocal + ' bandera-normal');
+				$("#apuesta-unir-bandera-visitante").attr('class','flag-icon flag-icon-' + respuesta.data.partidoIsoPaisVisitante + ' bandera-normal');
+				$("#apuesta-unir-partido-mes").text(respuesta.data.partidoFechaMes);
+				$("#apuesta-unir-partido-dia").text(respuesta.data.partidoFechaDia);
+				$("#apuesta-unir-partido-hora").text(respuesta.data.partidoFechaHora);
+				$("#apuesta-unir-rival").text(respuesta.data.rivalNombre);
+				$("#apuesta-unir-monto").text("$ " + respuesta.data.apuestaMonto);
+				switch( parseInt(respuesta.data.rivalPronostico) ) {
+				    case JS_PRONOSTICO_GANA_LOCAL:
+						$("#apuesta-unir-pronostico-rival").text("Gana " + respuesta.data.partidoPaisLocal);
+				        break;
+				    case JS_PRONOSTICO_GANA_VISITANTE:
+						$("#apuesta-unir-pronostico-rival").text("Gana " + respuesta.data.partidoPaisVisitante);
+				        break;
+				    case JS_PRONOSTICO_EMPATE:
+						$("#apuesta-unir-pronostico-rival").text("Empate");
+				        break;
+				    default:
+						$("#apuesta-unir-pronostico-rival").text("--");
+				}
+				switch( pronostico ) {
+				    case JS_PRONOSTICO_GANA_LOCAL:
+						$("#apuesta-unir-pronostico-apostador").text("Gana " + respuesta.data.partidoPaisLocal);
+				        break;
+				    case JS_PRONOSTICO_GANA_VISITANTE:
+						$("#apuesta-unir-pronostico-apostador").text("Gana " + respuesta.data.partidoPaisVisitante);
+				        break;
+				    case JS_PRONOSTICO_EMPATE:
+						$("#apuesta-unir-pronostico-apostador").text("Empate");
+				        break;
+				    default:
+						$("#apuesta-unir-pronostico-apostador").text("--");
+				}
+				$("#apuesta-unir-id").val(respuesta.data.apuestaID);
+				$("#apuesta-unir-pronostico").val(pronostico);
+
+				$("#modal-unir-apuesta").modal('show');
+			}
+		}, 
+		error: function (error) {
+			console.log("ERROR: " + error);
+		}
+	});
+}
+
 function initFormularios(){
 	$("#form-apuesta-crear").submit(function(event){
-        event.preventDefault();
+		event.preventDefault();
 		var parametros = {
 			partido: $("#apuesta-partido").val(),
 			apostador: $("#apuesta-apostador").val(),
 			monto: $("#apuesta-monto").val(),
 			pronostico: $("#apuesta-pronostico").val()
 		}
-        $.ajax({
-        	url: js_site_url('cancha/crearApuesta'),
-        	type: 'POST',
-        	async: true,
-        	data: parametros,
-        	dataType: "json",
-        	success: function (respuesta) {
-        		if(respuesta.codigo == 1){
-        			$("#modal-crear-apuesta").modal('hide');
-        			window.location.href = js_site_url('cancha/index');
-        		}
-        	}, 
-        	error: function (error) {
-        		console.log("ERROR: " + error);
-        	}
-        });
-    });
+		$.ajax({
+			url: js_site_url('cancha/crearApuesta'),
+			type: 'POST',
+			async: true,
+			data: parametros,
+			dataType: "json",
+			success: function (respuesta) {
+				if(respuesta.codigo == 1){
+					$("#modal-crear-apuesta").modal('hide');
+					window.location.href = js_site_url('cancha/index');
+				}
+			}, 
+			error: function (error) {
+				console.log("ERROR: " + error);
+			}
+		});
+	});
+
+	$("#form-apuesta-unir").submit(function(event){
+		event.preventDefault();
+		var parametros = {
+			apuesta: $("#apuesta-unir-id").val(),
+			apostador: $("#apuesta-unir-apostador").val(),
+			pronostico: $("#apuesta-unir-pronostico").val()
+		}
+		$.ajax({
+			url: js_site_url('cancha/unirApuesta'),
+			type: 'POST',
+			async: true,
+			data: parametros,
+			dataType: "json",
+			success: function (respuesta) {
+				if(respuesta.codigo == 1){
+					$("#modal-unir-apuesta").modal('hide');
+					window.location.href = js_site_url('cancha/index');
+				}
+			}, 
+			error: function (error) {
+				console.log("ERROR: " + error);
+			}
+		});
+	});
 }
 
 

@@ -142,7 +142,7 @@
             $apuestasDB = null;
             $instanciaCI->db->select("a.id");
             $instanciaCI->db->from('apuesta AS a');
-            if ( $estado != null ) {
+            if ( !is_null($estado) ) {
                 $instanciaCI->db->where('a.estado', intval($estado));
             }else{
                 $instanciaCI->db->where_in('a.estado', array(APUESTA_NO_EMPAREJADA, APUESTA_EMPAREJADA));
@@ -171,7 +171,7 @@
                 $instanciaCI->db->from('apuesta AS a');
                 $instanciaCI->db->join("pronostico as p", "p.id = a.id_pronostico_apostador_1");
                 $instanciaCI->db->join("partido as pa", "pa.id = p.id_partido");
-                if ( $estadoApuesta != null ) {
+                if ( !is_null( $estadoApuesta ) ) {
                     $instanciaCI->db->where('a.estado', intval($estadoApuesta));
                 }else{
                     $instanciaCI->db->where_in('a.estado', array(APUESTA_NO_EMPAREJADA, APUESTA_EMPAREJADA));
@@ -214,7 +214,7 @@
                 $instanciaCI->db->from('apuesta AS a');
                 $instanciaCI->db->join("pronostico as p", "p.id = a.id_pronostico_apostador_1");
                 $instanciaCI->db->join("partido as pa", "pa.id = p.id_partido");
-                if ( $estadoApuesta != null ) {
+                if ( !is_null( $estadoApuesta ) ) {
                     $instanciaCI->db->where('a.estado', intval($estadoApuesta));
                 }else{
                     $instanciaCI->db->where_in('a.estado', array(APUESTA_NO_EMPAREJADA, APUESTA_EMPAREJADA));
@@ -222,12 +222,12 @@
                 if ( !is_null( $apostadorObj ) ) {
                     $instanciaCI->db->where('p.id_apostador !=', intval($apostadorObj->getID()));
                 }
-                if ( $estadoPartido != null ) {
+                if ( !is_null( $estadoPartido ) ) {
                     $instanciaCI->db->where('pa.estado', intval($estadoPartido));
                 }else{
                     $instanciaCI->db->where_in('pa.estado', array(PARTIDO_POR_JUGAR, PARTIDO_JUGANDO, PARTIDO_FINALIZADO, PARTIDO_INACTIVO));
                 }
-                if ( $limite !== null ) {
+                if ( !is_null( $limite ) ) {
                     $instanciaCI->db->limit( $limite );
                 }
                 if ( !is_null( $ordenHoraPartido ) ) {
@@ -259,7 +259,7 @@
             $apuestasDB = null;
             $instanciaCI->db->select("a.id");
             $instanciaCI->db->from('apuesta AS a');
-            if ( $estado != null ) {
+            if ( !is_null( $estado ) ) {
                 $instanciaCI->db->where('a.estado', intval($estado));
             }else{
                 $instanciaCI->db->where_in('a.estado', array(APUESTA_NO_EMPAREJADA, APUESTA_EMPAREJADA));

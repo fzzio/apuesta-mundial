@@ -197,7 +197,7 @@
             $partidosDB = null;
             $instanciaCI->db->select("p.id");
             $instanciaCI->db->from('partido AS p');
-            if ( $estado != null ) {
+            if ( !is_null( $estado ) ) {
                 $instanciaCI->db->where('p.estado', intval($estado));
             }else{
                 $instanciaCI->db->where_in('p.estado', array(PARTIDO_POR_JUGAR, PARTIDO_JUGANDO, PARTIDO_FINALIZADO, PARTIDO_INACTIVO));
@@ -222,7 +222,7 @@
             $partidosDB = null;
             $instanciaCI->db->select("p.id");
             $instanciaCI->db->from('partido AS p');
-            if ( $estado != null ) {
+            if ( !is_null( $estado ) ) {
                 $instanciaCI->db->where('p.estado', intval($estado));
             }else{
                 $instanciaCI->db->where_in('p.estado', array(PARTIDO_POR_JUGAR, PARTIDO_JUGANDO, PARTIDO_FINALIZADO, PARTIDO_INACTIVO));
@@ -251,7 +251,7 @@
             $partidosDB = null;
             $instanciaCI->db->select("p.id");
             $instanciaCI->db->from('partido AS p');
-            if ( $estado != null ) {
+            if ( !is_null( $estado ) ) {
                 $instanciaCI->db->where('p.estado', intval($estado));
             }else{
                 $instanciaCI->db->where_in('p.estado', array(PARTIDO_POR_JUGAR, PARTIDO_JUGANDO, PARTIDO_FINALIZADO, PARTIDO_INACTIVO));

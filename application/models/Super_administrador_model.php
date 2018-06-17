@@ -188,7 +188,7 @@
             $superAdministradoresDB = null;
             $instanciaCI->db->select("s.id");
             $instanciaCI->db->from('super_administrador AS s');
-            if ( $estado != null ) {
+            if ( !is_null( $estado ) ) {
                 $instanciaCI->db->where('s.estado', intval($estado));
             }else{
                 $instanciaCI->db->where_in('s.estado', array(ESTADO_INACTIVO, ESTADO_ACTIVO));
