@@ -2,7 +2,7 @@
                 <!-- footer content -->
                 <footer>
                   <div class="pull-right">
-                    <?php echo PROYECTO_AUTOR; ?> &copy; <?php echo date("Y"); ?>. Todos los derechos reservados. Desarrollado por <a href="http://www.cajanegra.com.ec" target="_blank"><?php echo PROYECTO_DESARROLLADOR; ?></a>
+                    <?php echo PROYECTO_AUTOR; ?> &copy; <?php echo date("Y"); ?>. Todos los derechos reservados. <?php /*Desarrollado por <a href="http://www.cajanegra.com.ec" target="_blank"><?php echo PROYECTO_DESARROLLADOR; ?></a>*/ ?>
                   </div>
                   <div class="clearfix"></div>
                 </footer>
