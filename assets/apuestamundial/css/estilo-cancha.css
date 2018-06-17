@@ -163,7 +163,7 @@ body .container.body .right_col{
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center center;
+    background-position: center right;
 }
 .left_col{
 	background-color: #141414;
@@ -548,4 +548,46 @@ span.tag{
 #contenedor-error-crear,
 #contenedor-error-unir{
 	display: none;
+}
+
+/*
+ * 2 -> lg: min-width:1200px
+ * -----------------------------------------------
+*/
+@media (min-width:1200px) {
+
+}
+/*
+ * 3 -> md: max-width:1199px
+ * -----------------------------------------------
+*/
+@media (max-width:1199px) {
+
+}
+/*
+ * 4 -> sm: max-width:991px
+ * -----------------------------------------------
+*/
+@media (max-width:991px) {
+	body {
+	  height: 100vh;
+	}
+}
+/*
+ * 5 -> xs: max-width 767px
+ * -----------------------------------------------
+*/
+@media (max-width:767px) {
+	body {
+	  height: 100vh;
+	}
+}
+/*
+ * 6 -> xxs: max-width 479px
+ * -----------------------------------------------
+*/
+@media (max-width:479px) {
+	body {
+	  height: 100vh;
+	}
 }
