@@ -40,8 +40,8 @@ class Cancha extends CI_Controller {
 			$dataContent['apostadorObj'] = Apostador_model::getApostadorPorID( $this->session->id );
 			//////////////////////////////////////////////////
 			// Resultados
-			$totalGanado = 0;
 			
+			$dataContent['numeroJugados'] = count( Partido_model::getTodos(PARTIDO_FINALIZADO) );
 			$dataContent['numeroAciertos'] = $dataContent['apostadorObj']->getNumeroGanadas();
 			$saldoTotalAcumulado = $dataContent['apostadorObj']->getValorAculumadoGanado() - $dataContent['apostadorObj']->getValorAculumadoPerdido();
 			$dataContent['saldoBloqueado'] = $dataContent['apostadorObj']->getValorAculumadoBloqueado();
