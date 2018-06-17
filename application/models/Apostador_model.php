@@ -388,6 +388,54 @@
             }
         }
 
+        public function getNumeroGanadas(){
+            if( $this->getID() ){
+                $numeroGanadasCreadas = 0;
+                $numeroGanadasUnidas = 0;
+
+                // Obtenemos el total de las que creo el apostador
+                $apuestasCreadasDB = null;
+                $this->db->select("ap.id");
+                $this->db->from('apuesta AS ap');
+                $this->db->join("pronostico as pr", "pr.id = ap.id_pronostico_apostador_1");
+                $this->db->join("partido as pa", "pa.id = pr.id_partido");
+                $this->db->where('ap.estado', APUESTA_EMPAREJADA);
+                $this->db->where('pr.id_apostador', intval( $this->getID() ));
+                $this->db->where('pa.estado', PARTIDO_FINALIZADO);
+                $apuestasCreadasDB = $this->db->get()->result_array();
+                if ( !is_null($apuestasCreadasDB) ) {
+                    foreach ($apuestasCreadasDB as $apuestaCreadaDB) {
+                        $apuestaCreadaObj = Apuesta_model::getApuestaPorID($apuestaCreadaDB["id"]);
+                        if ( $apuestaCreadaObj->getPronosticoApostador1()->getResultadoFinal() == PRONOSTICO_ACIERTO ) {
+                            $numeroGanadasCreadas += 1;
+                        }
+                    }
+                }
+
+                // Obtenemos el total de las el apostador desafió a un rival
+                $apuestasUnidasDB = null;
+                $this->db->select("ap.id");
+                $this->db->from('apuesta AS ap');
+                $this->db->join("pronostico as pr", "pr.id = ap.id_pronostico_apostador_2");
+                $this->db->join("partido as pa", "pa.id = pr.id_partido");
+                $this->db->where('ap.estado', APUESTA_EMPAREJADA);
+                $this->db->where('pr.id_apostador', intval( $this->getID() ));
+                $this->db->where('pa.estado', PARTIDO_FINALIZADO);
+                $apuestasUnidasDB = $this->db->get()->result_array();
+                if ( !is_null($apuestasUnidasDB) ) {
+                    foreach ($apuestasUnidasDB as $apuestaUnidaDB) {
+                        $apuestaUnidaObj = Apuesta_model::getApuestaPorID($apuestaUnidaDB["id"]);
+                        if ( $apuestaUnidaObj->getPronosticoApostador2()->getResultadoFinal() == PRONOSTICO_ACIERTO ) {
+                            $numeroGanadasUnidas += 1;
+                        }
+                    }
+                }
+                return $numeroGanadasCreadas + $numeroGanadasUnidas;
+            }else{
+                return 0;
+            }
+        }
+
         ///////////////////////////////////
         // Modificación de base de datos
         ///////////////////////////////////

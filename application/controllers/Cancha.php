@@ -42,7 +42,7 @@ class Cancha extends CI_Controller {
 			// Resultados
 			$totalGanado = 0;
 			
-			$dataContent['numeroAciertos'] = 0;
+			$dataContent['numeroAciertos'] = $dataContent['apostadorObj']->getNumeroGanadas();
 			$saldoTotalAcumulado = $dataContent['apostadorObj']->getValorAculumadoGanado() - $dataContent['apostadorObj']->getValorAculumadoPerdido();
 			$dataContent['saldoBloqueado'] = $dataContent['apostadorObj']->getValorAculumadoBloqueado();
 			$dataContent['saldoDisponible'] = $dataContent['apostadorObj']->getMontoInicial() + $saldoTotalAcumulado - $this->obtenerGastoTotalPorApostar( $dataContent['apostadorObj'] ) - $dataContent['saldoBloqueado'];
