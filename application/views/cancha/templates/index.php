@@ -39,6 +39,27 @@
   		</div>
 
   		<div class="row">
+  			<div class="col-md-12 col-sm-12 col-xs-12">
+  				<div class="x_panel">
+  					<div class="x_title">
+  						<h2>
+  							Apuestas abiertas
+  							<small>
+  								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
+  							</small>
+  						</h2>
+  						<div class="clearfix"></div>
+  					</div>
+  					<div class="x_content fondo-imagen fondo-3">
+  						<div class="contenedor-tabla fondo-transparencia-negro-1 p-10">
+							<?php $this->load->view('cancha/blocks/apuestas_otros', array('arrApuestas' => $arrConsolidadoOtrasApuestasAbiertas)) ?>
+  						</div>
+  					</div>
+  				</div>
+			</div>
+  		</div>
+
+  		<div class="row">
 			<div class="col-md-6 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
@@ -159,7 +180,7 @@
   				<div class="x_panel">
   					<div class="x_title">
   						<h2>
-  							Mis apuestas creadas
+  							Mis apuestas
   							<small>
   								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
   							</small>
@@ -180,7 +201,7 @@
   				<div class="x_panel">
   					<div class="x_title">
   						<h2>
-  							Apuestas en las que participo
+  							Desafíos aceptados
   							<small>
   								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
   							</small>
@@ -196,26 +217,6 @@
 			</div>
   		</div>
 
-  		<div class="row">
-  			<div class="col-md-12 col-sm-12 col-xs-12">
-  				<div class="x_panel">
-  					<div class="x_title">
-  						<h2>
-  							Apuestas disponibles de otros
-  							<small>
-  								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
-  							</small>
-  						</h2>
-  						<div class="clearfix"></div>
-  					</div>
-  					<div class="x_content fondo-imagen fondo-3">
-  						<div class="contenedor-tabla fondo-transparencia-negro-1 p-10">
-							<?php $this->load->view('cancha/blocks/apuestas_otros', array('arrApuestas' => $arrConsolidadoOtrasApuestasAbiertas)) ?>
-  						</div>
-  					</div>
-  				</div>
-			</div>
-  		</div>
   	</div>
 </div>
 <!-- /page content -->
