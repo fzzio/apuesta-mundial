@@ -465,44 +465,52 @@ class Cancha extends CI_Controller {
 			$apostadorObj = Apostador_model::getApostadorPorID( $this->input->post( 'apostador', TRUE ) );
 			$apuestaPronostico = $this->input->post( 'pronostico', TRUE );
 			if ( !is_null( $apuestaObj ) && !is_null( $apostadorObj ) && ( $apuestaPronostico != "" ) ) {
-				try {
-					$this->db->trans_start();
-						$pronosticoObj = new Pronostico_model();
-						$pronosticoObj->setPartido( $apuestaObj->getPronosticoApostador1()->getPartido() );
-						$pronosticoObj->setApostador( $apostadorObj );
-						$pronosticoObj->setResultado( $apuestaPronostico );
-						$pronosticoObj->setFecha( FECHA_HOY );
-						$pronosticoObj->setEstado( ESTADO_ACTIVO );
-						$idPronostico = $pronosticoObj->grabar( );
-						$pronosticoObj = Pronostico_model::getPronosticoPorID( $idPronostico );
+				if ( $apostadorObj->getValorDisponible() > ($apuestaObj->getMonto() + $partidoObj->getValorPartido() ) ) {
+					try {
+						$this->db->trans_start();
+							$pronosticoObj = new Pronostico_model();
+							$pronosticoObj->setPartido( $apuestaObj->getPronosticoApostador1()->getPartido() );
+							$pronosticoObj->setApostador( $apostadorObj );
+							$pronosticoObj->setResultado( $apuestaPronostico );
+							$pronosticoObj->setFecha( FECHA_HOY );
+							$pronosticoObj->setEstado( ESTADO_ACTIVO );
+							$idPronostico = $pronosticoObj->grabar( );
+							$pronosticoObj = Pronostico_model::getPronosticoPorID( $idPronostico );
 
-						$apuestaObj->setPronosticoApostador2( $pronosticoObj );
-						$apuestaObj->setEstado( APUESTA_EMPAREJADA );
-						$idApuesta = $apuestaObj->actualizar( );
-					$this->db->trans_complete();
+							$apuestaObj->setPronosticoApostador2( $pronosticoObj );
+							$apuestaObj->setEstado( APUESTA_EMPAREJADA );
+							$idApuesta = $apuestaObj->actualizar( );
+						$this->db->trans_complete();
 
-					if ($this->db->trans_status() === FALSE){
-					    $this->db->trans_rollback();
-					    $resultado = array(
-					    	'codigo' => 0, 
-					    	'fecha' => date('Y-m-d H:i:s'), 
-					    	'mensaje' => "Error al actualizar datos."
-					    );
-					}else{
-					    $this->db->trans_commit();
+						if ($this->db->trans_status() === FALSE){
+						    $this->db->trans_rollback();
+						    $resultado = array(
+						    	'codigo' => 0, 
+						    	'fecha' => date('Y-m-d H:i:s'), 
+						    	'mensaje' => "Error al actualizar datos."
+						    );
+						}else{
+						    $this->db->trans_commit();
+							$resultado = array(
+								'codigo' => 1, 
+								'fecha' => date('Y-m-d H:i:s'), 
+								'mensaje' => "Se actualizó apuesta ID: " . $idApuesta,
+								'data' => array()
+							);	
+						}
+					} catch (Exception $e) {
 						$resultado = array(
-							'codigo' => 1, 
+							'codigo' => 0, 
 							'fecha' => date('Y-m-d H:i:s'), 
-							'mensaje' => "Se actualizó apuesta ID: " . $idApuesta,
-							'data' => array()
-						);	
+							'mensaje' => $e->getMessage() 
+						);
 					}
-				} catch (Exception $e) {
+				}else{
 					$resultado = array(
-						'codigo' => 0, 
-						'fecha' => date('Y-m-d H:i:s'), 
-						'mensaje' => $e->getMessage() 
-					);
+				    	'codigo' => 0, 
+				    	'fecha' => date('Y-m-d H:i:s'), 
+				    	'mensaje' => "Error: El valor disponible es menor al monto de la apuesta. Por favor recargue saldo."
+				    );
 				}
 
 			}else{
