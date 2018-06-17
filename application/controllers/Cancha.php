@@ -37,14 +37,14 @@ class Cancha extends CI_Controller {
 			$dataContent['partidosProximosObj'] = Partido_model::getProximos(5, PARTIDO_POR_JUGAR);
 			$dataContent['partidosJugandoObj'] = Partido_model::getProximos(null, PARTIDO_JUGANDO);
 
+			$dataContent['apostadorObj'] = Apostador_model::getApostadorPorID( $this->session->id );
 			//////////////////////////////////////////////////
 			// Resultados
 			$totalGanado = 0;
-			$totalPerdido = 0;
+			
 			$dataContent['numeroAciertos'] = 0;
-			$dataContent['saldoApuesta'] = 10;
+			$dataContent['saldoApuesta'] = $dataContent['apostadorObj']->getMontoInicial() - $this->obtenerCostoTotalApuestas( $dataContent['apostadorObj'] );
 
-			$dataContent['apostadorObj'] = Apostador_model::getApostadorPorID( $this->session->id );
 			
 			//////////////////////////////////////////////////
 			// Apuestas propias
@@ -595,5 +595,20 @@ class Cancha extends CI_Controller {
 		}
 		header('Content-Type: application/json');
 		echo json_encode( $resultado );
+	}
+
+	public function obtenerCostoTotalApuestas( Apostador_model $apostadorObj ){
+		if ( !is_null( $apostadorObj ) ) {
+			$totalApuestasGrupos = $apostadorObj->getNumeroApuestasPorFase( FASE_GRUPOS ) * COSTO_APUESTA_FASE_GRUPOS;
+			$totalApuestasOctavos = $apostadorObj->getNumeroApuestasPorFase( FASE_OCTAVOS ) * COSTO_APUESTA_FASE_OCTAVOS;
+			$totalApuestasCuartos = $apostadorObj->getNumeroApuestasPorFase( FASE_CUARTOS ) * COSTO_APUESTA_FASE_CUARTOS;
+			$totalApuestasSemifinal = $apostadorObj->getNumeroApuestasPorFase( FASE_SEMIFINAL ) * COSTO_APUESTA_FASE_SEMIFINAL;
+			$totalApuestasTercero = $apostadorObj->getNumeroApuestasPorFase( FASE_TERCERO ) * COSTO_APUESTA_FASE_TERCERO;
+			$totalApuestasFinal = $apostadorObj->getNumeroApuestasPorFase( FASE_FINAL ) * COSTO_APUESTA_FASE_FINAL;
+
+			return $totalApuestasGrupos + $totalApuestasOctavos + $totalApuestasCuartos + $totalApuestasSemifinal + $totalApuestasTercero + $totalApuestasFinal;
+		}else{
+			return 0;
+		}
 	}
 }

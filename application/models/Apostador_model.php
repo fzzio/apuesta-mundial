@@ -220,6 +220,34 @@
             }
         }
 
+        public function getNumeroApuestasPorFase( $fase = null ){
+            if( $this->getID() && !is_null( $fase ) ){
+                // Obtenemos el total de las que creo el apostador
+                $this->db->select("a.id");
+                $this->db->from('apuesta AS a');
+                $this->db->join("pronostico as pr", "pr.id = a.id_pronostico_apostador_1");
+                $this->db->join("partido as pa", "pa.id = pr.id_partido");
+                $this->db->where_in('a.estado', array(APUESTA_NO_EMPAREJADA, APUESTA_EMPAREJADA));
+                $this->db->where('pr.id_apostador', intval( $this->getID() ));
+                $this->db->where('pa.fase', intval($fase));
+                $numeroApuestasApostador = $this->db->count_all_results();
+
+                // Obtenemos el total de las que creo el apostador
+                $this->db->select("a.id");
+                $this->db->from('apuesta AS a');
+                $this->db->join("pronostico as pr", "pr.id = a.id_pronostico_apostador_2");
+                $this->db->join("partido as pa", "pa.id = pr.id_partido");
+                $this->db->where_in('a.estado', array(APUESTA_NO_EMPAREJADA, APUESTA_EMPAREJADA));
+                $this->db->where('pr.id_apostador', intval( $this->getID() ));
+                $this->db->where('pa.fase', intval($fase));
+                $numeroApuestasParticipantes = $this->db->count_all_results();
+
+                return $numeroApuestasApostador + $numeroApuestasParticipantes;
+            }else{
+                return 0;
+            }
+        }
+
         ///////////////////////////////////
         // Modificación de base de datos
         ///////////////////////////////////
