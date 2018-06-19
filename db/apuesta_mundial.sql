@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 18-06-2018 a las 16:49:16
+-- Tiempo de generación: 19-06-2018 a las 11:22:34
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 5.6.30
 
@@ -53,7 +53,8 @@ INSERT INTO `apostador` (`id`, `cedula`, `password`, `nombre`, `email`, `celular
 (6, '0920471588', 'a28648e6793cefd224bbd96f72189d2c', 'Denisse Adriana Ochoa Cevallos', 'denochoa@hotmail.com', '0985760243', 10, '2018-06-17 13:35:00', 1),
 (7, '0926532953', 'd9c4e98d13dfa327b5c98d7e00f933a0', 'Henry Antonio Lomas Ascencio', 'henry.lomas.a@gmail.com', '0979124796', 5, '2018-06-17 16:20:06', 1),
 (8, '0926465949', '39125a89d12db82ba9f4656cab09ce52', 'Edwin Enrique Hermenejildo Reyes', 'edwinhermenejildo@gmail.com', '0939903054', 10, '2018-06-17 16:53:43', 1),
-(9, '0917556029', '85ad8a61a364c0f800076d97e2cbad5b', 'Elizabeth Monserrat Bravo Mite', 'embravom@gmail.com', '0997437999', 10, '2018-06-17 17:10:16', 1);
+(9, '0917556029', '85ad8a61a364c0f800076d97e2cbad5b', 'Elizabeth Monserrat Bravo Mite', 'embravom@gmail.com', '0997437999', 10, '2018-06-17 17:10:16', 1),
+(10, '0927628586', 'da56d057fe13171851e819d9be266cf5', 'Daniel Andrés Tigse Palma', 'danieltp15@hotmail.com', '0993740474', 10, '2018-06-19 09:55:29', 1);
 
 -- --------------------------------------------------------
 
@@ -99,11 +100,18 @@ INSERT INTO `apuesta` (`id`, `id_pronostico_apostador_1`, `id_pronostico_apostad
 (28, 31, NULL, 2, '2018-06-18 08:48:46', 0),
 (29, 34, 35, 0.2, '2018-06-18 09:27:04', 1),
 (30, 37, 44, 0.3, '2018-06-18 10:21:36', 1),
-(31, 38, NULL, 0.3, '2018-06-18 10:22:11', 0),
+(31, 38, 49, 0.3, '2018-06-18 10:22:11', 1),
 (32, 40, 41, 0.3, '2018-06-18 12:18:24', 1),
 (33, 42, NULL, 1, '2018-06-18 12:46:41', 0),
 (34, 45, 47, 1, '2018-06-18 14:51:12', 1),
-(35, 46, NULL, 0.8, '2018-06-18 14:57:55', 0);
+(35, 46, 54, 0.8, '2018-06-18 14:57:55', 1),
+(36, 48, 61, 0.3, '2018-06-18 22:16:42', 1),
+(37, 50, 55, 1, '2018-06-19 08:19:24', 1),
+(38, 51, 53, 1, '2018-06-19 08:21:19', 1),
+(39, 52, 56, 1, '2018-06-19 08:23:16', 1),
+(40, 57, 58, 0.99, '2018-06-19 10:09:42', 1),
+(41, 59, NULL, 1, '2018-06-19 10:16:49', 0),
+(42, 60, NULL, 0.5, '2018-06-19 10:17:25', 0);
 
 -- --------------------------------------------------------
 
@@ -433,8 +441,8 @@ INSERT INTO `partido` (`id`, `id_pais_local`, `id_pais_visitante`, `fecha`, `gol
 (41, 241, 170, '2018-06-24 07:00:00', NULL, NULL, NULL, NULL, 1, 'G', 1),
 (42, 170, 222, '2018-06-28 13:00:00', NULL, NULL, NULL, NULL, 1, 'G', 1),
 (43, 241, 24, '2018-06-28 13:00:00', NULL, NULL, NULL, NULL, 1, 'G', 1),
-(44, 176, 196, '2018-06-19 10:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
-(45, 52, 114, '2018-06-19 07:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
+(44, 176, 196, '2018-06-19 10:00:00', NULL, NULL, NULL, NULL, 1, 'H', 2),
+(45, 52, 114, '2018-06-19 07:00:00', 1, 2, NULL, NULL, 1, 'H', 3),
 (46, 114, 196, '2018-06-24 10:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
 (47, 176, 52, '2018-06-24 13:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
 (48, 196, 52, '2018-06-28 09:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
@@ -506,7 +514,21 @@ INSERT INTO `pronostico` (`id`, `id_partido`, `id_apostador`, `resultado`, `fech
 (44, 45, 8, 2, '2018-06-18 13:38:13', 1),
 (45, 45, 1, 2, '2018-06-18 14:51:12', 1),
 (46, 44, 1, 2, '2018-06-18 14:57:55', 1),
-(47, 45, 6, 1, '2018-06-18 15:14:47', 1);
+(47, 45, 6, 1, '2018-06-18 15:14:47', 1),
+(48, 9, 7, 1, '2018-06-18 22:16:42', 1),
+(49, 3, 1, 3, '2018-06-19 07:08:15', 1),
+(50, 44, 3, 3, '2018-06-19 08:19:24', 1),
+(51, 3, 2, 3, '2018-06-19 08:21:19', 1),
+(52, 3, 5, 2, '2018-06-19 08:23:16', 1),
+(53, 3, 6, 1, '2018-06-19 09:04:04', 1),
+(54, 44, 10, 1, '2018-06-19 10:03:11', 1),
+(55, 44, 10, 1, '2018-06-19 10:03:24', 1),
+(56, 3, 10, 1, '2018-06-19 10:03:40', 1),
+(57, 4, 10, 2, '2018-06-19 10:09:42', 1),
+(58, 4, 8, 1, '2018-06-19 10:15:09', 1),
+(59, 3, 8, 1, '2018-06-19 10:16:49', 1),
+(60, 9, 8, 1, '2018-06-19 10:17:25', 1),
+(61, 9, 3, 3, '2018-06-19 10:18:00', 1);
 
 -- --------------------------------------------------------
 
@@ -586,13 +608,13 @@ ALTER TABLE `super_administrador`
 -- AUTO_INCREMENT de la tabla `apostador`
 --
 ALTER TABLE `apostador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `apuesta`
 --
 ALTER TABLE `apuesta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
@@ -610,7 +632,7 @@ ALTER TABLE `partido`
 -- AUTO_INCREMENT de la tabla `pronostico`
 --
 ALTER TABLE `pronostico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de la tabla `super_administrador`
