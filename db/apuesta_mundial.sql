@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 19-06-2018 a las 11:22:34
+-- Tiempo de generación: 19-06-2018 a las 16:19:07
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 5.6.30
 
@@ -48,13 +48,14 @@ INSERT INTO `apostador` (`id`, `cedula`, `password`, `nombre`, `email`, `celular
 (1, '0922159363', 'd838a873bbbffc09aee45a2510759f5f', 'Fabricio Diógenes Orrala Parrales', 'fzzio007@gmail.com', '0997213150', 10, '2018-06-13 04:03:18', 1),
 (2, '0917000093', '491e15e28caaf37cb40d002a8066c1f1', 'Félix Ricardo Chávez Orrala', 'ferichav@gmail.com', '0983862266', 10, '2018-06-13 04:20:36', 1),
 (3, '0915910400', '1e5eeb40a3fce716b244599862fd2200', 'Dalthon  Mauricio Vera Orrala', 'dalve29@gmail.com', '0993661296', 10, '2018-06-13 04:20:36', 1),
-(4, '0924682461', '0066fdca207700676998c29bf2b68f4d', 'RONALD ENRIQUE BORBOR MALAVE', 'ron_odonto@hotmail.com', '0987297036', 10, '2018-06-15 10:00:38', 1),
+(4, 'demomundial', '075f07b8fb4280a8ef2310b6f13494a6', 'Demo Mundial', 'demo@mail.com', '0999999999', 0, '2018-06-15 10:00:38', 1),
 (5, '0918671017', '0384f9417161ce3c5c826b1c15d0a751', 'Jhonny Javier Parrales Ramírez', 'johnnyjavier2040@gmail.com', '0992748925', 10, '2018-06-17 12:57:52', 1),
 (6, '0920471588', 'a28648e6793cefd224bbd96f72189d2c', 'Denisse Adriana Ochoa Cevallos', 'denochoa@hotmail.com', '0985760243', 10, '2018-06-17 13:35:00', 1),
 (7, '0926532953', 'd9c4e98d13dfa327b5c98d7e00f933a0', 'Henry Antonio Lomas Ascencio', 'henry.lomas.a@gmail.com', '0979124796', 5, '2018-06-17 16:20:06', 1),
 (8, '0926465949', '39125a89d12db82ba9f4656cab09ce52', 'Edwin Enrique Hermenejildo Reyes', 'edwinhermenejildo@gmail.com', '0939903054', 10, '2018-06-17 16:53:43', 1),
 (9, '0917556029', '85ad8a61a364c0f800076d97e2cbad5b', 'Elizabeth Monserrat Bravo Mite', 'embravom@gmail.com', '0997437999', 10, '2018-06-17 17:10:16', 1),
-(10, '0927628586', 'da56d057fe13171851e819d9be266cf5', 'Daniel Andrés Tigse Palma', 'danieltp15@hotmail.com', '0993740474', 10, '2018-06-19 09:55:29', 1);
+(10, '0927628586', 'da56d057fe13171851e819d9be266cf5', 'Daniel Andrés Tigse Palma', 'danieltp15@hotmail.com', '0993740474', 10, '2018-06-19 09:55:29', 1),
+(11, '0703689745', '71efacde22df43f9b443ed0ba2dbb59c', 'José Benito Valarezo Loor', 'benito.valarezo@gmail.com', '0995772925', 10, '2018-06-19 12:56:52', 1);
 
 -- --------------------------------------------------------
 
@@ -111,7 +112,13 @@ INSERT INTO `apuesta` (`id`, `id_pronostico_apostador_1`, `id_pronostico_apostad
 (39, 52, 56, 1, '2018-06-19 08:23:16', 1),
 (40, 57, 58, 0.99, '2018-06-19 10:09:42', 1),
 (41, 59, NULL, 1, '2018-06-19 10:16:49', 0),
-(42, 60, NULL, 0.5, '2018-06-19 10:17:25', 0);
+(42, 60, 63, 0.5, '2018-06-19 10:17:25', 1),
+(43, 62, 64, 1, '2018-06-19 13:08:13', 1),
+(44, 65, 67, 0.5, '2018-06-19 14:24:48', 1),
+(45, 66, NULL, 0.5, '2018-06-19 14:29:34', 0),
+(46, 68, NULL, 0.5, '2018-06-19 14:34:53', 0),
+(47, 69, 71, 1, '2018-06-19 14:56:59', 1),
+(48, 70, NULL, 1.1, '2018-06-19 14:58:54', 0);
 
 -- --------------------------------------------------------
 
@@ -401,7 +408,7 @@ CREATE TABLE `partido` (
 INSERT INTO `partido` (`id`, `id_pais_local`, `id_pais_visitante`, `fecha`, `goles_local`, `goles_visitante`, `incidencias_local`, `incidencias_visitante`, `fase`, `grupo`, `estado`) VALUES
 (1, 184, 11, '2018-06-14 10:00:00', 5, 0, '', NULL, 1, 'A', 3),
 (2, 67, 229, '2018-06-15 07:00:00', 0, 1, NULL, NULL, 1, 'A', 3),
-(3, 184, 67, '2018-06-19 13:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1),
+(3, 184, 67, '2018-06-19 13:00:00', 3, 1, NULL, NULL, 1, 'A', 3),
 (4, 229, 11, '2018-06-20 10:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1),
 (5, 11, 67, '2018-06-25 09:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1),
 (6, 229, 184, '2018-06-25 09:00:00', NULL, NULL, NULL, NULL, 1, 'A', 1),
@@ -441,7 +448,7 @@ INSERT INTO `partido` (`id`, `id_pais_local`, `id_pais_visitante`, `fecha`, `gol
 (41, 241, 170, '2018-06-24 07:00:00', NULL, NULL, NULL, NULL, 1, 'G', 1),
 (42, 170, 222, '2018-06-28 13:00:00', NULL, NULL, NULL, NULL, 1, 'G', 1),
 (43, 241, 24, '2018-06-28 13:00:00', NULL, NULL, NULL, NULL, 1, 'G', 1),
-(44, 176, 196, '2018-06-19 10:00:00', NULL, NULL, NULL, NULL, 1, 'H', 2),
+(44, 176, 196, '2018-06-19 10:00:00', 1, 2, NULL, NULL, 1, 'H', 3),
 (45, 52, 114, '2018-06-19 07:00:00', 1, 2, NULL, NULL, 1, 'H', 3),
 (46, 114, 196, '2018-06-24 10:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
 (47, 176, 52, '2018-06-24 13:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
@@ -528,7 +535,17 @@ INSERT INTO `pronostico` (`id`, `id_partido`, `id_apostador`, `resultado`, `fech
 (58, 4, 8, 1, '2018-06-19 10:15:09', 1),
 (59, 3, 8, 1, '2018-06-19 10:16:49', 1),
 (60, 9, 8, 1, '2018-06-19 10:17:25', 1),
-(61, 9, 3, 3, '2018-06-19 10:18:00', 1);
+(61, 9, 3, 3, '2018-06-19 10:18:00', 1),
+(62, 4, 1, 3, '2018-06-19 13:08:13', 1),
+(63, 9, 11, 3, '2018-06-19 14:01:51', 1),
+(64, 4, 11, 1, '2018-06-19 14:02:23', 1),
+(65, 17, 11, 1, '2018-06-19 14:24:48', 1),
+(66, 10, 8, 2, '2018-06-19 14:29:34', 1),
+(67, 17, 8, 2, '2018-06-19 14:31:58', 1),
+(68, 10, 11, 2, '2018-06-19 14:34:53', 1),
+(69, 9, 3, 3, '2018-06-19 14:56:59', 1),
+(70, 4, 2, 3, '2018-06-19 14:58:54', 1),
+(71, 9, 10, 1, '2018-06-19 15:00:32', 1);
 
 -- --------------------------------------------------------
 
@@ -608,13 +625,13 @@ ALTER TABLE `super_administrador`
 -- AUTO_INCREMENT de la tabla `apostador`
 --
 ALTER TABLE `apostador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `apuesta`
 --
 ALTER TABLE `apuesta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
@@ -632,7 +649,7 @@ ALTER TABLE `partido`
 -- AUTO_INCREMENT de la tabla `pronostico`
 --
 ALTER TABLE `pronostico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT de la tabla `super_administrador`
