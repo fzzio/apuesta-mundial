@@ -86,7 +86,7 @@
 							<span class="label label-success txt-light">Ganaste</span>
 						<?php elseif ( $apuesta["resultadoApuesta"] == RESULTADO_PERDISTE ): ?>
 							<span class="label label-danger txt-light">Perdiste</span>
-						<?php elseif ( $apuesta["resultadoApuesta"] == RESULTADO_NADIE ): ?>
+						<?php elseif ( $apuesta["resultadoApuesta"] == RESULTADO_NADIE_GANA ): ?>
 							<span class="label label-warning txt-light">Nadie ganó</span>
 						<?php elseif ( $apuesta["resultadoApuesta"] == RESULTADO_DESIERTA ): ?>
 							<span class="label label-default txt-light">Nadie apostó</span>
