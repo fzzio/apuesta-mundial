@@ -57,6 +57,9 @@
 										<li>
 											Si el partido empieza y <span class="txt-amarillo txt-negrita">no se ha emparejado</span> con otro apostador, sólo se descuenta el valor de haber creado la apuesta.
 										</li>
+										<li>
+											Si la apuesta está emparejada y <span class="txt-amarillo txt-negrita">ninguno de los dos jugadores gana</span>, sólo se descuenta el valor de haber creado la apuesta.
+										</li>
 									</ul>
 								</div>
 							</div>

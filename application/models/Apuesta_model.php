@@ -335,7 +335,7 @@
                         }elseif ( $this->getPronosticoApostador2()->getResultadoFinal() == RESULTADO_GANASTE ) {
                             return RESULTADO_GANA_VISITANTE;
                         }else{
-                            return RESULTADO_CASA_GANA;
+                            return RESULTADO_NADIE_GANA;
                         }
                     }else{
                         return RESULTADO_PENDIENTE;

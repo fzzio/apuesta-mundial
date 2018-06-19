@@ -198,7 +198,7 @@ class Cancha extends CI_Controller {
 					}elseif( $resultadoPartido == $resultadoRival ){
 						$resultadoApuesta = RESULTADO_PERDISTE;
 					}else{
-						$resultadoApuesta = RESULTADO_CASA_GANA;
+						$resultadoApuesta = RESULTADO_NADIE_GANA;
 					}
 				}else{
 					$resultadoApuesta = RESULTADO_PENDIENTE;
@@ -278,7 +278,7 @@ class Cancha extends CI_Controller {
 					}elseif( $resultadoPartido == $resultadoRival ){
 						$resultadoApuesta = RESULTADO_PERDISTE;
 					}else{
-						$resultadoApuesta = RESULTADO_CASA_GANA;
+						$resultadoApuesta = RESULTADO_NADIE_GANA;
 					}
 				}else{
 					$resultadoApuesta = RESULTADO_PENDIENTE;
@@ -357,7 +357,7 @@ class Cancha extends CI_Controller {
 					}elseif( $resultadoPartido == $resultadoRival ){
 						$resultadoApuesta = RESULTADO_PERDISTE;
 					}else{
-						$resultadoApuesta = RESULTADO_CASA_GANA;
+						$resultadoApuesta = RESULTADO_NADIE_GANA;
 					}
 				}
 			}else{

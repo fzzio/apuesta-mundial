@@ -314,7 +314,7 @@
                 if ( !is_null($apuestasCreadasDB) ) {
                     foreach ($apuestasCreadasDB as $apuestaCreadaDB) {
                         $apuestaCreadaObj = Apuesta_model::getApuestaPorID($apuestaCreadaDB["id"]);
-                        if ( $apuestaCreadaObj->getPronosticoApostador1()->getResultadoFinal() == PRONOSTICO_DESACIERTO ) {
+                        if ( ( $apuestaCreadaObj->getPronosticoApostador1()->getResultadoFinal() == PRONOSTICO_DESACIERTO ) && ( $apuestaCreadaObj->getPronosticoApostador2()->getResultadoFinal() == PRONOSTICO_ACIERTO ) ) {
                             $totalPerdidoCreado += $apuestaCreadaObj->getMonto();
                         }
                     }
@@ -333,7 +333,7 @@
                 if ( !is_null($apuestasUnidasDB) ) {
                     foreach ($apuestasUnidasDB as $apuestaUnidaDB) {
                         $apuestaUnidaObj = Apuesta_model::getApuestaPorID($apuestaUnidaDB["id"]);
-                        if ( $apuestaUnidaObj->getPronosticoApostador2()->getResultadoFinal() == PRONOSTICO_DESACIERTO ) {
+                        if ( ( $apuestaUnidaObj->getPronosticoApostador2()->getResultadoFinal() == PRONOSTICO_DESACIERTO ) && ( $apuestaUnidaObj->getPronosticoApostador1()->getResultadoFinal() == PRONOSTICO_ACIERTO ) ) {
                             $totalPerdidoUnido += $apuestaUnidaObj->getMonto();
                         }
                     }
