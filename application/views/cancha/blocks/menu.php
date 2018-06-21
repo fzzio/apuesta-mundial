@@ -41,8 +41,13 @@
                 </a>
               </li>
               <li>
-                <a href="#">
-                  Historial
+                <a href="<?php echo site_url('cancha/apuestas'); ?>">
+                  Mis apuestas
+                </a>
+              </li>
+              <li>
+                <a href="<?php echo site_url('cancha/desafios'); ?>">
+                  Desafíos aceptados
                 </a>
               </li>
             </ul>

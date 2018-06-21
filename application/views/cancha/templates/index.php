@@ -182,7 +182,7 @@
   						<h2>
   							Mis apuestas
   							<small>
-  								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
+  								Últimos 5 (<a href="<?php echo site_url('cancha/apuestas'); ?>" class="txt-amarillo txt-blanco-hover">ver todos</a>)
   							</small>
   						</h2>
   						<div class="clearfix"></div>
@@ -203,7 +203,7 @@
   						<h2>
   							Desafíos aceptados
   							<small>
-  								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
+  								Últimos 5 (<a href="<?php echo site_url('cancha/desafios'); ?>" class="txt-amarillo txt-blanco-hover">ver todos</a>)
   							</small>
   						</h2>
   						<div class="clearfix"></div>

@@ -618,4 +618,38 @@ class Cancha extends CI_Controller {
 		header('Content-Type: application/json');
 		echo json_encode( $resultado );
 	}
+
+	public function apuestas(){
+		if ( estaLogueadoApostador() ) {
+			$dataHeader['titlePage'] = "Mis apuestas";
+			$dataMenu = array();
+			$dataContent['apostadorObj'] = Apostador_model::getApostadorPorID( $this->session->id );
+			$dataContent['arrConsolidadoApuestas'] = $this->getConsolidadoApostador( Apuesta_model::getApuestasIniciadasPorApostador( $dataContent['apostadorObj'], null, null, ORDEN_DESCENDENTE, null ) );
+			$dataFooter = array();
+			// Se cargan las vistas
+	        $data['header'] = $this->load->view('cancha/blocks/header', $dataHeader);
+	        $data['menu'] = $this->load->view('cancha/blocks/menu', $dataMenu );
+	        $data['content'] = $this->load->view('cancha/templates/apuestas', $dataContent );
+	        $data['footer'] = $this->load->view('cancha/blocks/footer', $dataFooter );
+		}else{
+			redirect('cancha/logout','refresh');
+		}
+	}
+
+	public function desafios(){
+		if ( estaLogueadoApostador() ) {
+			$dataHeader['titlePage'] = "Desafíos aceptados";
+			$dataMenu = array();
+			$dataContent['apostadorObj'] = Apostador_model::getApostadorPorID( $this->session->id );
+			$dataContent['arrConsolidadoApostadorParticipaciones'] = $this->getConsolidadoApostadorParticipaciones( Apuesta_model::getApuestasEmparejadasConApostador( $dataContent['apostadorObj'], null, ORDEN_DESCENDENTE, null ) );
+			$dataFooter = array();
+			// Se cargan las vistas
+	        $data['header'] = $this->load->view('cancha/blocks/header', $dataHeader);
+	        $data['menu'] = $this->load->view('cancha/blocks/menu', $dataMenu );
+	        $data['content'] = $this->load->view('cancha/templates/desafios', $dataContent );
+	        $data['footer'] = $this->load->view('cancha/blocks/footer', $dataFooter );
+		}else{
+			redirect('cancha/logout','refresh');
+		}
+	}
 }
