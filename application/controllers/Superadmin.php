@@ -50,21 +50,35 @@ class Superadmin extends CI_Controller {
 			$dataContent['totalDisponibleReal'] = 0;
 			$dataContent['totalDisponibleInvitados'] = 0;
 
+			$dataContent['totalBloqueado'] = 0;
+			$dataContent['totalBloqueadoReal'] = 0;
+			$dataContent['totalBloqueadoInvitados'] = 0;
+
+			$dataContent['totalCancha'] = 0;
+
 
 			foreach ($dataContent['apostadoresObj'] as $indiceApostadores => $apostadorObj) {
-				if ( ( $apostadorObj->getID() == 1 ) || ( $apostadorObj->getID() == 2 ) || ( $apostadorObj->getID() == 3 ) || ( $apostadorObj->getID() == 4 ) || ( $apostadorObj->getID() == 5 ) ) {
+				if ( $apostadorObj->getID() == 4 ) {
+					continue;
+				}
+				if ( ( $apostadorObj->getID() == 1 ) || ( $apostadorObj->getID() == 3 ) || ( $apostadorObj->getID() == 5 ) ) {
 					$dataContent['totalComisionesInvitados'] += $apostadorObj->getGastoTotalPorApostar();
 					$dataContent['totalInicialInvitados'] += $apostadorObj->getMontoInicial();
 					$dataContent['totalDisponibleInvitados'] += $apostadorObj->getValorDisponible();
+					$dataContent['totalBloqueadoInvitados'] += $apostadorObj->getValorAculumadoBloqueado();
 				}else{
 					$dataContent['totalComisionesReal'] += $apostadorObj->getGastoTotalPorApostar();
 					$dataContent['totalInicialReal'] += $apostadorObj->getMontoInicial();
 					$dataContent['totalDisponibleReal'] += $apostadorObj->getValorDisponible();
+					$dataContent['totalBloqueadoReal'] += $apostadorObj->getValorAculumadoBloqueado();
 				}
 			}
 			$dataContent['totalComisiones'] = $dataContent['totalComisionesReal'] + $dataContent['totalComisionesInvitados'];
 			$dataContent['totalInicial'] = $dataContent['totalInicialReal'] + $dataContent['totalInicialInvitados'];
 			$dataContent['totalDisponible'] = $dataContent['totalDisponibleReal'] + $dataContent['totalDisponibleInvitados'];
+			$dataContent['totalBloqueado'] = $dataContent['totalBloqueadoReal'] - $dataContent['totalBloqueadoInvitados'];
+			$dataContent['totalPagar'] = $dataContent['totalDisponibleReal'] + $dataContent['totalBloqueadoReal'];
+			$dataContent['totalCancha'] = ($dataContent['totalInicialReal'] - $dataContent['totalPagar']) + $dataContent['totalComisionesReal'];
 
 
 			$dataFooter = array();

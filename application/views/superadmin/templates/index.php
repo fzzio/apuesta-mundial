@@ -8,6 +8,32 @@
 			<span class="count_bottom">Personas apostando</span>
 		</div>
 		<div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+			<span class="count_top"><i class="fa fa-user"></i> Iniciales</span>
+			<div class="count"><?php echo number_format( $totalInicialReal, 2); ?></div>
+			<span class="count_bottom">
+				$ <?php echo number_format( $totalInicial, 2); ?> (Total) - $ <?php echo number_format( $totalInicialInvitados, 2); ?> (Invitados)
+			</span>
+		</div>
+		<div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+			<span class="count_top"><i class="fa fa-user"></i> Disponibles</span>
+			<div class="count"><?php echo number_format( $totalDisponibleReal, 2); ?></div>
+			<span class="count_bottom">
+				$ <?php echo number_format( $totalDisponible, 2); ?> (Total) - $ <?php echo number_format( $totalDisponibleInvitados, 2); ?> (Invitados)
+			</span>
+		</div>
+		<div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+			<span class="count_top"><i class="fa fa-user"></i> Bloqueados</span>
+			<div class="count"><?php echo number_format( $totalBloqueadoReal, 2); ?></div>
+			<span class="count_bottom">
+				$ <?php echo number_format( $totalBloqueado, 2); ?> (Total) - $ <?php echo number_format( $totalBloqueadoInvitados, 2); ?> (Invitados)
+			</span>
+		</div>
+		<div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+			<span class="count_top"><i class="fa fa-user"></i> Pagar</span>
+			<div class="count"><?php echo number_format( $totalPagar, 2); ?></div>
+			<span class="count_bottom">Dinero a pagar</span>
+		</div>
+		<div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
 			<span class="count_top"><i class="fa fa-usd"></i> Comisiones</span>
 			<div class="count"><?php echo number_format( $totalComisionesReal, 2); ?></div>
 			<span class="count_bottom">
@@ -15,22 +41,13 @@
 			</span>
 		</div>
 		<div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-			<span class="count_top"><i class="fa fa-user"></i> Dinero</span>
-			<div class="count green"><?php echo number_format( $totalInicialReal, 2); ?></div>
-			<span class="count_bottom">
-				$ <?php echo number_format( $totalInicial, 2); ?> (Total) - $ <?php echo number_format( $totalInicialInvitados, 2); ?> (Invitados)
-			</span>
-		</div>
-		<div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-			<span class="count_top"><i class="fa fa-user"></i> Devolución</span>
-			<div class="count"><?php echo number_format( $totalDisponibleReal, 2); ?></div>
-			<span class="count_bottom">
-				$ <?php echo number_format( $totalDisponible, 2); ?> (Total) - $ <?php echo number_format( $totalDisponibleInvitados, 2); ?> (Invitados)
-			</span>
+			<span class="count_top"><i class="fa fa-user"></i> Ganancias</span>
+			<div class="count"><?php echo number_format( $totalCancha, 2); ?></div>
+			<span class="count_bottom">Dinero de la Cancha</span>
 		</div>
 	</div>
 	<!-- /top tiles -->
-	<div class="row">
+	<div class="row mt-20 mb-20">
 		<div class="col-md-12">
 			<table class="table table-striped table-hover" id="datatable-buttons">
 				<thead>
@@ -48,15 +65,29 @@
 							Email
 						</th>
 						<th>
+							Celular
+						</th>
+						<th>
 							Aciertos
 						</th>
 						<th>
-							$ Disppnible
+							$ Disponible
+						</th>
+						<th>
+							$ Bloqueado
+						</th>
+						<th>
+							$ Total
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php foreach ($apostadoresObj as $indiceApostador => $apostadorObj): ?>
+						<?php
+							if ( $apostadorObj->getID() == 4 ) {
+								continue;
+							}
+						?>
 						<tr>
 							<td>
 								<?php echo $indiceApostador + 1; ?>
@@ -71,10 +102,19 @@
 								<?php echo $apostadorObj->getEmail(); ?>
 							</td>
 							<td>
+								<?php echo $apostadorObj->getCelular(); ?>
+							</td>
+							<td>
 								<?php echo $apostadorObj->getNumeroGanadas(); ?>
 							</td>
 							<td>
 								$ <?php echo number_format( $apostadorObj->getValorDisponible(), 2); ?>
+							</td>
+							<td>
+								$ <?php echo number_format( $apostadorObj->getValorAculumadoBloqueado(), 2); ?>
+							</td>
+							<td>
+								$ <?php echo number_format( $apostadorObj->getValorAculumadoGanadoReal(), 2); ?>
 							</td>
 						</tr>
 					<?php endforeach ?>
