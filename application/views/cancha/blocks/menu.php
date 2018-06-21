@@ -50,6 +50,11 @@
                   Desafíos aceptados
                 </a>
               </li>
+              <li>
+                <a href="<?php echo site_url('cancha/abiertas'); ?>">
+                  Desafíos abiertos
+                </a>
+              </li>
             </ul>
           </li>
           <li>

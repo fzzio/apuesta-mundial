@@ -47,7 +47,7 @@
   						<h2>
   							Apuestas abiertas
   							<small>
-  								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
+  								Últimos 5 (<a href="<?php echo site_url('cancha/abiertas'); ?>" class="txt-amarillo txt-blanco-hover">ver todos</a>)
   							</small>
   						</h2>
   						<div class="clearfix"></div>
@@ -68,7 +68,7 @@
 						<h2>
 							Resultados oficiales
 							<small>
-								Últimos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
+								Últimos 5 <?php /*(<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)*/ ?>
 							</small>
 						</h2>
 						<div class="clearfix"></div>
@@ -86,7 +86,7 @@
 						<h2>
 							Siguientes Partidos
 							<small>
-								Próximos 5 (<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)
+								Próximos 5 <?php /*(<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)*/ ?>
 							</small>
 						</h2>
 						<div class="clearfix"></div>
