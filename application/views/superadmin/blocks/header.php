@@ -33,12 +33,20 @@
         <!-- Bootstrap Colorpicker -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css'); ?>">
 
+        <!-- Datatables -->
+        <link href="<?php echo base_url('bower_components/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>" rel="stylesheet">
+        <link href="<?php echo base_url('bower_components/gentelella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css'); ?>" rel="stylesheet">
+        <link href="<?php echo base_url('bower_components/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css'); ?>" rel="stylesheet">
+        <link href="<?php echo base_url('bower_components/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'); ?>" rel="stylesheet">
+        <link href="<?php echo base_url('bower_components/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css'); ?>" rel="stylesheet">
+
         
         <!-- Gentelella -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/gentelella/build/css/custom.min.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bower_components/flag-icon-css/css/flag-icon.min.css'); ?>">
 
         <!-- Estilo Sistema -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/apuestamundial/css/custom-bootstrap-margin-padding.css'); ?>">
 
         <?php if (isset($css_files)): ?>

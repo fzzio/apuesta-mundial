@@ -567,8 +567,8 @@ function init_DataTables() {
 	  };
 	}();
 
-	/*
 	$('#datatable').dataTable();
+	/*
 
 	$('#datatable-keytable').DataTable({
 	  keys: true
@@ -631,7 +631,7 @@ $(document).ready(function() {
 	//init_skycons();
 	//init_select2();
 	//init_validator();
-	//init_DataTables();
+	init_DataTables();
 	//init_chart_doughut();
 	//init_gauge();
 	//init_PNotify();

@@ -23,6 +23,10 @@ class Superadmin extends CI_Controller {
             array(
                 'Super_administrador_model',
                 'Pais_model',
+                'Apostador_model',
+                'Partido_model',
+                'Pronostico_model',
+                'Apuesta_model',
             )
         );
 	}
@@ -30,7 +34,30 @@ class Superadmin extends CI_Controller {
 	public function index(){
 		if ( estaLogueadoCasa() ) {
 			$dataHeader['titlePage'] = "Dashboard";
+			$dataContent['apostadoresObj'] = Apostador_model::getTodos(ESTADO_ACTIVO);
+			$dataContent['totalApostadores'] = count( $dataContent['apostadoresObj'] );
 			$dataContent['paisesObj'] = Pais_model::getTodos(PAIS_ACTIVO);
+
+			$dataContent['totalComisiones'] = 0;
+			$dataContent['totalComisionesReal'] = 0;
+			$dataContent['totalComisionesInvitados'] = 0;
+
+			$dataContent['totalDinero'] = 0;
+			$dataContent['totalDineroReal'] = 0;
+			$dataContent['totalDineroInvitados'] = 0;
+			foreach ($dataContent['apostadoresObj'] as $indiceApostadores => $apostadorObj) {
+				if ( ( $apostadorObj->getID() == 1 ) || ( $apostadorObj->getID() == 2 ) || ( $apostadorObj->getID() == 3 ) || ( $apostadorObj->getID() == 4 ) || ( $apostadorObj->getID() == 5 ) ) {
+					$dataContent['totalComisionesInvitados'] += $apostadorObj->getGastoTotalPorApostar();
+					$dataContent['totalDineroInvitados'] += $apostadorObj->getMontoInicial();
+				}else{
+					$dataContent['totalComisionesReal'] += $apostadorObj->getGastoTotalPorApostar();
+					$dataContent['totalDineroReal'] += $apostadorObj->getMontoInicial();
+				}
+			}
+			$dataContent['totalComisiones'] = $dataContent['totalComisionesReal'] + $dataContent['totalComisionesInvitados'];
+			$dataContent['totalDinero'] = $dataContent['totalDineroReal'] + $dataContent['totalDineroInvitados'];
+
+
 			$dataFooter = array();
 			$dataMenu = array();
 
