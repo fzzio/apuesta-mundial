@@ -61,7 +61,7 @@ class Superadmin extends CI_Controller {
 				if ( $apostadorObj->getID() == 4 ) {
 					continue;
 				}
-				if ( ( $apostadorObj->getID() == 1 ) || ( $apostadorObj->getID() == 3 ) || ( $apostadorObj->getID() == 5 ) ) {
+				if ( ( $apostadorObj->getID() == 3 ) || ( $apostadorObj->getID() == 5 ) ) {
 					$dataContent['totalComisionesInvitados'] += $apostadorObj->getGastoTotalPorApostar();
 					$dataContent['totalInicialInvitados'] += $apostadorObj->getMontoInicial();
 					$dataContent['totalDisponibleInvitados'] += $apostadorObj->getValorDisponible();
