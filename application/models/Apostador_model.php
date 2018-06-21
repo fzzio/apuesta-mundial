@@ -419,10 +419,9 @@
             }
         }
 
-        public function getNumeroGanadas(){
+        public function getNumeroApuestasGanadas(){
             if( $this->getID() ){
                 $numeroGanadasCreadas = 0;
-                $numeroGanadasUnidas = 0;
 
                 // Obtenemos el total de las que creo el apostador
                 $apuestasCreadasDB = null;
@@ -442,6 +441,14 @@
                         }
                     }
                 }
+                return $numeroGanadasCreadas;
+            }else{
+                return 0;
+            }
+        }
+        public function getNumeroDesafiosGanados(){
+            if( $this->getID() ){
+                $numeroGanadasUnidas = 0;
 
                 // Obtenemos el total de las el apostador desafió a un rival
                 $apuestasUnidasDB = null;
@@ -461,11 +468,12 @@
                         }
                     }
                 }
-                return $numeroGanadasCreadas + $numeroGanadasUnidas;
+                return $numeroGanadasUnidas;
             }else{
                 return 0;
             }
         }
+
 
         ///////////////////////////////////
         // Modificación de base de datos

@@ -42,7 +42,9 @@ class Cancha extends CI_Controller {
 			// Resultados
 			
 			$dataContent['numeroJugados'] = count( Partido_model::getTodos(PARTIDO_FINALIZADO) );
-			$dataContent['numeroAciertos'] = $dataContent['apostadorObj']->getNumeroGanadas();
+			$dataContent['numeroApuestasGanadas'] = $dataContent['apostadorObj']->getNumeroApuestasGanadas();
+			$dataContent['numeroDesafiosGanados'] = $dataContent['apostadorObj']->getNumeroDesafiosGanados();
+			$dataContent['numeroGanados'] = $dataContent['numeroApuestasGanadas'] + $dataContent['numeroDesafiosGanados'];
 
 			
 			$dataContent['saldoDisponible'] = $dataContent['apostadorObj']->getValorDisponible();

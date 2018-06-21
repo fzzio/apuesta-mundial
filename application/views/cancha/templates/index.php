@@ -15,9 +15,11 @@
   			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
   				<div class="tile-stats">
 					<div class="icon"><i class="fa fa-check"></i></div>
-					<div class="count"><?php echo $numeroAciertos; ?></div>
+					<div class="count"><?php echo $numeroGanados; ?></div>
 					<h3>Acertadas</h3>
-					<p>Tus apuestas correctos</p>
+					<p>
+						<?php echo $numeroApuestasGanadas; ?> (Apuestas) + <?php echo $numeroDesafiosGanados; ?> (Desafíos)
+					</p>
   				</div>
   			</div>
   			<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12 hidden-xs">

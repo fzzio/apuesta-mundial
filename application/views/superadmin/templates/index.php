@@ -100,7 +100,7 @@
 								<?php echo $apostadorObj->getCelular(); ?>
 							</td>
 							<td>
-								<?php echo $apostadorObj->getNumeroGanadas(); ?>
+								<?php echo $apostadorObj->getNumeroApuestasGanadas() + $apostadorObj->getNumeroDesafiosGanados(); ?>
 							</td>
 							<td>
 								$ <?php echo number_format( $apostadorObj->getValorDisponible(), 2); ?>
