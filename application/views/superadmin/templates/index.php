@@ -16,15 +16,17 @@
 		</div>
 		<div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
 			<span class="count_top"><i class="fa fa-user"></i> Dinero</span>
-			<div class="count green"><?php echo number_format( $totalDineroReal, 2); ?></div>
+			<div class="count green"><?php echo number_format( $totalInicialReal, 2); ?></div>
 			<span class="count_bottom">
-				$ <?php echo number_format( $totalDinero, 2); ?> (Total) - $ <?php echo number_format( $totalDineroInvitados, 2); ?> (Invitados)
+				$ <?php echo number_format( $totalInicial, 2); ?> (Total) - $ <?php echo number_format( $totalInicialInvitados, 2); ?> (Invitados)
 			</span>
 		</div>
 		<div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-			<span class="count_top"><i class="fa fa-user"></i> Partidos</span>
-			<div class="count">4,567</div>
-			<span class="count_bottom">Partidos por apostar</span>
+			<span class="count_top"><i class="fa fa-user"></i> Devolución</span>
+			<div class="count"><?php echo number_format( $totalDisponibleReal, 2); ?></div>
+			<span class="count_bottom">
+				$ <?php echo number_format( $totalDisponible, 2); ?> (Total) - $ <?php echo number_format( $totalDisponibleInvitados, 2); ?> (Invitados)
+			</span>
 		</div>
 	</div>
 	<!-- /top tiles -->

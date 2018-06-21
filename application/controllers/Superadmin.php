@@ -42,20 +42,29 @@ class Superadmin extends CI_Controller {
 			$dataContent['totalComisionesReal'] = 0;
 			$dataContent['totalComisionesInvitados'] = 0;
 
-			$dataContent['totalDinero'] = 0;
-			$dataContent['totalDineroReal'] = 0;
-			$dataContent['totalDineroInvitados'] = 0;
+			$dataContent['totalInicial'] = 0;
+			$dataContent['totalInicialReal'] = 0;
+			$dataContent['totalInicialInvitados'] = 0;
+
+			$dataContent['totalDisponible'] = 0;
+			$dataContent['totalDisponibleReal'] = 0;
+			$dataContent['totalDisponibleInvitados'] = 0;
+
+
 			foreach ($dataContent['apostadoresObj'] as $indiceApostadores => $apostadorObj) {
 				if ( ( $apostadorObj->getID() == 1 ) || ( $apostadorObj->getID() == 2 ) || ( $apostadorObj->getID() == 3 ) || ( $apostadorObj->getID() == 4 ) || ( $apostadorObj->getID() == 5 ) ) {
 					$dataContent['totalComisionesInvitados'] += $apostadorObj->getGastoTotalPorApostar();
-					$dataContent['totalDineroInvitados'] += $apostadorObj->getMontoInicial();
+					$dataContent['totalInicialInvitados'] += $apostadorObj->getMontoInicial();
+					$dataContent['totalDisponibleInvitados'] += $apostadorObj->getValorDisponible();
 				}else{
 					$dataContent['totalComisionesReal'] += $apostadorObj->getGastoTotalPorApostar();
-					$dataContent['totalDineroReal'] += $apostadorObj->getMontoInicial();
+					$dataContent['totalInicialReal'] += $apostadorObj->getMontoInicial();
+					$dataContent['totalDisponibleReal'] += $apostadorObj->getValorDisponible();
 				}
 			}
 			$dataContent['totalComisiones'] = $dataContent['totalComisionesReal'] + $dataContent['totalComisionesInvitados'];
-			$dataContent['totalDinero'] = $dataContent['totalDineroReal'] + $dataContent['totalDineroInvitados'];
+			$dataContent['totalInicial'] = $dataContent['totalInicialReal'] + $dataContent['totalInicialInvitados'];
+			$dataContent['totalDisponible'] = $dataContent['totalDisponibleReal'] + $dataContent['totalDisponibleInvitados'];
 
 
 			$dataFooter = array();
