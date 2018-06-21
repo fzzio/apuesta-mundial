@@ -54,9 +54,6 @@ class Superadmin extends CI_Controller {
 			$dataContent['totalBloqueadoReal'] = 0;
 			$dataContent['totalBloqueadoInvitados'] = 0;
 
-			$dataContent['totalCancha'] = 0;
-
-
 			foreach ($dataContent['apostadoresObj'] as $indiceApostadores => $apostadorObj) {
 				if ( $apostadorObj->getID() == 4 ) {
 					continue;
@@ -78,8 +75,6 @@ class Superadmin extends CI_Controller {
 			$dataContent['totalDisponible'] = $dataContent['totalDisponibleReal'] + $dataContent['totalDisponibleInvitados'];
 			$dataContent['totalBloqueado'] = $dataContent['totalBloqueadoReal'] - $dataContent['totalBloqueadoInvitados'];
 			$dataContent['totalPagar'] = $dataContent['totalDisponibleReal'] + $dataContent['totalBloqueadoReal'];
-			$dataContent['totalCancha'] = ($dataContent['totalInicialReal'] - $dataContent['totalPagar']) + $dataContent['totalComisionesReal'];
-
 
 			$dataFooter = array();
 			$dataMenu = array();
@@ -199,6 +194,7 @@ class Superadmin extends CI_Controller {
 				$crud->unset_read();
 				$crud->unset_export();
 				$crud->unset_clone();
+				$crud->unset_delete();
 
 				$crud->unset_jquery();
 				$crud->unset_bootstrap();

@@ -40,11 +40,6 @@
 				$ <?php echo number_format( $totalComisiones, 2); ?> (Total) - $ <?php echo number_format( $totalComisionesInvitados, 2); ?> (Invitados)
 			</span>
 		</div>
-		<div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-			<span class="count_top"><i class="fa fa-user"></i> Ganancias</span>
-			<div class="count"><?php echo number_format( $totalCancha, 2); ?></div>
-			<span class="count_bottom">Dinero de la Cancha</span>
-		</div>
 	</div>
 	<!-- /top tiles -->
 	<div class="row mt-20 mb-20">
