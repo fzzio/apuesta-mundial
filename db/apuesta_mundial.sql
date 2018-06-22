@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 21-06-2018 a las 16:23:47
+-- Tiempo de generación: 21-06-2018 a las 19:03:23
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 5.6.30
 
@@ -137,7 +137,9 @@ INSERT INTO `apuesta` (`id`, `id_pronostico_apostador_1`, `id_pronostico_apostad
 (63, 97, 98, 1, '2018-06-21 09:25:35', 1),
 (64, 101, NULL, 0.5, '2018-06-21 13:22:48', 0),
 (65, 102, NULL, 1, '2018-06-21 13:23:58', 0),
-(66, 103, NULL, 0.5, '2018-06-21 13:24:36', 0);
+(66, 103, 106, 0.5, '2018-06-21 13:24:36', 1),
+(67, 104, NULL, 1, '2018-06-21 16:24:59', 0),
+(68, 105, NULL, 1, '2018-06-21 17:37:18', 0);
 
 -- --------------------------------------------------------
 
@@ -596,7 +598,10 @@ INSERT INTO `pronostico` (`id`, `id_partido`, `id_apostador`, `resultado`, `fech
 (100, 22, 1, 2, '2018-06-21 12:03:22', 1),
 (101, 40, 11, 1, '2018-06-21 13:22:48', 1),
 (102, 29, 11, 2, '2018-06-21 13:23:58', 1),
-(103, 23, 11, 1, '2018-06-21 13:24:36', 1);
+(103, 23, 11, 1, '2018-06-21 13:24:36', 1),
+(104, 23, 11, 2, '2018-06-21 16:24:59', 1),
+(105, 23, 12, 2, '2018-06-21 17:37:18', 1),
+(106, 23, 12, 2, '2018-06-21 17:38:02', 1);
 
 -- --------------------------------------------------------
 
@@ -682,7 +687,7 @@ ALTER TABLE `apostador`
 -- AUTO_INCREMENT de la tabla `apuesta`
 --
 ALTER TABLE `apuesta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
@@ -700,7 +705,7 @@ ALTER TABLE `partido`
 -- AUTO_INCREMENT de la tabla `pronostico`
 --
 ALTER TABLE `pronostico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT de la tabla `super_administrador`
