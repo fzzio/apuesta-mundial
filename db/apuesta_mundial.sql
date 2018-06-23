@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 23-06-2018 a las 13:14:14
+-- Tiempo de generación: 23-06-2018 a las 16:04:42
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 5.6.30
 
@@ -146,7 +146,8 @@ INSERT INTO `apuesta` (`id`, `id_pronostico_apostador_1`, `id_pronostico_apostad
 (71, 112, 113, 1, '2018-06-22 14:10:19', 1),
 (72, 116, 117, 1, '2018-06-22 23:02:59', 1),
 (73, 119, NULL, 1, '2018-06-23 11:36:53', 0),
-(74, 120, NULL, 1, '2018-06-23 11:36:55', 0);
+(74, 120, NULL, 1, '2018-06-23 11:36:55', 0),
+(75, 121, NULL, 0.9, '2018-06-23 13:27:04', 0);
 
 -- --------------------------------------------------------
 
@@ -466,7 +467,7 @@ INSERT INTO `partido` (`id`, `id_pais_local`, `id_pais_visitante`, `fecha`, `gol
 (31, 242, 33, '2018-06-27 13:00:00', NULL, NULL, NULL, NULL, 1, 'E', 1),
 (32, 4, 146, '2018-06-17 10:00:00', 0, 1, NULL, NULL, 1, 'F', 3),
 (33, 207, 58, '2018-06-18 07:00:00', 1, 0, NULL, NULL, 1, 'F', 3),
-(34, 4, 207, '2018-06-23 13:00:00', NULL, NULL, NULL, NULL, 1, 'F', 1),
+(34, 4, 207, '2018-06-23 13:00:00', 2, 1, NULL, NULL, 1, 'F', 3),
 (35, 58, 146, '2018-06-23 10:00:00', 1, 2, NULL, NULL, 1, 'F', 3),
 (36, 146, 207, '2018-06-27 09:00:00', NULL, NULL, NULL, NULL, 1, 'F', 1),
 (37, 58, 4, '2018-06-27 09:00:00', NULL, NULL, NULL, NULL, 1, 'F', 1),
@@ -622,7 +623,8 @@ INSERT INTO `pronostico` (`id`, `id_partido`, `id_apostador`, `resultado`, `fech
 (117, 35, 11, 3, '2018-06-22 23:11:17', 1),
 (118, 46, 13, 2, '2018-06-23 11:35:18', 1),
 (119, 34, 13, 1, '2018-06-23 11:36:53', 1),
-(120, 34, 13, 1, '2018-06-23 11:36:55', 1);
+(120, 34, 13, 1, '2018-06-23 11:36:55', 1),
+(121, 47, 11, 1, '2018-06-23 13:27:04', 1);
 
 -- --------------------------------------------------------
 
@@ -708,7 +710,7 @@ ALTER TABLE `apostador`
 -- AUTO_INCREMENT de la tabla `apuesta`
 --
 ALTER TABLE `apuesta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
@@ -726,7 +728,7 @@ ALTER TABLE `partido`
 -- AUTO_INCREMENT de la tabla `pronostico`
 --
 ALTER TABLE `pronostico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT de la tabla `super_administrador`
