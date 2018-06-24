@@ -446,6 +446,7 @@
                 return 0;
             }
         }
+
         public function getNumeroDesafiosGanados(){
             if( $this->getID() ){
                 $numeroGanadasUnidas = 0;
@@ -471,6 +472,45 @@
                 return $numeroGanadasUnidas;
             }else{
                 return 0;
+            }
+        }
+
+        public function getNumeroAciertosTotales(){
+            return ( $this->getNumeroApuestasGanadas() + $this->getNumeroDesafiosGanados() );
+        }
+
+        public static function getRanking( $limite = 5, $estado = null ){
+            $apostadoresObj = self::getTodos( $estado );
+
+            // Ordenamiento Burbuja
+            for ($i = 1; $i < count( $apostadoresObj ); $i++) {
+                for ($j = 0; $j < count( $apostadoresObj ) - $i; $j++) {
+                    if ( $apostadoresObj[$j]->getNumeroAciertosTotales() < $apostadoresObj[$j + 1]->getNumeroAciertosTotales()  ) {
+                        $k = $apostadoresObj[$j + 1]; 
+                        $apostadoresObj[$j + 1] = $apostadoresObj[$j]; 
+                        $apostadoresObj[$j] = $k;
+                    }
+                }
+            }
+
+            $arrayRanking = array();
+            foreach ($apostadoresObj as $indice => $apostadorObj) {
+                if ( $apostadorObj->getID() == 4 ) {
+                    // Demo
+                    continue;
+                }
+                array_push($arrayRanking,
+                    array(
+                        "id" => $apostadorObj->getID(),
+                        "nombre" => $apostadorObj->getNombre(),
+                        "aciertos" => $apostadorObj->getNumeroAciertosTotales(),
+                    )
+                );
+            }
+            if( !is_null( $limite ) ){
+                return array_slice($arrayRanking, 0, $limite);
+            }else{
+                return $arrayRanking;
             }
         }
 
