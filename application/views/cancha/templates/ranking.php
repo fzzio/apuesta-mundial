@@ -12,7 +12,7 @@
 					</h2>
 					<div class="clearfix"></div>
 				</div>
-				<div class="x_content fondo-imagen fondo-3">
+				<div class="x_content fondo-imagen fondo-9">
 					<div class="contenedor-tabla fondo-transparencia-negro-1 p-10">
 						<table class="table table-hover table-condensed tabla-partidos tabla-partidos-apuestas">
 							<thead>
