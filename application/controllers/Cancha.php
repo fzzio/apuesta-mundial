@@ -680,7 +680,7 @@ class Cancha extends CI_Controller {
 			$dataContent['apostadorObj'] = Apostador_model::getApostadorPorID( $this->session->id );
 			//////////////////////////////////////////////////
 			// Ranking
-			$dataContent['arrRanking'] = Apostador_model::getRanking(null, ESTADO_ACTIVO);
+			$dataContent['arrRanking'] = Apostador_model::getRanking(10, ESTADO_ACTIVO);
 
 			$dataFooter = array();
 			// Se cargan las vistas

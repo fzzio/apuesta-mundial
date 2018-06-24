@@ -7,7 +7,7 @@
 					<h2>
 						Ranking
 						<small>
-							Se muestran todos
+							TOP 10
 						</small>
 					</h2>
 					<div class="clearfix"></div>
