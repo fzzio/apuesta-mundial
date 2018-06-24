@@ -35,7 +35,9 @@
 					<div class="icon"><i class="fa fa-users"></i></div>
 					<div class="count"><?php echo $totalApostadores; ?></div>
 					<h3>Participantes</h3>
-					<p>Personas apostando</p>
+					<p>
+						Personas apostando [<a href="<?php echo site_url('cancha/ranking'); ?>" class="txt-amarillo txt-blanco-hover">Ver Ranking</a>]
+					</p>
   				</div>
   			</div>
   		</div>

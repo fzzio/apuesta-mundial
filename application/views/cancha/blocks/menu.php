@@ -55,6 +55,11 @@
                   Desafíos abiertos
                 </a>
               </li>
+              <li>
+                <a href="<?php echo site_url('cancha/ranking'); ?>">
+                  Ranking
+                </a>
+              </li>
             </ul>
           </li>
           <li>

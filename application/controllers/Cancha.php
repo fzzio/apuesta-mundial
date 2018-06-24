@@ -64,6 +64,7 @@ class Cancha extends CI_Controller {
 			// Apuestas abiertas de otros
 			$dataContent['arrConsolidadoOtrasApuestasAbiertas'] = $this->getConsolidadoOtrosApostadores( Apuesta_model::getApuestasIniciadasOtrosApostadores( $dataContent['apostadorObj'], APUESTA_NO_EMPAREJADA, 5, ORDEN_ASCENDENTE, PARTIDO_POR_JUGAR ) );
 
+
 			$dataFooter = array();
 			$dataMenu = array();
 
@@ -666,6 +667,26 @@ class Cancha extends CI_Controller {
 	        $data['header'] = $this->load->view('cancha/blocks/header', $dataHeader);
 	        $data['menu'] = $this->load->view('cancha/blocks/menu', $dataMenu );
 	        $data['content'] = $this->load->view('cancha/templates/abiertas', $dataContent );
+	        $data['footer'] = $this->load->view('cancha/blocks/footer', $dataFooter );
+		}else{
+			redirect('cancha/logout','refresh');
+		}
+	}
+
+	public function ranking(){
+		if ( estaLogueadoApostador() ) {
+			$dataHeader['titlePage'] = "Ranking";
+			$dataMenu = array();
+			$dataContent['apostadorObj'] = Apostador_model::getApostadorPorID( $this->session->id );
+			//////////////////////////////////////////////////
+			// Ranking
+			$dataContent['arrRanking'] = Apostador_model::getRanking(null, ESTADO_ACTIVO);
+
+			$dataFooter = array();
+			// Se cargan las vistas
+	        $data['header'] = $this->load->view('cancha/blocks/header', $dataHeader);
+	        $data['menu'] = $this->load->view('cancha/blocks/menu', $dataMenu );
+	        $data['content'] = $this->load->view('cancha/templates/ranking', $dataContent );
 	        $data['footer'] = $this->load->view('cancha/blocks/footer', $dataFooter );
 		}else{
 			redirect('cancha/logout','refresh');
