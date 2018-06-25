@@ -63,7 +63,7 @@
 										<select name="apuesta-pronostico" id="apuesta-pronostico" class="form-control" required>
 											<option value="">Seleccionar</option>
 											<option value="<?php echo PRONOSTICO_GANA_LOCAL; ?>" id="apuesta-pronostico-ganalocal"></option>
-											<option value="<?php echo PRONOSTICO_EMPATE; ?>">Empate</option>
+											<option value="<?php echo PRONOSTICO_EMPATE; ?>" id="apuesta-pronostico-empate">Empate</option>
 											<option value="<?php echo PRONOSTICO_GANA_VISITANTE; ?>" id="apuesta-pronostico-ganavisitante"></option>
 										</select>
 									</div>

@@ -80,6 +80,13 @@
             var JS_PRONOSTICO_GANA_VISITANTE   = <?php echo PRONOSTICO_GANA_VISITANTE; ?>;
             var JS_PRONOSTICO_EMPATE           = <?php echo PRONOSTICO_EMPATE; ?>;
 
+            var JS_FASE_GRUPOS = <?php echo FASE_GRUPOS; ?>;
+            var JS_FASE_OCTAVOS = <?php echo FASE_OCTAVOS; ?>;
+            var JS_FASE_CUARTOS = <?php echo FASE_CUARTOS; ?>;
+            var JS_FASE_SEMIFINAL = <?php echo FASE_SEMIFINAL; ?>;
+            var JS_FASE_TERCERO = <?php echo FASE_TERCERO; ?>;
+            var JS_FASE_FINAL = <?php echo FASE_FINAL; ?>;
+
             var JS_COSTO_APUESTA_FASE_GRUPOS = <?php echo COSTO_APUESTA_FASE_GRUPOS; ?>;
             var JS_COSTO_APUESTA_FASE_OCTAVOS = <?php echo COSTO_APUESTA_FASE_OCTAVOS; ?>;
             var JS_COSTO_APUESTA_FASE_CUARTOS = <?php echo COSTO_APUESTA_FASE_CUARTOS; ?>;

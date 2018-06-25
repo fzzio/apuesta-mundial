@@ -63,14 +63,18 @@
 					<?php endif ?>
 				</td>
 				<td class="text-center centrado-vertical">
-					<?php if ( $apuesta["resultadoRival"] == PRONOSTICO_EMPATE ): ?>
-						<span class="txt-blanco">
-							Empate
-						</span>
+					<?php if ($partidoObj->getFase() == FASE_GRUPOS ): ?>
+						<?php if ( $apuesta["resultadoRival"] == PRONOSTICO_EMPATE ): ?>
+							<span class="txt-blanco">
+								Empate
+							</span>
+						<?php else: ?>
+							<div class="btn btn-sm btn-negro btn-amarillo-hover" onclick="modalUnirApuesta(<?php echo $apuesta['apuestaID']; ?>, <?php echo PRONOSTICO_EMPATE; ?>);">
+								Empate
+							</div>
+						<?php endif ?>
 					<?php else: ?>
-						<div class="btn btn-sm btn-negro btn-amarillo-hover" onclick="modalUnirApuesta(<?php echo $apuesta['apuestaID']; ?>, <?php echo PRONOSTICO_EMPATE; ?>);">
-							Empate
-						</div>
+						--
 					<?php endif ?>
 				</td>
 				<td class="text-center centrado-vertical">

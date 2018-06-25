@@ -662,6 +662,11 @@ function modalCrearApuesta(partido){
 				$("#apuesta-partido-hora").text(respuesta.data.partidoFechaHora);
 				$("#apuesta-pronostico-ganalocal").text("Gana " + respuesta.data.partidoPaisLocal);
 				$("#apuesta-pronostico-ganavisitante").text("Gana " + respuesta.data.partidoPaisVisitante);
+				if ( respuesta.data.partidoFase !=  JS_FASE_GRUPOS ) {
+					$("#apuesta-pronostico-empate").hide();
+				}else{
+					$("#apuesta-pronostico-empate").show();
+				}
 				$("#apuesta-partido-costo").text("$ " + respuesta.data.partidoCostoApuesta);
 				$("#apuesta-mensaje-error").text("");
 				$("#contenedor-error-crear").hide();
