@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 25-06-2018 a las 16:16:50
+-- Tiempo de generación: 25-06-2018 a las 18:20:47
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 5.6.30
 
@@ -169,7 +169,14 @@ INSERT INTO `apuesta` (`id`, `id_pronostico_apostador_1`, `id_pronostico_apostad
 (93, 147, 156, 1, '2018-06-25 11:55:57', 1),
 (94, 152, 158, 0.5, '2018-06-25 12:16:05', 1),
 (95, 153, 157, 1, '2018-06-25 12:17:05', 1),
-(96, 154, NULL, 0.3, '2018-06-25 12:26:42', 0);
+(96, 154, NULL, 0.3, '2018-06-25 12:26:42', 0),
+(97, 159, 162, 0.3, '2018-06-25 16:07:16', 1),
+(98, 160, NULL, 0.5, '2018-06-25 16:08:02', 0),
+(99, 161, 166, 0.5, '2018-06-25 16:08:03', 1),
+(100, 163, NULL, 0.8, '2018-06-25 17:06:32', 0),
+(101, 164, NULL, 0.8, '2018-06-25 17:07:54', 0),
+(102, 165, NULL, 0.8, '2018-06-25 17:08:38', 0),
+(103, 167, NULL, 1, '2018-06-25 17:13:04', 0);
 
 -- --------------------------------------------------------
 
@@ -504,7 +511,9 @@ INSERT INTO `partido` (`id`, `id_pais_local`, `id_pais_visitante`, `fecha`, `gol
 (46, 114, 196, '2018-06-24 10:00:00', 2, 2, NULL, NULL, 1, 'H', 3),
 (47, 176, 52, '2018-06-24 13:00:00', 0, 3, NULL, NULL, 1, 'H', 3),
 (48, 196, 52, '2018-06-28 09:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
-(49, 114, 176, '2018-06-28 09:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1);
+(49, 114, 176, '2018-06-28 09:00:00', NULL, NULL, NULL, NULL, 1, 'H', 1),
+(50, 229, 177, '2018-06-30 13:00:00', NULL, NULL, NULL, NULL, 2, '8', 1),
+(51, 73, 184, '2018-07-01 09:00:00', NULL, NULL, NULL, NULL, 2, '8', 1);
 
 -- --------------------------------------------------------
 
@@ -683,7 +692,16 @@ INSERT INTO `pronostico` (`id`, `id_partido`, `id_apostador`, `resultado`, `fech
 (155, 18, 10, 2, '2018-06-25 14:18:08', 1),
 (156, 18, 10, 2, '2018-06-25 14:18:12', 1),
 (157, 25, 1, 1, '2018-06-25 15:12:03', 1),
-(158, 18, 14, 1, '2018-06-25 15:15:06', 1);
+(158, 18, 14, 1, '2018-06-25 15:15:06', 1),
+(159, 24, 9, 2, '2018-06-25 16:07:16', 1),
+(160, 25, 9, 1, '2018-06-25 16:08:02', 1),
+(161, 25, 9, 1, '2018-06-25 16:08:03', 1),
+(162, 24, 11, 1, '2018-06-25 16:20:06', 1),
+(163, 19, 1, 1, '2018-06-25 17:06:32', 1),
+(164, 18, 1, 2, '2018-06-25 17:07:54', 1),
+(165, 24, 1, 2, '2018-06-25 17:08:38', 1),
+(166, 25, 1, 3, '2018-06-25 17:09:37', 1),
+(167, 36, 1, 1, '2018-06-25 17:13:04', 1);
 
 -- --------------------------------------------------------
 
@@ -769,7 +787,7 @@ ALTER TABLE `apostador`
 -- AUTO_INCREMENT de la tabla `apuesta`
 --
 ALTER TABLE `apuesta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
@@ -781,13 +799,13 @@ ALTER TABLE `pais`
 -- AUTO_INCREMENT de la tabla `partido`
 --
 ALTER TABLE `partido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `pronostico`
 --
 ALTER TABLE `pronostico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
 
 --
 -- AUTO_INCREMENT de la tabla `super_administrador`
