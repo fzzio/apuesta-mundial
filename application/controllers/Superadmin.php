@@ -169,7 +169,7 @@ class Superadmin extends CI_Controller {
 					'F' => 'Grupo F',
 					'G' => 'Grupo G',
 					'H' => 'Grupo H',
-					'' => 'Ninguno',
+					'8' => 'Ninguno',
 				));
 				$crud->field_type('estado', 'dropdown', array(
 					PARTIDO_INACTIVO => 'Inactivo',

@@ -75,7 +75,7 @@
 						</h2>
 						<div class="clearfix"></div>
 					</div>
-					<div class="x_content fondo-imagen fondo-1 ">
+					<div class="x_content fondo-imagen fondo-1 alto-bloque">
 						<div class="contenedor-tabla fondo-transparencia-negro-1">
 							<?php $this->load->view('cancha/blocks/resultados_oficiales', array($partidosJugadosObj)) ?>
 						</div>
@@ -93,7 +93,7 @@
 						</h2>
 						<div class="clearfix"></div>
 					</div>
-					<div class="x_content fondo-imagen fondo-2">
+					<div class="x_content fondo-imagen fondo-2 alto-bloque">
 						<div class="contenedor-tabla fondo-transparencia-negro-1">
 							<?php $this->load->view('cancha/blocks/siguientes_partidos', array($partidosProximosObj)) ?>
 						</div>

@@ -554,6 +554,10 @@ span.tag{
 	display: none;
 }
 
+.alto-bloque{
+	min-height: 345px;
+}
+
 /*
  * 2 -> lg: min-width:1200px
  * -----------------------------------------------
