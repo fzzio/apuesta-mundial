@@ -122,7 +122,7 @@
         ///////////////////////////////////
         // Funciones
         ///////////////////////////////////
-        public static function getApostadorPorID( $apostadorID, $estado = null ){
+        public static function getApostadorPorID( $apostadorID, $estado = null, $incluirInvitado = TRUE ){
             if ( !is_null( $apostadorID ) ) {
                 // Obtener instancia de CI para manejo de base
                 $instanciaCI =& get_instance();
@@ -131,10 +131,14 @@
                 $instanciaCI->db->select("a.*");
                 $instanciaCI->db->from('apostador AS a');
                 $instanciaCI->db->where('a.id', intval($apostadorID));
-                if ( $estado !== null ) {
-                    $instanciaCI->db->where('a.estado', intval($estado));
+                if ( !is_null( $estado ) ) {
+                    if ( $incluirInvitado == FALSE ) {
+                        $instanciaCI->db->where('a.estado', intval($estado));
+                    }else{
+                        $instanciaCI->db->where_in('a.estado', array(intval($estado), ESTADO_INVITADO));
+                    }
                 }else{
-                    $instanciaCI->db->where_in('a.estado', array(ESTADO_INACTIVO, ESTADO_ACTIVO));
+                    $instanciaCI->db->where_in('a.estado', array(ESTADO_INACTIVO, ESTADO_ACTIVO, ESTADO_INVITADO));
                 }
                 $apostadorDB = $instanciaCI->db->get()->row();
                 
@@ -194,7 +198,7 @@
                 return null;
             }
         }
-        public static function getTodos( $estado = null ){
+        public static function getTodos( $estado = null, $incluirInvitado = TRUE ){
             // Obtener instancia de CI para manejo de base
             $instanciaCI =& get_instance();
 
@@ -202,9 +206,13 @@
             $instanciaCI->db->select("a.id");
             $instanciaCI->db->from('apostador AS a');
             if ( !is_null( $estado ) ) {
-                $instanciaCI->db->where('a.estado', intval($estado));
+                if ( $incluirInvitado == FALSE ) {
+                    $instanciaCI->db->where('a.estado', intval($estado));
+                }else{
+                    $instanciaCI->db->where_in('a.estado', array(intval($estado), ESTADO_INVITADO));
+                }
             }else{
-                $instanciaCI->db->where_in('a.estado', array(ESTADO_INACTIVO, ESTADO_ACTIVO));
+                $instanciaCI->db->where_in('a.estado', array(ESTADO_INACTIVO, ESTADO_ACTIVO, ESTADO_INVITADO));
             }
             $apostadoresDB = $instanciaCI->db->get()->result_array();
 
@@ -479,8 +487,8 @@
             return ( $this->getNumeroApuestasGanadas() + $this->getNumeroDesafiosGanados() );
         }
 
-        public static function getRanking( $limite = 5, $estado = null ){
-            $apostadoresObj = self::getTodos( $estado );
+        public static function getRanking( $limite = 5, $estado = null, $incluirInvitado = TRUE ){
+            $apostadoresObj = self::getTodos( $estado, $incluirInvitado );
 
             // Ordenamiento Burbuja
             for ($i = 1; $i < count( $apostadoresObj ); $i++) {

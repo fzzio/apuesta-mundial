@@ -34,7 +34,7 @@ class Superadmin extends CI_Controller {
 	public function index(){
 		if ( estaLogueadoCasa() ) {
 			$dataHeader['titlePage'] = "Dashboard";
-			$dataContent['apostadoresObj'] = Apostador_model::getTodos(ESTADO_ACTIVO);
+			$dataContent['apostadoresObj'] = Apostador_model::getTodos(ESTADO_ACTIVO, TRUE);
 			$dataContent['totalApostadores'] = count( $dataContent['apostadoresObj'] );
 			$dataContent['paisesObj'] = Pais_model::getTodos(PAIS_ACTIVO);
 
@@ -56,13 +56,15 @@ class Superadmin extends CI_Controller {
 
 			foreach ($dataContent['apostadoresObj'] as $indiceApostadores => $apostadorObj) {
 				if ( $apostadorObj->getID() == 4 ) {
+					// Usuario Demo
 					continue;
 				}
-				if ( ( $apostadorObj->getID() == 3 ) || ( $apostadorObj->getID() == 5 ) ) {
+				if ( $apostadorObj->getEstado() == ESTADO_INVITADO ) {
 					$dataContent['totalComisionesInvitados'] += $apostadorObj->getGastoTotalPorApostar();
 					$dataContent['totalInicialInvitados'] += $apostadorObj->getMontoInicial();
 					$dataContent['totalDisponibleInvitados'] += $apostadorObj->getValorDisponible();
 					$dataContent['totalBloqueadoInvitados'] += $apostadorObj->getValorAculumadoBloqueado();
+					
 				}else{
 					$dataContent['totalComisionesReal'] += $apostadorObj->getGastoTotalPorApostar();
 					$dataContent['totalInicialReal'] += $apostadorObj->getMontoInicial();
@@ -375,6 +377,7 @@ class Superadmin extends CI_Controller {
 				$crud->field_type('estado', 'dropdown', array(
 					ESTADO_INACTIVO => 'Inactivo',
 					ESTADO_ACTIVO => 'Activo',
+					ESTADO_INVITADO => 'Invitado',
 				));
 
 				$crud->columns( 'cedula', 'nombre', 'email', 'celular', 'monto_inicial', 'fecha', 'estado' );

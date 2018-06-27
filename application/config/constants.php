@@ -92,6 +92,7 @@ defined('PROYECTO_DESARROLLADOR')	OR define('PROYECTO_DESARROLLADOR', 'CAJANEGRA
 // Manejo de estados
 defined('ESTADO_INACTIVO')		OR define('ESTADO_INACTIVO', 0);
 defined('ESTADO_ACTIVO')		OR define('ESTADO_ACTIVO', 1);
+defined('ESTADO_INVITADO')		OR define('ESTADO_INVITADO', 2);
 
 
 defined('ORDEN_ASCENDENTE')		OR define('ORDEN_ASCENDENTE', 'ASC');

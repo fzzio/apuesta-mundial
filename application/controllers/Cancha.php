@@ -32,12 +32,13 @@ class Cancha extends CI_Controller {
 	public function index(){
 		if ( estaLogueadoApostador() ) {
 			$dataHeader['titlePage'] = "Cancha";
-			$dataContent['totalApostadores'] = count(Apostador_model::getTodos(ESTADO_ACTIVO));
+			$dataContent['totalApostadores'] = count(Apostador_model::getTodos(ESTADO_ACTIVO, TRUE));
 			$dataContent['partidosJugadosObj'] = Partido_model::getUltimos(5, PARTIDO_FINALIZADO);
 			$dataContent['partidosProximosObj'] = Partido_model::getProximos(5, PARTIDO_POR_JUGAR);
 			$dataContent['partidosJugandoObj'] = Partido_model::getProximos(null, PARTIDO_JUGANDO);
 
-			$dataContent['apostadorObj'] = Apostador_model::getApostadorPorID( $this->session->id );
+			$dataContent['apostadorObj'] = Apostador_model::getApostadorPorID( $this->session->id, ESTADO_ACTIVO, TRUE );
+			
 			//////////////////////////////////////////////////
 			// Resultados
 			
@@ -711,7 +712,7 @@ class Cancha extends CI_Controller {
 			$dataContent['apostadorObj'] = Apostador_model::getApostadorPorID( $this->session->id );
 			//////////////////////////////////////////////////
 			// Ranking
-			$dataContent['arrRanking'] = Apostador_model::getRanking(10, ESTADO_ACTIVO);
+			$dataContent['arrRanking'] = Apostador_model::getRanking(10, ESTADO_ACTIVO, TRUE);
 
 			$dataFooter = array();
 			// Se cargan las vistas
