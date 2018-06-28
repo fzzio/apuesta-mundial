@@ -60,6 +60,11 @@
                   Ranking
                 </a>
               </li>
+              <li>
+                <a href="<?php echo site_url('cancha/proximos'); ?>">
+                  Próximos partidos
+                </a>
+              </li>
             </ul>
           </li>
           <li>

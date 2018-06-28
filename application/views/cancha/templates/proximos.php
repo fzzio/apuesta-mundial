@@ -5,16 +5,16 @@
 			<div class="x_panel">
 				<div class="x_title">
 					<h2>
-						Apuestas abiertas
+						Siguientes Partidos
 						<small>
 							Se muestran todos
 						</small>
 					</h2>
 					<div class="clearfix"></div>
 				</div>
-				<div class="x_content fondo-imagen fondo-3">
-					<div class="contenedor-tabla fondo-transparencia-negro-1 p-10">
-					<?php $this->load->view('cancha/blocks/apuestas_otros', array('arrApuestas' => $arrConsolidadoOtrasApuestasAbiertas)) ?>
+				<div class="x_content fondo-imagen fondo-2 alto-bloque">
+					<div class="contenedor-tabla fondo-transparencia-negro-1">
+						<?php $this->load->view('cancha/blocks/siguientes_partidos', array($partidosProximosObj)) ?>
 					</div>
 				</div>
 			</div>
@@ -29,4 +29,4 @@
 	</div>
 </div>
 <!-- /page content -->
-<?php $this->load->view('cancha/blocks/modal_apuesta_unir', array()) ?>
+<?php $this->load->view('cancha/blocks/modal_apuesta_crear', array()) ?>

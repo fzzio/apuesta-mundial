@@ -88,7 +88,7 @@
 						<h2>
 							Siguientes Partidos
 							<small>
-								Próximos 5 <?php /*(<a href="" class="txt-amarillo txt-blanco-hover">ver todos</a>)*/ ?>
+								Próximos 5 (<a href="<?php echo site_url('cancha/proximos'); ?>" class="txt-amarillo txt-blanco-hover">ver todos</a>)
 							</small>
 						</h2>
 						<div class="clearfix"></div>

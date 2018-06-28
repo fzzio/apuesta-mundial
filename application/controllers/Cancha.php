@@ -724,4 +724,26 @@ class Cancha extends CI_Controller {
 			redirect('cancha/logout','refresh');
 		}
 	}
+
+	public function proximos(){
+		if ( estaLogueadoApostador() ) {
+			$dataHeader['titlePage'] = "Próximos partidos";
+			$dataMenu = array();
+			$dataContent['apostadorObj'] = Apostador_model::getApostadorPorID( $this->session->id );
+			
+			$dataContent['saldoDisponible'] = $dataContent['apostadorObj']->getValorDisponible();
+			$dataContent['saldoBloqueado'] = $dataContent['apostadorObj']->getValorAculumadoBloqueado();
+			$dataContent['saldoGanado'] = $dataContent['apostadorObj']->getValorAculumadoGanadoReal();
+			$dataContent['partidosProximosObj'] = Partido_model::getProximos(null, PARTIDO_POR_JUGAR);
+
+			$dataFooter = array();
+			// Se cargan las vistas
+	        $data['header'] = $this->load->view('cancha/blocks/header', $dataHeader);
+	        $data['menu'] = $this->load->view('cancha/blocks/menu', $dataMenu );
+	        $data['content'] = $this->load->view('cancha/templates/proximos', $dataContent );
+	        $data['footer'] = $this->load->view('cancha/blocks/footer', $dataFooter );
+		}else{
+			redirect('cancha/logout','refresh');
+		}
+	}
 }
