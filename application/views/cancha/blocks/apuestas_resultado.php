@@ -11,10 +11,10 @@
 				<span class="txt-amarillo text-uppercase">Monto</span>
 			</th>
 			<th class="text-center centrado-vertical">
-				<span class="txt-amarillo text-uppercase">Mi Apuesta</span>
+				<span class="txt-amarillo text-uppercase">Rival</span>
 			</th>
 			<th class="text-center centrado-vertical">
-				<span class="txt-amarillo text-uppercase">Rival</span>
+				<span class="txt-amarillo text-uppercase">Mi Apuesta</span>
 			</th>
 			<th class="text-center centrado-vertical">
 				<span class="txt-amarillo text-uppercase">Apuesta del Rival</span>
@@ -59,16 +59,16 @@
 				</td>
 				<td class="text-center centrado-vertical">
 					<span class="txt-blanco">
-						<?php echo $apuesta["resultadoApostadorStr"]; ?>
-					</span>
-				</td>
-				<td class="text-center centrado-vertical">
-					<span class="txt-blanco">
 						<?php if ( $apuesta["rivalNombre"] != "" ): ?>
 							<?php echo $apuesta["rivalNombre"]; ?>
 						<?php else: ?>
 							--
 						<?php endif ?>
+					</span>
+				</td>
+				<td class="text-center centrado-vertical">
+					<span class="txt-blanco">
+						<?php echo $apuesta["resultadoApostadorStr"]; ?>
 					</span>
 				</td>
 				<td class="text-center centrado-vertical">

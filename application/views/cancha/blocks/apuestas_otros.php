@@ -8,10 +8,10 @@
 				<span class="txt-amarillo text-uppercase">Partido</span>
 			</th>
 			<th class="text-center centrado-vertical">
-				<span class="txt-amarillo text-uppercase">Rival</span>
+				<span class="txt-amarillo text-uppercase">Monto</span>
 			</th>
 			<th class="text-center centrado-vertical">
-				<span class="txt-amarillo text-uppercase">Monto</span>
+				<span class="txt-amarillo text-uppercase">Rival</span>
 			</th>
 			<th class="text-center centrado-vertical" colspan="3">
 				<span class="txt-amarillo text-uppercase">Apuesta</span>
@@ -43,12 +43,12 @@
 				</td>
 				<td class="text-center centrado-vertical">
 					<span class="txt-blanco">
-						<?php echo $apuesta["rivalNombre"]; ?>
+						$ <?php echo number_format($apuesta["montoApuesta"], 2); ?>
 					</span>
 				</td>
 				<td class="text-center centrado-vertical">
 					<span class="txt-blanco">
-						$ <?php echo number_format($apuesta["montoApuesta"], 2); ?>
+						<?php echo $apuesta["rivalNombre"]; ?>
 					</span>
 				</td>
 				<td class="text-center centrado-vertical">
