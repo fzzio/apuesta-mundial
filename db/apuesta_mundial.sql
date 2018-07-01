@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 01-07-2018 a las 12:54:04
+-- Tiempo de generación: 01-07-2018 a las 16:59:59
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 5.6.30
 
@@ -557,12 +557,13 @@ INSERT INTO `partido` (`id`, `id_pais_local`, `id_pais_visitante`, `fecha`, `gol
 (50, 229, 177, '2018-06-30 13:00:00', 2, 1, NULL, NULL, 2, '8', 3),
 (51, 73, 184, '2018-07-01 09:00:00', 4, 5, NULL, NULL, 2, '8', 3),
 (52, 82, 13, '2018-06-30 09:00:00', 4, 3, NULL, NULL, 2, '8', 3),
-(53, 61, 63, '2018-07-01 13:00:00', NULL, NULL, NULL, NULL, 2, '8', 1),
+(53, 61, 63, '2018-07-01 13:00:00', 4, 3, NULL, NULL, 2, '8', 3),
 (54, 33, 146, '2018-07-02 09:00:00', NULL, NULL, NULL, NULL, 2, '8', 1),
 (55, 207, 208, '2018-07-03 09:00:00', NULL, NULL, NULL, NULL, 2, '8', 1),
 (56, 24, 114, '2018-07-02 13:00:00', NULL, NULL, NULL, NULL, 2, '8', 1),
 (57, 52, 241, '2018-07-03 13:00:00', NULL, NULL, NULL, NULL, 2, '8', 1),
-(58, 229, 82, '2018-07-06 09:00:00', NULL, NULL, NULL, NULL, 3, '8', 1);
+(58, 229, 82, '2018-07-06 09:00:00', NULL, NULL, NULL, NULL, 3, '8', 1),
+(59, 184, 61, '2018-07-07 13:00:00', NULL, NULL, NULL, NULL, 3, '8', 1);
 
 -- --------------------------------------------------------
 
@@ -935,7 +936,7 @@ ALTER TABLE `pais`
 -- AUTO_INCREMENT de la tabla `partido`
 --
 ALTER TABLE `partido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `pronostico`
