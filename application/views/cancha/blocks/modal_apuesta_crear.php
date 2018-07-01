@@ -85,7 +85,7 @@
 							<div class="col-xs-12">
 								<p class="txt-blanco text-center">
 									<small>
-										Costo adicional por apuesta: <span class="txt-amarillo" id="apuesta-partido-costo"></span>
+										El costo adicional por apuesta en <span class="txt-amarillo text-uppercase" id="apuesta-partido-fase"></span> es: <span class="txt-amarillo" id="apuesta-partido-costo"></span>
 									</small>
 								</p>
 							</div>

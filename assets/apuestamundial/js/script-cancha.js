@@ -662,6 +662,28 @@ function modalCrearApuesta(partido){
 				$("#apuesta-partido-hora").text(respuesta.data.partidoFechaHora);
 				$("#apuesta-pronostico-ganalocal").text("Gana " + respuesta.data.partidoPaisLocal);
 				$("#apuesta-pronostico-ganavisitante").text("Gana " + respuesta.data.partidoPaisVisitante);
+				switch( parseInt( respuesta.data.partidoFase ) ) {
+					case JS_FASE_GRUPOS:
+						$("#apuesta-partido-fase").text("FASE DE GRUPOS");
+						break;
+					case JS_FASE_OCTAVOS:
+						$("#apuesta-partido-fase").text("OCTAVOS DE FINAL");
+						break;
+					case JS_FASE_CUARTOS:
+						$("#apuesta-partido-fase").text("CUARTOS DE FINAL");
+						break;
+					case JS_FASE_SEMIFINAL:
+						$("#apuesta-partido-fase").text("SEMIFINALES");
+						break;
+					case JS_FASE_TERCERO:
+						$("#apuesta-partido-fase").text("TERCER LUGAR");
+						break;
+					case JS_FASE_FINAL:
+						$("#apuesta-partido-fase").text("LA FINAL");
+						break;
+					default:
+						break;
+				}
 				if ( respuesta.data.partidoFase !=  JS_FASE_GRUPOS ) {
 					$("#apuesta-pronostico-empate").hide();
 				}else{
@@ -728,6 +750,28 @@ function modalUnirApuesta(apuesta, pronostico){
 				}
 				$("#apuesta-unir-id").val(respuesta.data.apuestaID);
 				$("#apuesta-unir-pronostico").val(pronostico);
+				switch( parseInt( respuesta.data.partidoFase ) ) {
+					case JS_FASE_GRUPOS:
+						$("#apuesta-unir-partido-fase").text("FASE DE GRUPOS");
+						break;
+					case JS_FASE_OCTAVOS:
+						$("#apuesta-unir-partido-fase").text("OCTAVOS DE FINAL");
+						break;
+					case JS_FASE_CUARTOS:
+						$("#apuesta-unir-partido-fase").text("CUARTOS DE FINAL");
+						break;
+					case JS_FASE_SEMIFINAL:
+						$("#apuesta-unir-partido-fase").text("SEMIFINALES");
+						break;
+					case JS_FASE_TERCERO:
+						$("#apuesta-unir-partido-fase").text("TERCER LUGAR");
+						break;
+					case JS_FASE_FINAL:
+						$("#apuesta-unir-partido-fase").text("LA FINAL");
+						break;
+					default:
+						break;
+				}
 				$("#apuesta-unir-partido-costo").text("$ " + respuesta.data.partidoCostoApuesta);
 				$("#apuesta-unir-mensaje-error").text("");
 				$("#contenedor-error-unir").hide();

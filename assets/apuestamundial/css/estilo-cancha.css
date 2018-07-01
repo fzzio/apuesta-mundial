@@ -557,6 +557,10 @@ span.tag{
 .alto-bloque{
 	min-height: 345px;
 }
+.txt-btn-pequeno{
+	font-size: 10px;
+    line-height: 10px;
+}
 
 /*
  * 2 -> lg: min-width:1200px

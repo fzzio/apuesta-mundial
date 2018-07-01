@@ -629,6 +629,7 @@ class Cancha extends CI_Controller {
 						"partidoFechaDia" => $fechaHoraPartido->format('d'),
 						"partidoFechaHora" => $fechaHoraPartido->format('H:i'),
 						"partidoCostoApuesta" => number_format( $partidoObj->getValorPartido(), 2),
+						"partidoFase" => $partidoObj->getFase(),
 						"rivalNombre" => $apuestaObj->getPronosticoApostador1()->getApostador()->getNombre(),
 						"rivalPronostico" => $apuestaObj->getPronosticoApostador1()->getResultado(),
 						"apuestaID" => $apuestaObj->getID(),
