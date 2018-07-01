@@ -32,31 +32,33 @@
 				<td class="text-center centrado-vertical">
 					<div class="btn btn-sm btn-negro btn-amarillo-hover" onclick="modalCrearApuesta(<?php echo $partidoProximoObj->getID(); ?>);">
 						Apostar
-						<br />
-						<span class="txt-btn-pequeno">
-							<?php 
-								switch ( intval( $partidoProximoObj->getFase() ) ) {
-									case FASE_OCTAVOS:
-										echo "[ octavos de final ]";
-										break;
-									case FASE_CUARTOS:
-										echo "[ cuartos de final ]";
-										break;
-									case FASE_SEMIFINAL:
-										echo "[ semifinales ]";
-										break;
-									case FASE_TERCERO:
-										echo "[ tercer lugar ]";
-										break;
-									case FASE_FINAL:
-										echo "[ la final ]";
-										break;
-									
-									default:
-										break;
-								}
-							?>
-						</span>
+						<?php if ($partidoProximoObj->getFase() != FASE_GRUPOS): ?>
+							<br />
+							<span class="txt-btn-pequeno">
+								<?php 
+									switch ( intval( $partidoProximoObj->getFase() ) ) {
+										case FASE_OCTAVOS:
+											echo "[ octavos de final ]";
+											break;
+										case FASE_CUARTOS:
+											echo "[ cuartos de final ]";
+											break;
+										case FASE_SEMIFINAL:
+											echo "[ semifinales ]";
+											break;
+										case FASE_TERCERO:
+											echo "[ tercer lugar ]";
+											break;
+										case FASE_FINAL:
+											echo "[ la final ]";
+											break;
+										
+										default:
+											break;
+									}
+								?>
+							</span>
+						<?php endif ?>
 					</div>
 				</td>
 			</tr>
